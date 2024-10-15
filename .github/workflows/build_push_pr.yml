@@ -11,15 +11,15 @@ jobs:
       matrix:
         platform: [Linux, Windows Desktop, macOS, Android]
     steps:
+      - name: Fix safe directory exception
+        run: |
+          git config --global --add safe.directory /github/workspace
       - uses: actions/checkout@v2
         with:
           lfs: true
       - uses: fufuhu/get-commit-id@main
         with:
           path: ./
-      - name: Fix safe directory exception
-        run: |
-          git config --global --add safe.directory /github/workspace
       - name: Check commit ids
         run: |
           echo "COMMIT ID:" ${{ steps.get_commit_id.outputs.commit_id }}
