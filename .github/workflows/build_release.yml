@@ -37,6 +37,11 @@ jobs:
           export GODOT_ANDROID_KEYSTORE_RELEASE_PATH=.\release.keystore
           export GODOT_ANDROID_KEYSTORE_RELEASE_USER=root
           export GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD=123456
+          if [ ${{steps.get_release.outputs.prerelease}} == 'true' ]; then
+            echo "this is a pre_release!"
+          else
+            echo "this is a normal release!"
+          fi
       - name: export game
         id: export
         uses: firebelley/godot-export@v6.0.0
