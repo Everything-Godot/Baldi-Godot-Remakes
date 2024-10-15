@@ -19,9 +19,10 @@ jobs:
         uses: iawia002/get-tag-or-commit-id@v1
         with:
           length: 7
-      - name: Check commit ids
+      - name: Check commit ids and fix someother things
         run: |
           echo "COMMIT ID:" ${{steps.get-version-id.outputs.id}}
+          export DISPLAY=":0"
       - name: Build
         id: build
         uses: manleydev/build-godot-action@v1.4.1
