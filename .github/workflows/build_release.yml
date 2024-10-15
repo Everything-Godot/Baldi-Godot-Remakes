@@ -68,14 +68,23 @@ jobs:
           asset_path: /home/runner/.local/share/godot/builds/macOS/mac.zip
           asset_name: MacOS - v${{github.event.release.name}}
           asset_content_type: application/zip
-      - name: Upload Artifact For Windows To Release
+      - name: Upload Artifact For Windows x64 To Release
         uses: actions/upload-release-asset@main
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
           upload_url: ${{steps.get_release.outputs.upload_url}}
-          asset_path: /home/runner/.local/share/godot/builds/Windows Desktop/win.exe
-          asset_name: Windows - v${{github.event.release.name}}
+          asset_path: /home/runner/.local/share/godot/builds/Windows Desktop/win64.exe
+          asset_name: Windows x64 - v${{github.event.release.name}}
+          asset_content_type: application/zip
+      - name: Upload Artifact For Windows x86 To Release
+        uses: actions/upload-release-asset@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          upload_url: ${{steps.get_release.outputs.upload_url}}
+          asset_path: /home/runner/.local/share/godot/builds/Windows Desktop/win86.exe
+          asset_name: Windows x86 - v${{github.event.release.name}}
           asset_content_type: application/zip
       - name: Upload Artifact For Android To Release
         uses: actions/upload-release-asset@main

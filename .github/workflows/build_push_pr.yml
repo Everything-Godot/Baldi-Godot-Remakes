@@ -54,11 +54,16 @@ jobs:
         with:
           name: MacOS - build ${{steps.get-version-id.outputs.id}}
           path: /home/runner/.local/share/godot/builds/macOS/mac.zip
-      - name: Upload Artifact For Windows
+      - name: Upload Artifact For Windows x64
         uses: actions/upload-artifact@v3
         with:
-          name: Windows - build ${{steps.get-version-id.outputs.id}}
-          path: /home/runner/.local/share/godot/builds/Windows Desktop/win.exe
+          name: Windows x64 - build ${{steps.get-version-id.outputs.id}}
+          path: /home/runner/.local/share/godot/builds/Windows Desktop/win64.exe
+      - name: Upload Artifact For Windows x86
+        uses: actions/upload-artifact@v3
+        with:
+          name: Windows x86 - build ${{steps.get-version-id.outputs.id}}
+          path: /home/runner/.local/share/godot/builds/Windows Desktop/win86.exe
       - name: Upload Artifact For Android
         uses: actions/upload-artifact@v3
         with:
