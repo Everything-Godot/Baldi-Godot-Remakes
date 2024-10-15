@@ -14,14 +14,16 @@ jobs:
       - uses: actions/checkout@v2
         with:
           lfs: true
+      - uses: fufuhu/get-commit-id
+        with:
+          path: ./
       - name: Build
         id: build
         uses: manleydev/build-godot-action@master
         with:
-          name: example
           preset: ${{ matrix.platform }}
           debugMode: "true"
-          name: "Baldi's Basics In Education And Learning"
+          name: "Baldi's Basics In Education And Learning - build ${{ steps.get_commit_id.outputs.commit_id }}"
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:

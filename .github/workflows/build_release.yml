@@ -17,7 +17,6 @@ jobs:
         id: build
         uses: manleydev/build-godot-action@master
         with:
-          name: example
           preset: ${{ matrix.platform }}
           debugMode: "false"
           name: "Baldi's Basics In Education And Learning"
