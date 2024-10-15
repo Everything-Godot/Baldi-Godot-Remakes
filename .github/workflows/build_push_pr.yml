@@ -11,28 +11,26 @@ jobs:
       matrix:
         platform: [Linux, Windows Desktop, macOS, Android]
     steps:
-      - name: Fix safe directory exception
-        run: |
-          git config --global --add safe.directory /github/workspace
       - uses: actions/checkout@v2
         with:
           lfs: true
-      - uses: fufuhu/get-commit-id@main
+      - name: Get tag or commit id
+        id: get-version-id
+        uses: iawia002/get-tag-or-commit-id@v1
         with:
-          path: ./
+          length: 7
       - name: Check commit ids
         run: |
-          echo "COMMIT ID:" ${{ steps.get_commit_id.outputs.commit_id }}
-          echo "SHORT COMMIT ID:" ${{ steps.get_commit_id.outputs.short_commit_id }}
+          echo "COMMIT ID:" ${{steps.get-version-id.outputs.id}}
       - name: Build
         id: build
         uses: manleydev/build-godot-action@master
         with:
           preset: ${{ matrix.platform }}
           debugMode: "true"
-          name: "Baldi's Basics In Education And Learning - build ${{ steps.get_commit_id.outputs.commit_id }}"
+          name: "Baldi's Basics In Education And Learning - build ${{steps.get-version-id.outputs.id}}"
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Client - ${{ matrix.platform }}
+          name: ${{ matrix.platform }} - ${{steps.get-version-id.outputs.id}}
           path: ${{ github.workspace }}/${{ steps.build.outputs.build }}

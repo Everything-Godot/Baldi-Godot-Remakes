@@ -1,7 +1,8 @@
 name: Build Godot Project For Releases
 
 on:
-  release: {}
+  release:
+    types: [published]
 
 jobs:
   Godot:
@@ -19,9 +20,9 @@ jobs:
         with:
           preset: ${{ matrix.platform }}
           debugMode: "false"
-          name: "Baldi's Basics In Education And Learning"
+          name: "Baldi's Basics In Education And Learning - v ${{github.event.release.name}}"
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Client - ${{ matrix.platform }}
+          name: ${{ matrix.platform }} - ${{github.event.release.name}}
           path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
