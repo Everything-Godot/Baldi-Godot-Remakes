@@ -16,7 +16,7 @@ jobs:
           lfs: true
       - name: Build
         id: build
-        uses: manleydev/build-godot-action@master
+        uses: manleydev/build-godot-action@v1.4.1
         with:
           preset: ${{ matrix.platform }}
           debugMode: "false"
