@@ -58,12 +58,12 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Windows x64 - build ${{steps.get-version-id.outputs.id}}
-          path: /home/runner/.local/share/godot/builds/Windows Desktop/win64.exe
+          path: /home/runner/.local/share/godot/builds/Windows Desktop x64/win64.exe
       - name: Upload Artifact For Windows x86
         uses: actions/upload-artifact@v3
         with:
           name: Windows x86 - build ${{steps.get-version-id.outputs.id}}
-          path: /home/runner/.local/share/godot/builds/Windows Desktop/win86.exe
+          path: /home/runner/.local/share/godot/builds/Windows Desktop x86/win86.exe
       - name: Upload Artifact For Android
         uses: actions/upload-artifact@v3
         with:

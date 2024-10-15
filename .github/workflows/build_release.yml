@@ -74,7 +74,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
           upload_url: ${{steps.get_release.outputs.upload_url}}
-          asset_path: /home/runner/.local/share/godot/builds/Windows Desktop/win64.exe
+          asset_path: /home/runner/.local/share/godot/builds/Windows Desktop x64/win64.exe
           asset_name: Windows x64 - v${{github.event.release.name}}
           asset_content_type: application/zip
       - name: Upload Artifact For Windows x86 To Release
@@ -83,7 +83,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
           upload_url: ${{steps.get_release.outputs.upload_url}}
-          asset_path: /home/runner/.local/share/godot/builds/Windows Desktop/win86.exe
+          asset_path: /home/runner/.local/share/godot/builds/Windows Desktop x86/win86.exe
           asset_name: Windows x86 - v${{github.event.release.name}}
           asset_content_type: application/zip
       - name: Upload Artifact For Android To Release
