@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           lfs: true
-      - uses: fufuhu/get-commit-id@master
+      - uses: fufuhu/get-commit-id@main
         with:
           path: ./
       - name: Build
