@@ -7,17 +7,75 @@ on:
 jobs:
   Godot:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        platform: [Linux, Windows Desktop, macOS, Android]
     steps:
       - uses: actions/checkout@v2
         with:
           lfs: true
-      - name: Build
-        id: build
-        uses: manleydev/build-godot-action@v1.4.1
+      - name: Get tag or commit id
+        id: get-version-id
+        uses: iawia002/get-tag-or-commit-id@v1
         with:
-          preset: ${{ matrix.platform }}
-          debugMode: "false"
-          name: "Baldi's Basics In Education And Learning - v ${{github.event.release.name}}"
+          length: 7
+      - name: Check release name
+        run: |
+          echo "COMMIT ID:" ${{github.event.release.name}}
+          export DISPLAY=":0"
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+      - name: Set Project Name
+        run: |
+          sed -i "s/Baldi godot remake/Baldi's Basics In Education And Learning - v${{github.event.release.name}}/g" project.godot
+      - name: export game
+        id: export
+        uses: firebelley/godot-export@v6.0.0
+        with:
+          godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_linux.x86_64.zip
+          godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_export_templates.tpz
+          relative_project_path: ./
+          export_debug: false
+      - name: Get release
+        id: get_release
+        uses: bruceadams/get-release@v1.3.2
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Upload Artifact For Linux To Release
+        uses: actions/upload-release-asset@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          upload_url: ${{steps.get_release.outputs.upload_url}}
+          asset_path: /home/runner/.local/share/godot/builds/Linux/linux.x86_64
+          asset_name: Linux - v${{github.event.release.name}}
+          asset_content_type: application/zip
+      - name: Upload Artifact For MacOS To Release
+        uses: actions/upload-release-asset@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          upload_url: ${{steps.get_release.outputs.upload_url}}
+          asset_path: /home/runner/.local/share/godot/builds/macOS/mac.zip
+          asset_name: MacOS - v${{github.event.release.name}}
+          asset_content_type: application/zip
+      - name: Upload Artifact For Windows To Release
+        uses: actions/upload-release-asset@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          upload_url: ${{steps.get_release.outputs.upload_url}}
+          asset_path: /home/runner/.local/share/godot/builds/Windows Desktop/win.exe
+          asset_name: Windows - v${{github.event.release.name}}
+          asset_content_type: application/zip
+      - name: Upload Artifact For Android To Release
+        uses: actions/upload-release-asset@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          upload_url: ${{steps.get_release.outputs.upload_url}}
+          asset_path: /home/runner/.local/share/godot/builds/Android/android.apk
+          asset_name: Android - v${{github.event.release.name}}
+          asset_content_type: application/zip
