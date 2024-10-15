@@ -21,8 +21,3 @@ jobs:
           preset: ${{ matrix.platform }}
           debugMode: "false"
           name: "Baldi's Basics In Education And Learning - v ${{github.event.release.name}}"
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ matrix.platform }} - ${{github.event.release.name}}
-          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}

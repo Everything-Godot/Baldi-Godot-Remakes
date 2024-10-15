@@ -7,9 +7,6 @@ on:
 jobs:
   Godot:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        platform: [Linux, Windows Desktop, macOS, Android]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -23,6 +20,15 @@ jobs:
         run: |
           echo "COMMIT ID:" ${{steps.get-version-id.outputs.id}}
           export DISPLAY=":0"
+      - name: export game
+        id: export
+        # Use latest version (see releases for all versions)
+        uses: firebelley/godot-export@v6.0.0
+        with:
+          # Defining all the required inputs
+          godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_linux.x86_64.zip
+          godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_export_templates.tpz
+          relative_project_path: ./
       - name: Build
         id: build
         uses: manleydev/build-godot-action@v1.4.1
@@ -30,8 +36,23 @@ jobs:
           preset: ${{ matrix.platform }}
           debugMode: "true"
           name: "Baldi's Basics In Education And Learning - build ${{steps.get-version-id.outputs.id}}"
-      - name: Upload Artifact
+      - name: Upload Artifact For Linux
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.platform }} - ${{steps.get-version-id.outputs.id}}
-          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
+          name: Linux - build ${{steps.get-version-id.outputs.id}}
+          path: ${{ github.workspace }}/builds/linux.x86_64
+      - name: Upload Artifact For MacOS
+        uses: actions/upload-artifact@v3
+        with:
+          name: MacOS - build ${{steps.get-version-id.outputs.id}}
+          path: ${{ github.workspace }}/builds/mac.zip
+      - name: Upload Artifact For Windows
+        uses: actions/upload-artifact@v3
+        with:
+          name: Windows - build ${{steps.get-version-id.outputs.id}}
+          path: ${{ github.workspace }}/builds/win.exe
+      #- name: Upload Artifact For Android
+      #  uses: actions/upload-artifact@v3
+      #  with:
+      #    name: Android - ${{steps.get-version-id.outputs.id}}
+      #    path: ${{ github.workspace }}/builds/android.apk
