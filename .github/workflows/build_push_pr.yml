@@ -17,6 +17,13 @@ jobs:
       - uses: fufuhu/get-commit-id@main
         with:
           path: ./
+      - name: Fix safe directory exception
+        run: |
+          git config --global --add safe.directory /github/workspace
+      - name: Check commit ids
+        run: |
+          echo "COMMIT ID:" ${{ steps.get_commit_id.outputs.commit_id }}
+          echo "SHORT COMMIT ID:" ${{ steps.get_commit_id.outputs.short_commit_id }}
       - name: Build
         id: build
         uses: manleydev/build-godot-action@master
