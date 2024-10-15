@@ -1,4 +1,4 @@
-name: Build Godot Project With Latest Codes
+name: Build Godot Project For Releases
 
 on:
   release: {}
