@@ -30,6 +30,7 @@ jobs:
       - name: Set Project Name
         run: |
           sed -i "s/Baldi godot remake/Baldi's Basics In Education And Learning - v${{github.event.release.name}}/g" project.godot
+          sed -i "s/0.0.0.0/${{github.event.release.name}}/g" project.godot
       - name: export game
         id: export
         uses: firebelley/godot-export@v6.0.0
