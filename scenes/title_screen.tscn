@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdjp0wu1flrga"]
+
+[ext_resource type="Texture2D" uid="uid://chj16sm4ydy" path="res://sprites/title_final.png" id="1_4vhds"]
+[ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_vnmx4"]
+[ext_resource type="Texture2D" uid="uid://ct15vmettdv30" path="res://sprites/exit.png" id="2_gkjui"]
+
+[node name="Title Screen" type="Node2D"]
+script = ExtResource("1_vnmx4")
+
+[node name="Background" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Background_color" type="ColorRect" parent="Background"]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Background_image" type="Sprite2D" parent="Background"]
+position = Vector2(144, 0)
+scale = Vector2(1.35, 1.35)
+texture = ExtResource("1_4vhds")
+centered = false
+
+[node name="Exit" type="TextureButton" parent="."]
+offset_top = 520.0
+offset_right = 64.0
+offset_bottom = 584.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("2_gkjui")
+
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

@@ -1,3 +1,64 @@
-[gd_scene format=3 uid="uid://do58c4xt7v4r6"]
+[gd_scene load_steps=3 format=3 uid="uid://do58c4xt7v4r6"]
+
+[ext_resource type="Script" path="res://scripts/warning.gd" id="1_5dhaa"]
+[ext_resource type="FontFile" uid="uid://0i8uc3fd1bpt" path="res://fonts/COMIC.ttf" id="1_sku2d"]
 
 [node name="Warning" type="Node2D"]
+script = ExtResource("1_5dhaa")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="Warning" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 200.0
+offset_right = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Warning"]
+offset_right = 751.0
+offset_bottom = 65.0
+theme_override_fonts/font = ExtResource("1_sku2d")
+theme_override_font_sizes/font_size = 46
+text = "WARNING!"
+horizontal_alignment = 1
+
+[node name="Content" type="Label" parent="Warning"]
+offset_top = 85.0
+offset_right = 751.0
+offset_bottom = 514.0
+theme_override_fonts/font = ExtResource("1_sku2d")
+theme_override_font_sizes/font_size = 36
+text = "In case you haven't figure it out yet, this
+game is intended to be a horror game. As
+such, it has loud noises, flashing images, and
+is overall pretty spoopy. (Well, at least it's
+supposed to be...) If you downloaded this
+thinking it would be great edutainment for
+your kid or something, don't let them play it!
+Unless, of course, they enjoy horror games."
+horizontal_alignment = 1
+
+[node name="Notice" type="Label" parent="Warning"]
+offset_top = 540.0
+offset_right = 751.0
+offset_bottom = 605.0
+theme_override_fonts/font = ExtResource("1_sku2d")
+theme_override_font_sizes/font_size = 46
+text = "YOU HAVE BEEN WARNED"
+horizontal_alignment = 1
+
+[node name="Continue" type="Label" parent="Warning"]
+offset_top = 587.0
+offset_right = 751.0
+offset_bottom = 647.0
+theme_override_fonts/font = ExtResource("1_sku2d")
+theme_override_font_sizes/font_size = 42
+text = "(Press any key to continue)"
+horizontal_alignment = 1
