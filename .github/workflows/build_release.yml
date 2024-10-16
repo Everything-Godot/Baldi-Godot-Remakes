@@ -8,7 +8,7 @@ jobs:
   Godot:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4.2.1
         with:
           lfs: true
       - name: Get release
@@ -21,12 +21,12 @@ jobs:
           echo "COMMIT ID:" ${{github.event.release.name}}
           export DISPLAY=":0"
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4.4.0
         with:
           java-version: '17'
           distribution: 'temurin'
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v3.2.1
       - name: Set Project Name and other stuff
         run: |
           sed -i "s/Baldi godot remake/Baldi's Basics In Education And Learning - v${{github.event.release.name}}/g" project.godot
