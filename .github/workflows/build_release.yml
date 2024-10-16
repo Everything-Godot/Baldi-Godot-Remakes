@@ -86,33 +86,33 @@ jobs:
           asset_name: Linux arm32 - v${{github.event.release.name}}.arm32
           asset_path: /home/runner/.local/share/godot/builds/Linux arm32/linux.arm32
           asset_content_type: application/zip
-      - name: Upload Artifact For Linux rv64 To Release
-        uses: actions/upload-release-asset@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        with:
-          upload_url: ${{steps.get_release.outputs.upload_url}}
-          asset_name: Linux rv64 - v${{github.event.release.name}}.rv64
-          asset_path: /home/runner/.local/share/godot/builds/Linux rv64/linux.rv64
-          asset_content_type: application/zip
-      - name: Upload Artifact For Linux ppc64 To Release
-        uses: actions/upload-release-asset@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        with:
-          upload_url: ${{steps.get_release.outputs.upload_url}}
-          asset_name: Linux ppc64 - v${{github.event.release.name}}.ppc64
-          asset_path: /home/runner/.local/share/godot/builds/Linux ppc64/linux.ppc64
-          asset_content_type: application/zip
-      - name: Upload Artifact For Linux ppc32 To Release
-        uses: actions/upload-release-asset@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        with:
-          upload_url: ${{steps.get_release.outputs.upload_url}}
-          asset_name: Linux ppc32 - v${{github.event.release.name}}.ppc32
-          asset_path: /home/runner/.local/share/godot/builds/Linux ppc32/linux.ppc32
-          asset_content_type: application/zip
+      #- name: Upload Artifact For Linux rv64 To Release
+      #  uses: actions/upload-release-asset@main
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      #  with:
+      #    upload_url: ${{steps.get_release.outputs.upload_url}}
+      #    asset_name: Linux rv64 - v${{github.event.release.name}}.rv64
+      #    asset_path: /home/runner/.local/share/godot/builds/Linux rv64/linux.rv64
+      #    asset_content_type: application/zip
+      #- name: Upload Artifact For Linux ppc64 To Release
+      #  uses: actions/upload-release-asset@main
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      #  with:
+      #    upload_url: ${{steps.get_release.outputs.upload_url}}
+      #    asset_name: Linux ppc64 - v${{github.event.release.name}}.ppc64
+      #    asset_path: /home/runner/.local/share/godot/builds/Linux ppc64/linux.ppc64
+      #    asset_content_type: application/zip
+      #- name: Upload Artifact For Linux ppc32 To Release
+      #  uses: actions/upload-release-asset@main
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      #  with:
+      #    upload_url: ${{steps.get_release.outputs.upload_url}}
+      #    asset_name: Linux ppc32 - v${{github.event.release.name}}.ppc32
+      #    asset_path: /home/runner/.local/share/godot/builds/Linux ppc32/linux.ppc32
+      #    asset_content_type: application/zip
       - name: Upload Artifact For MacOS To Release
         uses: actions/upload-release-asset@main
         env:

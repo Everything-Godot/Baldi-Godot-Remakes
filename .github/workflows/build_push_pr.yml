@@ -64,21 +64,21 @@ jobs:
         with:
           name: Linux arm32 - build ${{steps.get-version-id.outputs.id}}
           path: /home/runner/.local/share/godot/builds/Linux arm32/linux.arm32
-      - name: Upload Artifact For Linux rv64
-        uses: actions/upload-artifact@v4.4.3
-        with:
-          name: Linux rv64 - build ${{steps.get-version-id.outputs.id}}
-          path: /home/runner/.local/share/godot/builds/Linux rv64/linux.rv64
-      - name: Upload Artifact For Linux rppc64
-        uses: actions/upload-artifact@v4.4.3
-        with:
-          name: Linux ppc64 - build ${{steps.get-version-id.outputs.id}}
-          path: /home/runner/.local/share/godot/builds/Linux ppc64/linux.ppc64
-      - name: Upload Artifact For Linux ppc32
-        uses: actions/upload-artifact@v4.4.3
-        with:
-          name: Linux ppc32 - build ${{steps.get-version-id.outputs.id}}
-          path: /home/runner/.local/share/godot/builds/Linux ppc32/linux.ppc32
+      #- name: Upload Artifact For Linux rv64
+      #  uses: actions/upload-artifact@v4.4.3
+      #  with:
+      #    name: Linux rv64 - build ${{steps.get-version-id.outputs.id}}
+      #    path: /home/runner/.local/share/godot/builds/Linux rv64/linux.rv64
+      #- name: Upload Artifact For Linux rppc64
+      #  uses: actions/upload-artifact@v4.4.3
+      #  with:
+      #    name: Linux ppc64 - build ${{steps.get-version-id.outputs.id}}
+      #    path: /home/runner/.local/share/godot/builds/Linux ppc64/linux.ppc64
+      #- name: Upload Artifact For Linux ppc32
+      #  uses: actions/upload-artifact@v4.4.3
+      #  with:
+      #    name: Linux ppc32 - build ${{steps.get-version-id.outputs.id}}
+      #    path: /home/runner/.local/share/godot/builds/Linux ppc32/linux.ppc32
       - name: Upload Artifact For MacOS
         uses: actions/upload-artifact@v4.4.3
         with:
