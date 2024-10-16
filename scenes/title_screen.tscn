@@ -21,6 +21,8 @@ offset_bottom = 1514.0
 [node name="Title" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 864.0
 
 [node name="Background" type="Sprite2D" parent="Title"]
 position = Vector2(-3.05176e-05, 0)
@@ -31,8 +33,6 @@ centered = false
 [node name="Buttons" type="Control" parent="Title"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="Exit" type="TextureButton" parent="Title/Buttons"]
 layout_mode = 0

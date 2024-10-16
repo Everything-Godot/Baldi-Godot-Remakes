@@ -2,6 +2,9 @@ extends Node2D
 
 @onready var slider = $"Title/Mouse/Slider"
 @onready var title = $"Title"
+@onready var exit_bnt = $Title/Buttons/Exit
+@onready var start_bnt = $Title/Buttons/Start
+@onready var howto_bnt = $"Title/Buttons/How to play"
 @onready var howto = $"HowTo"
 
 func _ready() -> void:
@@ -11,6 +14,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	Global.mouse_sensitivity = slider.value
 	await get_tree().create_timer(0.2*delta).timeout
+	title.position = Vector2((DisplayServer.window_get_size().x + 2 - 1152) / 4, 0)
+	howto.position = Vector2((DisplayServer.window_get_size().x + 2 - 1152) / 4, 0)
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()
