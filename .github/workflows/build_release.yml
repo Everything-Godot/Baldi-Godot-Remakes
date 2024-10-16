@@ -57,7 +57,7 @@ jobs:
         with:
           upload_url: ${{steps.get_release.outputs.upload_url}}
           asset_path: /home/runner/.local/share/godot/builds/Linux/linux.x86_64
-          asset_name: Linux - v${{github.event.release.name}}
+          asset_name: Linux - v${{github.event.release.name}}.x86_64
           asset_content_type: application/zip
       - name: Upload Artifact For MacOS To Release
         uses: actions/upload-release-asset@main
@@ -66,7 +66,7 @@ jobs:
         with:
           upload_url: ${{steps.get_release.outputs.upload_url}}
           asset_path: /home/runner/.local/share/godot/builds/macOS/mac.zip
-          asset_name: MacOS - v${{github.event.release.name}}
+          asset_name: MacOS - v${{github.event.release.name}}.zip
           asset_content_type: application/zip
       - name: Upload Artifact For Windows x64 To Release
         uses: actions/upload-release-asset@main
@@ -75,7 +75,7 @@ jobs:
         with:
           upload_url: ${{steps.get_release.outputs.upload_url}}
           asset_path: /home/runner/.local/share/godot/builds/Windows Desktop x64/win64.exe
-          asset_name: Windows x64 - v${{github.event.release.name}}
+          asset_name: Windows x64 - v${{github.event.release.name}}.exe
           asset_content_type: application/zip
       - name: Upload Artifact For Windows x86 To Release
         uses: actions/upload-release-asset@main
@@ -84,7 +84,7 @@ jobs:
         with:
           upload_url: ${{steps.get_release.outputs.upload_url}}
           asset_path: /home/runner/.local/share/godot/builds/Windows Desktop x86/win86.exe
-          asset_name: Windows x86 - v${{github.event.release.name}}
+          asset_name: Windows x86 - v${{github.event.release.name}}.exe
           asset_content_type: application/zip
       - name: Upload Artifact For Android To Release
         uses: actions/upload-release-asset@main
@@ -93,5 +93,5 @@ jobs:
         with:
           upload_url: ${{steps.get_release.outputs.upload_url}}
           asset_path: /home/runner/.local/share/godot/builds/Android/android.apk
-          asset_name: Android - v${{github.event.release.name}}
+          asset_name: Android - v${{github.event.release.name}}.apk
           asset_content_type: application/zip
