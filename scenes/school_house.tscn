@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv7dftsx2jps6"]
+
+[sub_resource type="MeshLibrary" id="MeshLibrary_whlwc"]
+
+[node name="SchoolHouse" type="Node3D"]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = SubResource("MeshLibrary_whlwc")

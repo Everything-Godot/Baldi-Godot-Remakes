@@ -1,31 +1,145 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdjp0wu1flrga"]
+[gd_scene load_steps=9 format=3 uid="uid://cdjp0wu1flrga"]
 
 [ext_resource type="Texture2D" uid="uid://chj16sm4ydy" path="res://sprites/title_final.png" id="1_4vhds"]
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_vnmx4"]
 [ext_resource type="Texture2D" uid="uid://ct15vmettdv30" path="res://sprites/exit.png" id="2_gkjui"]
+[ext_resource type="AudioStream" uid="uid://d10kfv43iw0oc" path="res://sounds/BAL_MainMenu.wav" id="4_2tqpf"]
+[ext_resource type="Texture2D" uid="uid://btgpqxm5nrjw7" path="res://sprites/title_start.png" id="4_r7fo5"]
+[ext_resource type="Texture2D" uid="uid://boi33jo6ck6aq" path="res://sprites/title_howto.png" id="5_j075n"]
+[ext_resource type="AudioStream" uid="uid://cyx17rwt1jqaf" path="res://sounds/mus_Intro.wav" id="5_vuisl"]
+[ext_resource type="FontFile" uid="uid://0i8uc3fd1bpt" path="res://fonts/COMIC.ttf" id="6_4ykrc"]
 
 [node name="Title Screen" type="Node2D"]
 script = ExtResource("1_vnmx4")
 
-[node name="Background" type="Control" parent="."]
+[node name="Background" type="ColorRect" parent="."]
+offset_left = -774.0
+offset_top = -635.0
+offset_right = 2091.0
+offset_bottom = 1514.0
+
+[node name="Title" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 
-[node name="Background_color" type="ColorRect" parent="Background"]
-offset_right = 1152.0
-offset_bottom = 648.0
-
-[node name="Background_image" type="Sprite2D" parent="Background"]
-position = Vector2(144, 0)
-scale = Vector2(1.35, 1.35)
+[node name="Background" type="Sprite2D" parent="Title"]
+position = Vector2(-3.05176e-05, 0)
+scale = Vector2(1.8, 1.8)
 texture = ExtResource("1_4vhds")
 centered = false
 
-[node name="Exit" type="TextureButton" parent="."]
-offset_top = 520.0
+[node name="Buttons" type="Control" parent="Title"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Exit" type="TextureButton" parent="Title/Buttons"]
+layout_mode = 0
+offset_top = 736.0
 offset_right = 64.0
-offset_bottom = 584.0
+offset_bottom = 800.0
 scale = Vector2(2, 2)
 texture_normal = ExtResource("2_gkjui")
 
-[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[node name="Start" type="TextureButton" parent="Title/Buttons"]
+layout_mode = 0
+offset_left = 626.0
+offset_top = 798.0
+offset_right = 740.0
+offset_bottom = 842.0
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("4_r7fo5")
+
+[node name="How to play" type="TextureButton" parent="Title/Buttons"]
+layout_mode = 0
+offset_left = 797.0
+offset_top = 798.0
+offset_right = 1034.0
+offset_bottom = 842.0
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("5_j075n")
+
+[node name="Mouse" type="Control" parent="Title"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Text" type="Label" parent="Title/Mouse"]
+layout_mode = 0
+offset_left = 778.0
+offset_top = 698.0
+offset_right = 1152.0
+offset_bottom = 758.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_4ykrc")
+theme_override_font_sizes/font_size = 42
+text = "Mouse Sensitivity: "
+
+[node name="Slider" type="HSlider" parent="Title/Mouse"]
+layout_mode = 0
+offset_left = 815.0
+offset_top = 768.0
+offset_right = 971.0
+offset_bottom = 784.0
+scale = Vector2(2, 2)
+max_value = 1.0
+step = 0.01
+value = 0.2
+
+[node name="HowTo" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Texts" type="Label" parent="HowTo"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_4ykrc")
+theme_override_font_sizes/font_size = 22
+text = "Controls:
+WASD - Move
+Mouse - Look around
+Left Click - Pick up objects, open doors, other interactions
+Right Click - Use selected item
+Scroll Wheel - Change item selection
+Shift - Run (Watch your stamina!)
+Space bar - Look behind you and wave goodbye to your friends!
+
+
+
+Story:
+Oh noes! School is out, but your friend has a problem! He left all his noteboos in school, but doesn't have
+time to go get them, because if he does he'll be late for eating parcitce. To help him out, you have to go
+back in the school and find all 7 of his notebooks for him. It won't be easy though! Baldi loves challenging
+his students with fun trivia problems whenever he can! Each time you find a notebook, you'll have to answer
+some questions. Answer all three correctly, and you will earn a prize! Find all 7 notebooks, and then exit the
+school, to win!"
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="HowTo"]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 718.0
+offset_right = 727.0
+offset_bottom = 836.0
+theme_override_fonts/font = ExtResource("6_4ykrc")
+theme_override_font_sizes/font_size = 64
+text = "Back"
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_2tqpf")
+autoplay = true
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_vuisl")
+autoplay = true
+
+[connection signal="pressed" from="Title/Buttons/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Title/Buttons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Title/Buttons/How to play" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="HowTo/Back" to="." method="_on_back_pressed"]

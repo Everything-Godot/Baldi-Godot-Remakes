@@ -22,9 +22,11 @@ Global="*res://scripts/global.gd"
 
 [display]
 
+window/size/viewport_height=864
+window/size/mode=3
 window/size/resizable=false
-window/stretch/mode="viewport"
-window/stretch/aspect="expand"
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_height"
 
 [input]
 
