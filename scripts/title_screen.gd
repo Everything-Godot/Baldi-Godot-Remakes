@@ -1,5 +1,6 @@
 extends Node2D
 
+var school_house = preload("res://scenes/school_house.tscn")
 @onready var slider = $"Title/Mouse/Slider"
 @onready var title = $"Title"
 @onready var exit_bnt = $Title/Buttons/Exit
@@ -21,7 +22,7 @@ func _on_exit_pressed() -> void:
 	get_tree().quit()
 
 func _on_start_pressed() -> void:
-	pass
+	get_tree().change_scene_to_packed(school_house)
 
 func _on_how_to_play_pressed() -> void:
 	title.visible = false

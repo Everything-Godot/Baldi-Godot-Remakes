@@ -1,0 +1,66 @@
+[gd_scene load_steps=16 format=3 uid="uid://cvmg0oafhj2ok"]
+
+[ext_resource type="Texture2D" uid="uid://ktm8828qwxa6" path="res://sprites/TileFloor.png" id="1_anhe4"]
+[ext_resource type="Texture2D" uid="uid://bsebinvdhf1s2" path="res://sprites/WhiteBrickWall.png" id="2_2ep1j"]
+[ext_resource type="Texture2D" uid="uid://nx14s8yheh1k" path="res://sprites/Ceiling.png" id="3_6x1xt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yq3gw"]
+albedo_texture = ExtResource("1_anhe4")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jmm3i"]
+material = SubResource("StandardMaterial3D_yq3gw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kl1sx"]
+albedo_texture = ExtResource("2_2ep1j")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_e3dfs"]
+material = SubResource("StandardMaterial3D_kl1sx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_81pw4"]
+albedo_texture = ExtResource("2_2ep1j")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tw735"]
+material = SubResource("StandardMaterial3D_81pw4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2a0wf"]
+albedo_texture = ExtResource("2_2ep1j")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n6h4j"]
+material = SubResource("StandardMaterial3D_2a0wf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q4vjj"]
+albedo_texture = ExtResource("2_2ep1j")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tr1ag"]
+material = SubResource("StandardMaterial3D_q4vjj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12uow"]
+albedo_texture = ExtResource("3_6x1xt")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rxfep"]
+material = SubResource("StandardMaterial3D_12uow")
+
+[node name="meshs" type="Node3D"]
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_jmm3i")
+
+[node name="Wall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 1)
+mesh = SubResource("PlaneMesh_e3dfs")
+
+[node name="Wall2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 1, -1)
+mesh = SubResource("PlaneMesh_tw735")
+
+[node name="Wall3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 1, 1, 0)
+mesh = SubResource("PlaneMesh_n6h4j")
+
+[node name="Wall4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -1, 1, 0)
+mesh = SubResource("PlaneMesh_tr1ag")
+
+[node name="Ceiling" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_rxfep")
