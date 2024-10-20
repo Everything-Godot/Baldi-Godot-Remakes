@@ -2,7 +2,7 @@ extends Node
 
 var first_time : bool = true
 var mouse_sensitivity : float
-var debug : bool = EngineDebugger.is_active()
+var debug : bool = OS.is_debug_build()
 var paused : bool = false
 var freelook : bool = false
 
