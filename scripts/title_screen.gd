@@ -9,6 +9,7 @@ var school_house = preload("res://scenes/school_house.tscn")
 @onready var howto = $"HowTo"
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	title.visible = true
 	howto.visible = false
 

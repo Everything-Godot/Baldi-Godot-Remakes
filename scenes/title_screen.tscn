@@ -83,9 +83,9 @@ offset_top = 768.0
 offset_right = 971.0
 offset_bottom = 784.0
 scale = Vector2(2, 2)
-max_value = 1.0
+max_value = 3.0
 step = 0.01
-value = 0.2
+value = 1.0
 
 [node name="HowTo" type="Control" parent="."]
 visible = false
