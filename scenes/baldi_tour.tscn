@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://81yq86o5yy0p"]
+
+[ext_resource type="Texture2D" uid="uid://btvv2hi880max" path="res://sprites/Baldi_Wave0000.png" id="1_05ixn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yh161"]
+transparency = 1
+albedo_texture = ExtResource("1_05ixn")
+
+[sub_resource type="QuadMesh" id="QuadMesh_bvb5r"]
+material = SubResource("StandardMaterial3D_yh161")
+size = Vector2(1.1, 2)
+
+[node name="Baldi_Tour" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_bvb5r")

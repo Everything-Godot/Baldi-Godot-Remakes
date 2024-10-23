@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://b7c7h5jre8ymm"]
+[gd_scene load_steps=24 format=3 uid="uid://b7c7h5jre8ymm"]
 
 [ext_resource type="Texture2D" uid="uid://ktm8828qwxa6" path="res://sprites/TileFloor.png" id="1_busip"]
 [ext_resource type="Script" path="res://scripts/school_house.gd" id="1_gmpo5"]
 [ext_resource type="Texture2D" uid="uid://bsebinvdhf1s2" path="res://sprites/WhiteBrickWall.png" id="2_4a7o4"]
 [ext_resource type="Texture2D" uid="uid://nx14s8yheh1k" path="res://sprites/Ceiling.png" id="3_m354t"]
 [ext_resource type="PackedScene" uid="uid://o02jx6ilewsn" path="res://scenes/player.tscn" id="4_hxetr"]
+[ext_resource type="PackedScene" uid="uid://81yq86o5yy0p" path="res://scenes/baldi_tour.tscn" id="6_a35ho"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hgs37"]
 albedo_texture = ExtResource("1_busip")
@@ -47,6 +48,15 @@ albedo_texture = ExtResource("3_m354t")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_euodu"]
 material = SubResource("StandardMaterial3D_q3fe2")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4d4ve"]
+
+[sub_resource type="Sky" id="Sky_ul25v"]
+sky_material = SubResource("ProceduralSkyMaterial_4d4ve")
+
+[sub_resource type="Environment" id="Environment_318it"]
+background_mode = 2
+sky = SubResource("Sky_ul25v")
 
 [node name="SchoolHouse" type="Node3D"]
 script = ExtResource("1_gmpo5")
@@ -362,6 +372,9 @@ mesh = SubResource("PlaneMesh_euodu")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ceilings/Ceiling5/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_318it")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.856078, 0.514815, 0.045783, -0.503187, 0.850407, -0.153659, -0.11804, 0.108506, 0.987063, 0, 2.22107, 1.33411)
 
@@ -370,3 +383,6 @@ transform = Transform3D(-0.820653, -0.525948, -0.2234, -0.563515, 0.809712, 0.16
 
 [node name="Player" parent="." instance=ExtResource("4_hxetr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.34086, 0)
+
+[node name="Baldi_Tour" parent="." instance=ExtResource("6_a35ho")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.22358, 1.80919)
