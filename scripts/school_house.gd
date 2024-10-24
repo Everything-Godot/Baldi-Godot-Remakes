@@ -7,5 +7,7 @@ func _ready() -> void:
 	pass
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("Esc"):
-		player_camera.add_child(pause_menu.instantiate())
+	if Input.is_action_just_pressed("Esc") and not Global.paused:
+		var pm = pause_menu.instantiate()
+		pm.name = "PM"
+		player_camera.add_child(pm)

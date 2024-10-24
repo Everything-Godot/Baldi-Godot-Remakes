@@ -382,7 +382,7 @@ transform = Transform3D(0.856078, 0.514815, 0.045783, -0.503187, 0.850407, -0.15
 transform = Transform3D(-0.820653, -0.525948, -0.2234, -0.563515, 0.809712, 0.16376, 0.0947602, 0.260279, -0.960872, 0, 2.22107, -1.25823)
 
 [node name="Player" parent="." instance=ExtResource("4_hxetr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.34086, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01928, 0)
 
 [node name="Baldi_Tour" parent="." instance=ExtResource("6_a35ho")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.22358, 1.80919)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28732, -1.43479)

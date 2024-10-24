@@ -21,7 +21,9 @@ func _process(delta: float) -> void:
 	if Global.paused:
 		if Input.is_action_just_pressed("Esc"):
 			for child in camera.get_children():
-				camera.remove_child(child)
+				print(child.name)
+				if child.name == "PM":
+					camera.remove_child(child)
 			Global.paused = false
 	if Global.debug and not Global.paused:
 		camera.rotation.z = 0

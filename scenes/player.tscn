@@ -18,5 +18,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0)
 current = true
 script = ExtResource("2_qjj63")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Label" type="Label" parent="Camera3D"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "000"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]5
 shape = SubResource("CapsuleShape3D_yk1gi")
