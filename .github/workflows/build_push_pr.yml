@@ -86,11 +86,11 @@ jobs:
       #  with:
       #    name: Linux ppc32 - build ${{steps.get-version-id.outputs.id}}
       #    path: /home/runner/.local/share/godot/builds/Linux ppc32/linux.ppc32
-      - name: Upload Artifact For MacOS
-        uses: actions/upload-artifact@v4.4.3
-        with:
-          name: MacOS - build ${{steps.get-version-id.outputs.id}}
-          path: /home/runner/.local/share/godot/builds/macOS/mac.zip
+      #- name: Upload Artifact For MacOS
+      #  uses: actions/upload-artifact@v4.4.3
+      #  with:
+      #    name: MacOS - build ${{steps.get-version-id.outputs.id}}
+      #    path: /home/runner/.local/share/godot/builds/macOS/mac.zip
       - name: Upload Artifact For Windows x64
         uses: actions/upload-artifact@v4.4.3
         with:
