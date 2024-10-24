@@ -19,6 +19,8 @@ jobs:
       - name: Get test name
         id: test_name
         run: |
+          export name=$(cat test_name.txt)
+          echo $name
           echo "name=$(cat test_name.txt)" >> "$GITHUB_OUTPUT"
       - name: Check commit ids and some android works
         run: |
