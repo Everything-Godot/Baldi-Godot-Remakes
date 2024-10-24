@@ -42,7 +42,7 @@ jobs:
         run: |
           sed -i "s/Baldi godot remake/Baldi's Basics In Education And Learning - build ${{steps.get-version-id.outputs.id}}/g" project.godot
           sed -i "s/0.0.0.0/${{steps.get-version-id.outputs.id}}/g" project.godot
-          sed -i "s/000/commit id: ${{steps.get-version-id.outputs.id}} ${{steps.test_name.outputs.name}}/g" scenes/school_house.tscn
+          sed -i "s/000/commit id: ${{steps.get-version-id.outputs.id}} - ${{steps.test_name.outputs.name}}/g" scenes/player.tscn
       - name: export game
         id: export
         uses: firebelley/godot-export@v6.0.0
@@ -86,11 +86,11 @@ jobs:
       #  with:
       #    name: Linux ppc32 - build ${{steps.get-version-id.outputs.id}}
       #    path: /home/runner/.local/share/godot/builds/Linux ppc32/linux.ppc32
-      #- name: Upload Artifact For MacOS
-      #  uses: actions/upload-artifact@v4.4.3
-      #  with:
-      #    name: MacOS - build ${{steps.get-version-id.outputs.id}}
-      #    path: /home/runner/.local/share/godot/builds/macOS/mac.zip
+      - name: Upload Artifact For MacOS
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: MacOS - build ${{steps.get-version-id.outputs.id}}
+          path: /home/runner/.local/share/godot/builds/macOS/mac.zip
       - name: Upload Artifact For Windows x64
         uses: actions/upload-artifact@v4.4.3
         with:
