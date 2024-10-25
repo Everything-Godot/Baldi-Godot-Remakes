@@ -3,12 +3,14 @@ extends CharacterBody3D
 @onready var player = $"."
 @onready var camera = $"Camera3D"
 @export_category("player")
-@export var speed := 10.0
-@export var gravity := 20.0
-@export var jump_speed := 8.0
+@export var speed : float = 5.0
+@export var gravity : float = 20.0
+@export var jump_speed : float = 5.0
 var jumping := false
 var movement_vector := Vector2.ZERO
 var last_floor := false
+var parent : Node
+var start_check := false
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -22,6 +24,9 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if not Global.paused:
 		if not Global.freelook:
+			if start_check:
+				if Input.is_action_pressed("interact"):
+					parent.set_meta("opened", true)
 			velocity.y += -gravity * delta
 			var vy = velocity.y
 			velocity.y = 0
@@ -38,3 +43,18 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity = Vector3(0, 0, 0)
 		move_and_slide()
+
+func _on_area_3d_area_entered(area:Area3D) -> void:
+	print(area)
+	parent = area.get_parent()
+	print(parent)
+	if not Global.paused:
+		if not Global.freelook:
+			if parent.has_meta("opened"):
+				print(parent.get_meta("opened"))
+				if not parent.get_meta("opened"):
+					start_check = true
+
+func _on_area_3d_area_exited(area: Area3D) -> void:
+	parent = area.get_parent()
+	start_check = false

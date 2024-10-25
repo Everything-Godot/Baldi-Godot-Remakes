@@ -45,6 +45,9 @@ material = SubResource("StandardMaterial3D_12uow")
 
 [node name="meshs" type="Node3D"]
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.986005, -0.166717, 0, 0.166717, 0.986005, 0, 0, 0)
+
 [node name="Floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_jmm3i")
 

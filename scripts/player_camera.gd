@@ -6,6 +6,7 @@ extends Camera3D
 @export var free_look_speed := 3.0
 var camera_anglev=0
 var last_camera_position := Vector3.ZERO
+var last_camera_rotation := Vector3.ZERO
 
 func _input(event):
 	if not Global.paused:
@@ -30,10 +31,13 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("freelook"):
 			if Global.freelook:
 				camera.position = last_camera_position
+				camera.rotation = last_camera_rotation
 				last_camera_position = Vector3.ZERO
+				last_camera_rotation = Vector3.ZERO
 				camera.rotation.x = 0
 			else:
 				last_camera_position = camera.position
+				last_camera_rotation = camera.rotation
 			Global.freelook = !Global.freelook
 		if Global.freelook:
 			free_look(camera, delta)

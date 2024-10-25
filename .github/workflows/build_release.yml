@@ -43,10 +43,10 @@ jobs:
           export GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD=123456
           if [ ${{steps.get_release.outputs.prerelease}} == 'true' ]; then
             echo "this is a pre_release!"
-            sed -i "s/000/v${{github.event.release.name}} - ${{steps.test_name.outputs.name}}/g" scenes/player.tscn
+            sed -i "s/Dev Build/v${{github.event.release.name}} - ${{steps.test_name.outputs.name}}/g" scenes/player.tscn
           else
             echo "this is a normal release!"
-            sed -i "s/000/v${{github.event.release.name}}/g" scenes/player.tscn
+            sed -i "s/Dev Build/v${{github.event.release.name}}/g" scenes/player.tscn
           fi
       - name: export game
         id: export

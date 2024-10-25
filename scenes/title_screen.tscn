@@ -139,6 +139,9 @@ autoplay = true
 stream = ExtResource("5_vuisl")
 autoplay = true
 
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
 [connection signal="pressed" from="Title/Buttons/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Title/Buttons/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Title/Buttons/How to play" to="." method="_on_how_to_play_pressed"]

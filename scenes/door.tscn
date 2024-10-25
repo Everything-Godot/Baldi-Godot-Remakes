@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://dt8wwdp0sum8c"]
+
+[ext_resource type="Texture2D" uid="uid://dq7npit31wtj4" path="res://sprites/Door_0.png" id="1_g202l"]
+[ext_resource type="Script" path="res://scripts/door.gd" id="2_3mj38"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8c5pm"]
+size = Vector3(1.28, 2.55, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7njuj"]
+size = Vector3(0.1, 2.55, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_seiud"]
+size = Vector3(0.1, 2.55, 0.3)
+
+[node name="Door" type="Sprite3D"]
+texture = ExtResource("1_g202l")
+script = ExtResource("2_3mj38")
+metadata/opened = false
+
+[node name="Area3D2" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+shape = SubResource("BoxShape3D_8c5pm")
+
+[node name="Timer2" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3DClosed" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_8c5pm")
+
+[node name="CollisionShape3DOpened1" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0, 0)
+shape = SubResource("BoxShape3D_7njuj")
+
+[node name="CollisionShape3DOpened2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.594037, -0.0055052, 0.000585079)
+shape = SubResource("BoxShape3D_seiud")
