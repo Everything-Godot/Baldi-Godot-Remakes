@@ -1,11 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://b7c7h5jre8ymm"]
+[gd_scene load_steps=27 format=3 uid="uid://b7c7h5jre8ymm"]
 
 [ext_resource type="Texture2D" uid="uid://ktm8828qwxa6" path="res://sprites/TileFloor.png" id="1_busip"]
 [ext_resource type="Script" path="res://scripts/school_house.gd" id="1_gmpo5"]
 [ext_resource type="Texture2D" uid="uid://bsebinvdhf1s2" path="res://sprites/WhiteBrickWall.png" id="2_4a7o4"]
 [ext_resource type="Texture2D" uid="uid://nx14s8yheh1k" path="res://sprites/Ceiling.png" id="3_m354t"]
 [ext_resource type="PackedScene" uid="uid://o02jx6ilewsn" path="res://scenes/player.tscn" id="4_hxetr"]
-[ext_resource type="AudioStream" uid="uid://dxkvfp5p4oouj" path="res://sounds/mus_School.wav" id="5_8vh0s"]
 [ext_resource type="PackedScene" uid="uid://81yq86o5yy0p" path="res://scenes/baldi_tour.tscn" id="6_a35ho"]
 [ext_resource type="PackedScene" uid="uid://dt8wwdp0sum8c" path="res://scenes/door.tscn" id="8_loba3"]
 
@@ -511,35 +510,43 @@ shape = SubResource("BoxShape3D_gsuic")
 
 [node name="Wallsthatfitsdoors" type="Node3D" parent="."]
 
-[node name="Wall4" type="MeshInstance3D" parent="Wallsthatfitsdoors"]
+[node name="Wall" type="Node3D" parent="Wallsthatfitsdoors"]
+
+[node name="Wall4" type="MeshInstance3D" parent="Wallsthatfitsdoors/Wall"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.822114, 1.28277, 3)
 layers = 2
 mesh = SubResource("PlaneMesh_3ejdh")
+skeleton = NodePath("../..")
 
-[node name="Wall5" type="MeshInstance3D" parent="Wallsthatfitsdoors"]
+[node name="Wall5" type="MeshInstance3D" parent="Wallsthatfitsdoors/Wall"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.824364, 1.28919, 3)
 layers = 2
 mesh = SubResource("PlaneMesh_3ejdh")
+skeleton = NodePath("../..")
 
-[node name="Wall31" type="MeshInstance3D" parent="Wallsthatfitsdoors"]
+[node name="Wall31" type="MeshInstance3D" parent="Wallsthatfitsdoors/Wall"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.28921, 3)
 layers = 2
 mesh = SubResource("PlaneMesh_0ujd4")
+skeleton = NodePath("../..")
 
-[node name="Wall6" type="MeshInstance3D" parent="Wallsthatfitsdoors"]
+[node name="Wall6" type="MeshInstance3D" parent="Wallsthatfitsdoors/Wall"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.822114, 1.28277, 3)
 layers = 2
 mesh = SubResource("PlaneMesh_3ejdh")
+skeleton = NodePath("../..")
 
-[node name="Wall7" type="MeshInstance3D" parent="Wallsthatfitsdoors"]
+[node name="Wall7" type="MeshInstance3D" parent="Wallsthatfitsdoors/Wall"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.824364, 1.28919, 3)
 layers = 2
 mesh = SubResource("PlaneMesh_3ejdh")
+skeleton = NodePath("../..")
 
-[node name="Wall32" type="MeshInstance3D" parent="Wallsthatfitsdoors"]
+[node name="Wall32" type="MeshInstance3D" parent="Wallsthatfitsdoors/Wall"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.28921, 3)
 layers = 2
 mesh = SubResource("PlaneMesh_0ujd4")
+skeleton = NodePath("../..")
 
 [node name="Doors" type="Node3D" parent="."]
 
@@ -558,11 +565,5 @@ transform = Transform3D(-0.820653, -0.525948, -0.2234, -0.563515, 0.809712, 0.16
 [node name="Player" parent="." instance=ExtResource("4_hxetr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0399485, 1.99808, 4.43024)
 
-[node name="Music" type="AudioStreamPlayer3D" parent="Player"]
-stream = ExtResource("5_8vh0s")
-autoplay = true
-
 [node name="Baldi_Tour" parent="." instance=ExtResource("6_a35ho")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28732, -1.97252)
-
-[connection signal="finished" from="Player/Music" to="." method="_on_music_finished"]

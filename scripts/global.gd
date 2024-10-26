@@ -5,6 +5,8 @@ var mouse_sensitivity : float
 var debug : bool = OS.is_debug_build()
 var paused : bool = false
 var freelook : bool = false
+var unlockedlook : bool = false
+var noclip : bool = false
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("toggle fullscreen") and debug and not paused:
