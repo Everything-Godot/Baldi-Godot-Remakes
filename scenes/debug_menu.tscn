@@ -51,6 +51,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="3DLook" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
 offset_top = 77.0
 offset_right = 157.0
 offset_bottom = 100.0

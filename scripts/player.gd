@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @onready var player = $"."
 @onready var camera = $"Camera3D"
+@onready var collision = $CollisionShape3D
 @export_category("player")
 @export var speed : float = 5.0
 @export var gravity : float = 20.0
@@ -11,6 +12,10 @@ var movement_vector := Vector2.ZERO
 var last_floor := false
 var parent : Node
 var start_check := false
+var temp_bool
+var temp_bool2
+var last_camera_position
+var last_camera_rotation
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -43,6 +48,21 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity = Vector3(0, 0, 0)
 		move_and_slide()
+	if not Global.paused and Global.debug:
+		if Input.is_action_just_pressed("noclip"):
+			if Global.noclip:
+				collision.disabled = false
+				gravity = 20.0
+				Global.unlockedlook = temp_bool
+				temp_bool = null
+			else:
+				collision.disabled = true
+				gravity = 0.0
+				temp_bool = Global.unlockedlook
+				Global.unlockedlook = true
+			if not Global.unlockedlook:
+				camera.rotation.x = 0
+			Global.noclip = !Global.noclip
 
 func _on_area_3d_area_entered(area:Area3D) -> void:
 	print(area)
