@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://drnhh1dim6m3r"]
+
+[ext_resource type="Script" path="res://scripts/debug_menu.gd" id="1_tgq8o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vv2k"]
+bg_color = Color(0, 0, 0, 0.254902)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Debug menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tgq8o")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 139.0
+offset_right = 157.0
+offset_bottom = 272.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3vv2k")
+
+[node name="Debug" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 157.0
+offset_bottom = 23.0
+text = "Debug menu"
+horizontal_alignment = 1
+
+[node name="Freelook" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_top = 31.0
+offset_right = 157.0
+offset_bottom = 54.0
+bbcode_enabled = true
+text = "[center]Freelook    [color=green]ON[/color]"
+
+[node name="Noclip" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_top = 54.0
+offset_right = 157.0
+offset_bottom = 77.0
+bbcode_enabled = true
+text = "[center]Noclip    [color=green]ON[/color]"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="3DLook" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_top = 77.0
+offset_right = 157.0
+offset_bottom = 100.0
+bbcode_enabled = true
+text = "[center]3DLook    [color=green]ON[/color]"
+scroll_active = false
+autowrap_mode = 0
