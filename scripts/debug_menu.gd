@@ -3,8 +3,19 @@ extends Control
 @onready var freelook = $Panel/Freelook
 @onready var noclip = $Panel/Noclip
 @onready var unlockedlook = $"Panel/3DLook"
+@onready var freelook_button = $Panel/Freelook/Button
+@onready var noclip_button = $Panel/Noclip/Button
+@onready var unlockedlook_button = $"Panel/3DLook/Button"
 
 func _ready() -> void:
+	if Global.os_name == "Android":
+		freelook_button.visible = true
+		noclip_button.visible = true
+		unlockedlook_button.visible = true
+	else:
+		freelook_button.visible = false
+		noclip_button.visible = false
+		unlockedlook_button.visible = false
 	if Global.debug:
 		visible = true
 	else:

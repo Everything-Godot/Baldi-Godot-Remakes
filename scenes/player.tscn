@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://o02jx6ilewsn"]
+[gd_scene load_steps=9 format=3 uid="uid://o02jx6ilewsn"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_nvkyj"]
 [ext_resource type="Script" path="res://scripts/player_camera.gd" id="2_qjj63"]
 [ext_resource type="PackedScene" uid="uid://drnhh1dim6m3r" path="res://scenes/debug_menu.tscn" id="3_m8wfe"]
+[ext_resource type="PackedScene" uid="uid://dfkqhfrueuc6b" path="res://scenes/android_control_ui.tscn" id="4_dgcri"]
 [ext_resource type="AudioStream" uid="uid://dxkvfp5p4oouj" path="res://sounds/mus_School.wav" id="4_fniop"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bejou"]
@@ -27,13 +28,14 @@ script = ExtResource("2_qjj63")
 [node name="Label" type="Label" parent="Camera3D"]
 offset_right = 40.0
 offset_bottom = 23.0
+scale = Vector2(1.5, 1.5)
 text = "Dev Build"
 
-[node name="ColorRect" type="ColorRect" parent="Camera3D"]
-offset_left = 571.0
-offset_top = 427.0
-offset_right = 581.0
-offset_bottom = 437.0
+[node name="Mouse" type="ColorRect" parent="Camera3D"]
+offset_left = 952.5
+offset_top = 532.5
+offset_right = 967.5
+offset_bottom = 547.5
 color = Color(0, 0, 0, 1)
 
 [node name="Area3D" type="Area3D" parent="Camera3D"]
@@ -43,6 +45,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.395586)
 shape = SubResource("BoxShape3D_t54tl")
 
 [node name="Debug menu" parent="Camera3D" instance=ExtResource("3_m8wfe")]
+
+[node name="Android Control UI" parent="Camera3D" instance=ExtResource("4_dgcri")]
 
 [node name="Music" type="AudioStreamPlayer3D" parent="Camera3D"]
 stream = ExtResource("4_fniop")

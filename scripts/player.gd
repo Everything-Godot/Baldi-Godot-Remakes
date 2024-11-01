@@ -3,6 +3,7 @@ extends CharacterBody3D
 @onready var player = $"."
 @onready var camera = $"Camera3D"
 @onready var collision = $CollisionShape3D
+@onready var noclip_button : Button = $"Camera3D/Debug menu/Panel/Noclip/Button"
 @export_category("player")
 @export var speed : float = 5.0
 @export var gravity : float = 20.0
@@ -49,7 +50,7 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector3(0, 0, 0)
 		move_and_slide()
 	if not Global.paused and Global.debug:
-		if Input.is_action_just_pressed("noclip"):
+		if Input.is_action_just_pressed("noclip") or noclip_button.button_pressed:
 			if Global.noclip:
 				collision.disabled = false
 				gravity = 20.0

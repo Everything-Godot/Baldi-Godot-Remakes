@@ -13,6 +13,8 @@ script = ExtResource("1_i24pk")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_right = 1163.0
-offset_bottom = 874.0
+offset_left = -228.0
+offset_top = -100.0
+offset_right = 2157.0
+offset_bottom = 1262.0
 color = Color(0, 0, 0, 0.172549)

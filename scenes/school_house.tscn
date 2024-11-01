@@ -552,6 +552,7 @@ skeleton = NodePath("../..")
 
 [node name="Door" parent="Doors" instance=ExtResource("8_loba3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.285, 3)
+texture = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_318it")

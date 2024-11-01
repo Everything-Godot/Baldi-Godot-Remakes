@@ -21,8 +21,9 @@ script = ExtResource("1_tgq8o")
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_top = 139.0
-offset_right = 157.0
-offset_bottom = 272.0
+offset_right = 154.0
+offset_bottom = 451.0
+scale = Vector2(1.5, 1.5)
 theme_override_styles/panel = SubResource("StyleBoxFlat_3vv2k")
 
 [node name="Debug" type="Label" parent="Panel"]
@@ -40,6 +41,13 @@ offset_bottom = 54.0
 bbcode_enabled = true
 text = "[center]Freelook    [color=green]ON[/color]"
 
+[node name="Button" type="Button" parent="Panel/Freelook"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 155.0
+offset_bottom = 21.0
+flat = true
+
 [node name="Noclip" type="RichTextLabel" parent="Panel"]
 layout_mode = 0
 offset_top = 54.0
@@ -50,6 +58,12 @@ text = "[center]Noclip    [color=green]ON[/color]"
 scroll_active = false
 autowrap_mode = 0
 
+[node name="Button" type="Button" parent="Panel/Noclip"]
+offset_top = 3.0
+offset_right = 154.0
+offset_bottom = 22.0
+flat = true
+
 [node name="3DLook" type="RichTextLabel" parent="Panel"]
 layout_mode = 0
 offset_top = 77.0
@@ -59,3 +73,9 @@ bbcode_enabled = true
 text = "[center]3DLook    [color=green]ON[/color]"
 scroll_active = false
 autowrap_mode = 0
+
+[node name="Button" type="Button" parent="Panel/3DLook"]
+offset_top = 4.0
+offset_right = 154.0
+offset_bottom = 22.0
+flat = true

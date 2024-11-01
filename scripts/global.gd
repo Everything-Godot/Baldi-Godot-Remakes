@@ -7,6 +7,8 @@ var paused : bool = false
 var freelook : bool = false
 var unlockedlook : bool = false
 var noclip : bool = false
+var os_name : String = OS.get_name()
+var args : PackedStringArray = OS.get_cmdline_args()
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("toggle fullscreen") and debug and not paused:
