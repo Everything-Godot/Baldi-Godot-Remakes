@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @onready var camera = $"Camera3D"
 @onready var collision = $CollisionShape3D
-@onready var noclip_button : Button = $"Camera3D/Debug menu/Panel/Noclip/Button"
+@onready var noclip_button : Button = $"Camera3D/Debug menu/Panel/NoclipButton"
 @export_category("player")
 @export var speed : float = 5.0
 @export var gravity : float = 20.0
@@ -85,7 +85,7 @@ func _on_area_3d_area_entered(area:Area3D) -> void:
 					if not Global.os_name == "Android":
 						start_check = true
 					else:
-						if not Input.is_action_pressed("left") or not Input.is_action_pressed("right") or not Input.is_action_pressed("forward") or not Input.is_action_pressed("backward") or not Input.is_action_pressed("up") or not Input.is_action_pressed("down"):
+						if not Input.is_action_pressed("left") and not Input.is_action_pressed("right") and not Input.is_action_pressed("forward") and not Input.is_action_pressed("backward") and not Input.is_action_pressed("up") and not Input.is_action_pressed("down"):
 							start_check = true
 						else:
 							start_check = false

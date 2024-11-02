@@ -3,8 +3,8 @@ extends Camera3D
 @onready var player = $".."
 @onready var music = $"Music"
 @onready var android_control_ui = $"Android Control UI"
-@onready var freelook_button : Button = $"Debug menu/Panel/Freelook/Button"
-@onready var unlockedlook_button : Button = $"Debug menu/Panel/3DLook/Button"
+@onready var freelook_button : Button = $"Debug menu/Panel/FreelookButton"
+@onready var unlockedlook_button : Button = $"Debug menu/Panel/3DLookButton"
 @onready var pause_button : Button = $"Android Control UI/Pause Button/Button"
 @export_category("camera")
 @export var free_look_speed := 3.0
@@ -25,14 +25,12 @@ func _input(event):
 						rotate_object_local(Vector3(1,0,0),deg_to_rad(changev))
 		else:
 			if event is InputEventScreenDrag:
-				print(event.as_text())
-				if not Input.is_action_pressed("left") or not Input.is_action_pressed("right") or not Input.is_action_pressed("forward") or not Input.is_action_pressed("backward") or not Input.is_action_pressed("up") or not Input.is_action_pressed("down"):
-					rotate_y(deg_to_rad(-event.relative.x*Global.mouse_sensitivity))
-					if Global.unlockedlook:
-						var changev=-event.relative.y*Global.mouse_sensitivity
-						if camera_anglev+changev>-50 and camera_anglev+changev<50:
-							camera_anglev+=changev
-							rotate_object_local(Vector3(1,0,0),deg_to_rad(changev))
+				rotate_y(deg_to_rad(-event.relative.x*Global.mouse_sensitivity))
+				if Global.unlockedlook:
+					var changev=-event.relative.y*Global.mouse_sensitivity
+					if camera_anglev+changev>-50 and camera_anglev+changev<50:
+						camera_anglev+=changev
+						rotate_object_local(Vector3(1,0,0),deg_to_rad(changev))
 
 func _process(delta: float) -> void:
 	music.volume_db = -15

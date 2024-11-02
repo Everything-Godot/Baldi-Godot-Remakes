@@ -33,6 +33,30 @@ offset_bottom = 23.0
 text = "Debug menu"
 horizontal_alignment = 1
 
+[node name="FreelookButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_top = 35.0
+offset_right = 155.0
+offset_bottom = 52.0
+action_mode = 0
+button_mask = 7
+
+[node name="NoclipButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_top = 57.0
+offset_right = 154.0
+offset_bottom = 76.0
+action_mode = 0
+button_mask = 7
+
+[node name="3DLookButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_top = 81.0
+offset_right = 154.0
+offset_bottom = 99.0
+action_mode = 0
+button_mask = 7
+
 [node name="Freelook" type="RichTextLabel" parent="Panel"]
 layout_mode = 0
 offset_top = 31.0
@@ -40,14 +64,6 @@ offset_right = 157.0
 offset_bottom = 54.0
 bbcode_enabled = true
 text = "[center]Freelook    [color=green]ON[/color]"
-
-[node name="Button" type="Button" parent="Panel/Freelook"]
-layout_mode = 0
-offset_top = 4.0
-offset_right = 155.0
-offset_bottom = 21.0
-action_mode = 0
-button_mask = 7
 
 [node name="Noclip" type="RichTextLabel" parent="Panel"]
 layout_mode = 0
@@ -59,14 +75,6 @@ text = "[center]Noclip    [color=green]ON[/color]"
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Button" type="Button" parent="Panel/Noclip"]
-layout_mode = 0
-offset_top = 3.0
-offset_right = 154.0
-offset_bottom = 22.0
-action_mode = 0
-button_mask = 7
-
 [node name="3DLook" type="RichTextLabel" parent="Panel"]
 layout_mode = 0
 offset_top = 77.0
@@ -76,11 +84,3 @@ bbcode_enabled = true
 text = "[center]3DLook    [color=green]ON[/color]"
 scroll_active = false
 autowrap_mode = 0
-
-[node name="Button" type="Button" parent="Panel/3DLook"]
-layout_mode = 0
-offset_top = 4.0
-offset_right = 154.0
-offset_bottom = 22.0
-action_mode = 0
-button_mask = 7

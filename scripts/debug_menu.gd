@@ -3,9 +3,9 @@ extends Control
 @onready var freelook = $Panel/Freelook
 @onready var noclip = $Panel/Noclip
 @onready var unlockedlook = $"Panel/3DLook"
-@onready var freelook_button = $Panel/Freelook/Button
-@onready var noclip_button = $Panel/Noclip/Button
-@onready var unlockedlook_button = $"Panel/3DLook/Button"
+@onready var freelook_button = $Panel/FreelookButton
+@onready var noclip_button = $Panel/NoclipButton
+@onready var unlockedlook_button = $"Panel/3DLookButton"
 
 func _ready() -> void:
 	if Global.os_name == "Android":
