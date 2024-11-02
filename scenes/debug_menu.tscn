@@ -46,7 +46,8 @@ layout_mode = 0
 offset_top = 4.0
 offset_right = 155.0
 offset_bottom = 21.0
-flat = true
+action_mode = 0
+button_mask = 7
 
 [node name="Noclip" type="RichTextLabel" parent="Panel"]
 layout_mode = 0
@@ -63,7 +64,8 @@ layout_mode = 0
 offset_top = 3.0
 offset_right = 154.0
 offset_bottom = 22.0
-flat = true
+action_mode = 0
+button_mask = 7
 
 [node name="3DLook" type="RichTextLabel" parent="Panel"]
 layout_mode = 0
@@ -80,4 +82,5 @@ layout_mode = 0
 offset_top = 4.0
 offset_right = 154.0
 offset_bottom = 22.0
-flat = true
+action_mode = 0
+button_mask = 7
