@@ -40,6 +40,7 @@ offset_right = 39.0
 offset_bottom = 98.0
 
 [node name="right" type="ColorRect" parent="Pause Button"]
+layout_mode = 0
 offset_left = 72.0
 offset_top = 11.0
 offset_right = 88.0

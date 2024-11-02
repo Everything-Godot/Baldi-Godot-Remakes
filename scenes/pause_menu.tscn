@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dftoucrpsohu2"]
+[gd_scene load_steps=3 format=3 uid="uid://dftoucrpsohu2"]
 
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_i24pk"]
+[ext_resource type="FontFile" uid="uid://0i8uc3fd1bpt" path="res://fonts/COMIC.ttf" id="2_l0xef"]
 
 [node name="Pause Menu" type="Control"]
 layout_mode = 3
@@ -11,10 +12,77 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_i24pk")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Paused" type="Label" parent="."]
 layout_mode = 0
-offset_left = -228.0
-offset_top = -100.0
-offset_right = 2157.0
-offset_bottom = 1262.0
-color = Color(0, 0, 0, 0.172549)
+offset_left = 780.0
+offset_right = 1211.0
+offset_bottom = 101.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_l0xef")
+theme_override_font_sizes/font_size = 72
+text = "Game Paused"
+
+[node name="Other" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Exit" type="Label" parent="Other"]
+offset_left = 610.0
+offset_top = 217.0
+offset_right = 1474.0
+offset_bottom = 318.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_l0xef")
+theme_override_font_sizes/font_size = 72
+text = "Press Q to exit the game."
+
+[node name="Resume" type="Label" parent="Other"]
+offset_left = 442.0
+offset_top = 342.0
+offset_right = 1622.0
+offset_bottom = 443.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_l0xef")
+theme_override_font_sizes/font_size = 72
+text = "Press ESCAPE to resume the game."
+
+[node name="Android" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Exit" type="Label" parent="Android"]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 217.0
+offset_right = 1466.0
+offset_bottom = 318.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_l0xef")
+theme_override_font_sizes/font_size = 72
+text = "Press here to exit the game."
+
+[node name="Button" type="Button" parent="Android/Exit"]
+layout_mode = 0
+offset_left = -18.0
+offset_right = 973.0
+offset_bottom = 112.0
+flat = true
+
+[node name="Resume" type="Label" parent="Android"]
+offset_left = 456.0
+offset_top = 342.0
+offset_right = 1517.0
+offset_bottom = 443.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_l0xef")
+theme_override_font_sizes/font_size = 72
+text = "Press here to resume the game."
+
+[node name="Button" type="Button" parent="Android/Resume"]
+offset_left = -22.0
+offset_right = 1076.0
+offset_bottom = 105.0
+flat = true

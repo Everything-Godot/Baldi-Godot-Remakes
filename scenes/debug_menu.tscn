@@ -59,6 +59,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="Button" type="Button" parent="Panel/Noclip"]
+layout_mode = 0
 offset_top = 3.0
 offset_right = 154.0
 offset_bottom = 22.0
@@ -75,6 +76,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="Button" type="Button" parent="Panel/3DLook"]
+layout_mode = 0
 offset_top = 4.0
 offset_right = 154.0
 offset_bottom = 22.0

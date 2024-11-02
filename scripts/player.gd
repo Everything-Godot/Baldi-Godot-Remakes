@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-@onready var player = $"."
 @onready var camera = $"Camera3D"
 @onready var collision = $CollisionShape3D
 @onready var noclip_button : Button = $"Camera3D/Debug menu/Panel/Noclip/Button"
@@ -39,31 +38,40 @@ func _physics_process(delta: float) -> void:
 			var inputDir = Input.get_vector("left", "right", "forward", "backward")
 			var relativeDir = Vector3(inputDir.x, 0.0, inputDir.y).rotated(Vector3.UP, camera.rotation.y)
 			velocity = lerp(velocity, relativeDir * speed, speed * delta)
-			velocity.y = vy
-			if is_on_floor() and not last_floor:
-				jumping = false
-			last_floor = is_on_floor()
-			if is_on_floor() and Input.is_action_just_pressed("jump"):
-				velocity.y = jump_speed
+			if not Global.noclip:
+				velocity.y = vy
+				if is_on_floor() and not last_floor:
+					jumping = false
+				last_floor = is_on_floor()
+				if is_on_floor() and Input.is_action_just_pressed("jump"):
+					velocity.y = jump_speed
+					jumping = true
+			else:
 				jumping = true
 		else:
 			velocity = Vector3(0, 0, 0)
 		move_and_slide()
-	if not Global.paused and Global.debug:
-		if Input.is_action_just_pressed("noclip") or noclip_button.button_pressed:
+	if not Global.paused:
+		if Global.debug:
+			if Input.is_action_just_pressed("noclip") or noclip_button.button_pressed:
+				if Global.noclip:
+					collision.disabled = false
+					gravity = 20.0
+					Global.unlockedlook = temp_bool
+					temp_bool = null
+				else:
+					collision.disabled = true
+					gravity = 0.0
+					temp_bool = Global.unlockedlook
+					Global.unlockedlook = true
+				if not Global.unlockedlook:
+					camera.rotation.x = 0
+				Global.noclip = !Global.noclip
 			if Global.noclip:
-				collision.disabled = false
-				gravity = 20.0
-				Global.unlockedlook = temp_bool
-				temp_bool = null
-			else:
-				collision.disabled = true
-				gravity = 0.0
-				temp_bool = Global.unlockedlook
-				Global.unlockedlook = true
-			if not Global.unlockedlook:
-				camera.rotation.x = 0
-			Global.noclip = !Global.noclip
+				if Input.is_action_pressed("jump"):
+					position.y += 0.1
+				if Input.is_action_pressed("down"):
+					position.y -= 0.1
 
 func _on_area_3d_area_entered(area:Area3D) -> void:
 	print(area)
