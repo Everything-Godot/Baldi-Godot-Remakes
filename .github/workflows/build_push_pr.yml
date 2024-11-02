@@ -6,6 +6,11 @@ on:
 
 jobs:
   Godot:
+    env:
+      dev_ver:
+        "1.0.0"
+      dev_text:
+        "dev build"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.1
@@ -40,8 +45,8 @@ jobs:
         uses: android-actions/setup-android@v3.2.1
       - name: Set Project Name
         run: |
-          sed -i "s/Baldi godot remake/Baldi's Basics In Education And Learning - build ${{steps.get-version-id.outputs.id}}/g" project.godot
-          sed -i "s/0.0.0.0/${{steps.get-version-id.outputs.id}}/g" project.godot
+          sed -i "s/Baldi godot remake/Baldi's Basics In Education And Learning - ${{env.dev_text}}/g" project.godot
+          sed -i "s/0.0.0.0/${{env.dev_ver}}/g" project.godot
           sed -i "s/Dev Build/commit id: ${{steps.get-version-id.outputs.id}} - ${{steps.test_name.outputs.name}}/g" scenes/player.tscn
       - name: export game
         id: export

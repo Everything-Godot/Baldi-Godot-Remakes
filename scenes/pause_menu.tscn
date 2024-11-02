@@ -29,6 +29,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Exit" type="Label" parent="Other"]
+layout_mode = 0
 offset_left = 610.0
 offset_top = 217.0
 offset_right = 1474.0
@@ -39,6 +40,7 @@ theme_override_font_sizes/font_size = 72
 text = "Press Q to exit the game."
 
 [node name="Resume" type="Label" parent="Other"]
+layout_mode = 0
 offset_left = 442.0
 offset_top = 342.0
 offset_right = 1622.0
@@ -72,6 +74,7 @@ offset_bottom = 112.0
 flat = true
 
 [node name="Resume" type="Label" parent="Android"]
+layout_mode = 0
 offset_left = 456.0
 offset_top = 342.0
 offset_right = 1517.0
@@ -82,6 +85,7 @@ theme_override_font_sizes/font_size = 72
 text = "Press here to resume the game."
 
 [node name="Button" type="Button" parent="Android/Resume"]
+layout_mode = 0
 offset_left = -22.0
 offset_right = 1076.0
 offset_bottom = 105.0
