@@ -24,7 +24,7 @@ jobs:
         id: test_name
         run: |
           echo "name=$(cat test_name.txt)" >> "$GITHUB_OUTPUT"
-          apt-get install p7zip-full
+          sudo apt-get install p7zip-full
       - name: Set up JDK 17
         uses: actions/setup-java@v4.4.0
         with:
