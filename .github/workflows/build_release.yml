@@ -146,6 +146,15 @@ jobs:
           asset_path: /home/runner/.local/share/godot/builds/Windows Desktop x86/win86.exe
           asset_name: Windows x86 - v${{github.event.release.name}}.exe
           asset_content_type: application/zip
+      - name: Upload Artifact For Windows arm64 To Release
+        uses: actions/upload-release-asset@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          upload_url: ${{steps.get_release.outputs.upload_url}}
+          asset_path: /home/runner/.local/share/godot/builds/Windows Desktop arm64/winarm64.exe
+          asset_name: Windows arm64 - v${{github.event.release.name}}.exe
+          asset_content_type: application/zip
       - name: Upload Artifact For Android To Release
         uses: actions/upload-release-asset@main
         env:
