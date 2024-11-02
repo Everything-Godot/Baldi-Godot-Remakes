@@ -18,7 +18,11 @@ func _process(delta: float) -> void:
 	await get_tree().create_timer(0.2*delta).timeout
 
 func _on_exit_pressed() -> void:
-	get_tree().quit()
+	if Global.os_name == "Web":
+		var location = JavaScriptBridge.get_interface("location")
+		location.href = "about:blank"
+	else:
+		get_tree().quit()
 
 func _on_start_pressed() -> void:
 	get_tree().change_scene_to_packed(school_house)
