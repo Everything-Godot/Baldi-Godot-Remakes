@@ -20,11 +20,10 @@ jobs:
         run: |
           echo "Release Name:" ${{github.event.release.name}}
           export DISPLAY=":0"
-      - name: Get test name and install 7zip
+      - name: Get test name
         id: test_name
         run: |
           echo "name=$(cat test_name.txt)" >> "$GITHUB_OUTPUT"
-          sudo apt-get install p7zip-full
       - name: Set up JDK 17
         uses: actions/setup-java@v4.4.0
         with:

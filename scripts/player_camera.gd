@@ -3,9 +3,6 @@ extends Camera3D
 @onready var player = $".."
 @onready var music = $"Music"
 @onready var android_control_ui = $"Android Control UI"
-@onready var freelook_button : Button = $"Debug menu/Panel/FreelookButton"
-@onready var unlockedlook_button : Button = $"Debug menu/Panel/3DLookButton"
-@onready var pause_button : Button = $"Android Control UI/Pause Button/Button"
 @export_category("camera")
 @export var free_look_speed := 3.0
 var camera_anglev=0
@@ -47,14 +44,14 @@ func _process(delta: float) -> void:
 			Global.paused = false
 	if Global.debug and not Global.paused:
 		rotation.z = 0
-		if Input.is_action_just_pressed("3dlook") or unlockedlook_button.button_pressed:
+		if Input.is_action_just_pressed("3dlook"):
 			if Global.freelook:
 				Global.unlockedlook = true
 			else:
 				Global.unlockedlook = !Global.unlockedlook
 			if not Global.unlockedlook:
 				rotation.x = 0
-		if Input.is_action_just_pressed("freelook") or freelook_button.button_pressed:
+		if Input.is_action_just_pressed("freelook"):
 			if Global.freelook:
 				position = last_camera_position
 				rotation = last_camera_rotation
