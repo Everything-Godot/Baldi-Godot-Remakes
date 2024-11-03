@@ -85,3 +85,7 @@ offset_right = 215.0
 offset_bottom = 111.667
 scale = Vector2(0.8, 0.8)
 text = "Toggle"
+
+[connection signal="pressed" from="Panel/FreelookBTN" to="." method="_on_freelook_btn_pressed"]
+[connection signal="pressed" from="Panel/NoclipBTN" to="." method="_on_noclip_btn_pressed"]
+[connection signal="pressed" from="Panel/3DLookBTN" to="." method="_on_d_look_btn_pressed"]
