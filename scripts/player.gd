@@ -79,15 +79,8 @@ func _on_area_3d_area_entered(area:Area3D) -> void:
 	if not Global.paused:
 		if not Global.freelook:
 			if parent.has_meta("opened"):
-				print(parent.get_meta("opened"))
 				if not parent.get_meta("opened"):
-					if not Global.os_name == "Android":
-						start_check = true
-					else:
-						if not Input.is_action_pressed("left") and not Input.is_action_pressed("right") and not Input.is_action_pressed("forward") and not Input.is_action_pressed("backward") and not Input.is_action_pressed("up") and not Input.is_action_pressed("down"):
-							start_check = true
-						else:
-							start_check = false
+					start_check = true
 
 func _on_area_3d_area_exited(area: Area3D) -> void:
 	parent = area.get_parent()

@@ -17,9 +17,7 @@ func _process(_delta: float) -> void:
 	#From GPT-3.5, if works then thanks
 	var camera_global_transform = get_viewport().get_camera_3d().global_transform
 	var camera_rotation = camera_global_transform.basis.get_euler()
-	rotation.y = camera_rotation.y
-	rotation.x = camera_rotation.x
-	rotation.z = camera_rotation.z
+	rotation = camera_rotation
 	#GPT stops here
 	if Global.paused:
 		timer.paused = true
