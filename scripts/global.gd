@@ -12,12 +12,13 @@ var args : PackedStringArray = OS.get_cmdline_args()
 var is_on_android : bool
 
 func _ready() -> void:
+	print("Running on: "+os_name)
 	if os_name == "Android":
 		is_on_android = true
 	elif os_name == "Web":
-		var ua = JavaScriptBridge.get_interface("navigator.userAgent")
-		print(ua)
-		if str(ua).find("Android") != -1:
+		var ua : String = str(JavaScriptBridge.get_interface("navigator").userAgent)
+		print("Get User Agent: "+ua)
+		if ua.find("Android") != -1:
 			is_on_android = true
 		else:
 			is_on_android = false
@@ -25,7 +26,7 @@ func _ready() -> void:
 		is_on_android = false
 
 func _process(_delta: float) -> void:
-	if Global.os_name != "Android":
+	if not is_on_android:
 		if Input.is_action_just_pressed("toggle fullscreen") and debug and not paused:
 			if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
 				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)

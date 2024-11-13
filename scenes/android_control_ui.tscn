@@ -62,6 +62,7 @@ theme_override_font_sizes/font_size = 64
 text = "Debug"
 
 [node name="Jump" type="Button" parent="."]
+layout_mode = 0
 offset_left = 1572.0
 offset_top = 741.0
 offset_right = 1825.0

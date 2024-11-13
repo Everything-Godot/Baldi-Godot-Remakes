@@ -181,11 +181,10 @@ var ml_options := {
 # =============================================================================
 
 func _init():
-	if not OS.get_name() == "Web":
-		_update_ml_options_from_options_resource()
-		_update_ml_options_from_cli_args()
-		# ModLoaderStore is passed as argument so the cache data can be loaded on _init()
-		_ModLoaderCache.init_cache(self)
+	_update_ml_options_from_options_resource()
+	_update_ml_options_from_cli_args()
+	# ModLoaderStore is passed as argument so the cache data can be loaded on _init()
+	_ModLoaderCache.init_cache(self)
 
 
 # Update ModLoader's options, via the custom options resource
