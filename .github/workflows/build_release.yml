@@ -16,6 +16,11 @@ jobs:
         uses: bruceadams/get-release@v1.3.2
         env:
           GITHUB_TOKEN: ${{ github.token }}
+      - name: install wine
+        id: wine_install
+        run: |
+          sudo apt install wine64
+          echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
       - name: Check release name
         run: |
           echo "Release Name:" ${{github.event.release.name}}
@@ -52,10 +57,12 @@ jobs:
         id: export
         uses: firebelley/godot-export@v6.0.0
         with:
-          godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_linux.x86_64.zip
-          godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_export_templates.tpz
+          godot_executable_download_url: https://github.com/godotengine/godot-builds/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
+          godot_export_templates_download_url: https://github.com/godotengine/godot-builds/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
           relative_project_path: ./
           export_debug: ${{steps.get_release.outputs.prerelease}}
+          wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
+          cache: true
       - name: Upload Artifact For Linux x64 To Release
         uses: actions/upload-release-asset@main
         env:
