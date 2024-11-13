@@ -34,6 +34,9 @@ jobs:
         id: wine_install
         run: |
           sudo apt install wine64
+          sudo dpkg --add-architecture i386
+          sudo apt-get update
+          sudo apt-get install wine32
           echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
       - name: Get test name
         id: test_name
