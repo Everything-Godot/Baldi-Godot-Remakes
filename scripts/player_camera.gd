@@ -12,7 +12,7 @@ var temp_bool = false
 
 func _input(event):
 	if not Global.paused:
-		if Global.os_name != "Android":
+		if not Global.is_on_android:
 			if event is InputEventMouseMotion:
 				rotate_y(deg_to_rad(-event.relative.x*Global.mouse_sensitivity))
 				if Global.unlockedlook:

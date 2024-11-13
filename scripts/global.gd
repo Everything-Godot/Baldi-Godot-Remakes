@@ -9,6 +9,20 @@ var unlockedlook : bool = false
 var noclip : bool = false
 var os_name : String = OS.get_name()
 var args : PackedStringArray = OS.get_cmdline_args()
+var is_on_android : bool
+
+func _ready() -> void:
+	if os_name == "Android":
+		is_on_android = true
+	elif os_name == "Web":
+		var ua = JavaScriptBridge.get_interface("navigator.userAgent")
+		print(ua)
+		if str(ua).find("Android") != -1:
+			is_on_android = true
+		else:
+			is_on_android = false
+	else:
+		is_on_android = false
 
 func _process(_delta: float) -> void:
 	if Global.os_name != "Android":

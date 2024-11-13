@@ -7,7 +7,7 @@ var title_screen = preload("res://scenes/title_screen.tscn")
 @onready var exit_button = $Android/Exit/Button
 
 func _ready() -> void:
-	if Global.os_name == "Android":
+	if Global.is_on_android:
 		android.visible = true
 		other.visible = false
 	else:

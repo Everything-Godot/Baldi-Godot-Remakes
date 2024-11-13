@@ -35,57 +35,58 @@ const LOG_NAME := "ModLoader"
 # =============================================================================
 
 func _init() -> void:
-	# Only load the hook pack if not in the editor
-	# We can't use it in the editor - see https://github.com/godotengine/godot/issues/19815
-	# Mod devs can use the Dev Tool to generate hooks in the editor.
-	if not OS.has_feature("editor") and FileAccess.file_exists(_ModLoaderPath.get_path_to_hook_pack()):
-		# Load mod hooks
-		var load_hooks_pack_success := ProjectSettings.load_resource_pack(_ModLoaderPath.get_path_to_hook_pack())
-		if not load_hooks_pack_success:
-			ModLoaderLog.error("Failed loading hooks pack from: %s" % _ModLoaderPath.get_path_to_hook_pack(), LOG_NAME)
-		else:
-			ModLoaderLog.debug("Successfully loaded hooks pack from: %s" % _ModLoaderPath.get_path_to_hook_pack(), LOG_NAME)
+	if not OS.get_name() == "Web":
+		# Only load the hook pack if not in the editor
+		# We can't use it in the editor - see https://github.com/godotengine/godot/issues/19815
+		# Mod devs can use the Dev Tool to generate hooks in the editor.
+		if not OS.has_feature("editor") and FileAccess.file_exists(_ModLoaderPath.get_path_to_hook_pack()):
+			# Load mod hooks
+			var load_hooks_pack_success := ProjectSettings.load_resource_pack(_ModLoaderPath.get_path_to_hook_pack())
+			if not load_hooks_pack_success:
+				ModLoaderLog.error("Failed loading hooks pack from: %s" % _ModLoaderPath.get_path_to_hook_pack(), LOG_NAME)
+			else:
+				ModLoaderLog.debug("Successfully loaded hooks pack from: %s" % _ModLoaderPath.get_path_to_hook_pack(), LOG_NAME)
 
-	# Ensure the ModLoaderStore and ModLoader autoloads are in the correct position.
-	_check_autoload_positions()
+		# Ensure the ModLoaderStore and ModLoader autoloads are in the correct position.
+		_check_autoload_positions()
 
-	# if mods are not enabled - don't load mods
-	if ModLoaderStore.REQUIRE_CMD_LINE and not _ModLoaderCLI.is_running_with_command_line_arg("--enable-mods"):
-		return
+		# if mods are not enabled - don't load mods
+		if ModLoaderStore.REQUIRE_CMD_LINE and not _ModLoaderCLI.is_running_with_command_line_arg("--enable-mods"):
+			return
 
-	# Rotate the log files once on startup. Can't be checked in utils, since it's static
-	ModLoaderLog._rotate_log_file()
+		# Rotate the log files once on startup. Can't be checked in utils, since it's static
+		ModLoaderLog._rotate_log_file()
 
-	# Log the autoloads order. Helpful when providing support to players
-	ModLoaderLog.debug_json_print("Autoload order", _ModLoaderGodot.get_autoload_array(), LOG_NAME)
+		# Log the autoloads order. Helpful when providing support to players
+		ModLoaderLog.debug_json_print("Autoload order", _ModLoaderGodot.get_autoload_array(), LOG_NAME)
 
-	# Log game install dir
-	ModLoaderLog.info("game_install_directory: %s" % _ModLoaderPath.get_local_folder_dir(), LOG_NAME)
+		# Log game install dir
+		ModLoaderLog.info("game_install_directory: %s" % _ModLoaderPath.get_local_folder_dir(), LOG_NAME)
 
-	if not ModLoaderStore.ml_options.enable_mods:
-		ModLoaderLog.info("Mods are currently disabled", LOG_NAME)
-		return
+		if not ModLoaderStore.ml_options.enable_mods:
+			ModLoaderLog.info("Mods are currently disabled", LOG_NAME)
+			return
 
-	# Load user profiles into ModLoaderStore
-	var _success_user_profile_load := ModLoaderUserProfile._load()
+		# Load user profiles into ModLoaderStore
+		var _success_user_profile_load := ModLoaderUserProfile._load()
 
-	if OS.has_feature("editor"):
-		var path := _ModLoaderPath.get_unpacked_mods_dir_path()
-		for mod_dir in DirAccess.get_directories_at(path):
-			var manifest_path := path.path_join(mod_dir).path_join("manifest.json")
-			var manifest_dict := _ModLoaderFile.get_json_as_dict(manifest_path)
-			_load_metadata(manifest_dict)
+		if OS.has_feature("editor"):
+			var path := _ModLoaderPath.get_unpacked_mods_dir_path()
+			for mod_dir in DirAccess.get_directories_at(path):
+				var manifest_path := path.path_join(mod_dir).path_join("manifest.json")
+				var manifest_dict := _ModLoaderFile.get_json_as_dict(manifest_path)
+				_load_metadata(manifest_dict)
 
-	var mod_zip_paths := _get_mod_zip_paths()
-	for zip_path in mod_zip_paths:
-		var manifest_dict := _ModLoaderFile.get_json_as_dict_from_zip(zip_path, "manifest.json")
-		_load_metadata(manifest_dict, zip_path)
+		var mod_zip_paths := _get_mod_zip_paths()
+		for zip_path in mod_zip_paths:
+			var manifest_dict := _ModLoaderFile.get_json_as_dict_from_zip(zip_path, "manifest.json")
+			_load_metadata(manifest_dict, zip_path)
 
-	_load_mods(ModLoaderStore.mod_data)
-	_apply_mods()
-	ModLoaderStore.is_initializing = false
+		_load_mods(ModLoaderStore.mod_data)
+		_apply_mods()
+		ModLoaderStore.is_initializing = false
 
-	new_hooks_created.connect(_on_new_hooks_created)
+		new_hooks_created.connect(_on_new_hooks_created)
 
 
 func _ready():

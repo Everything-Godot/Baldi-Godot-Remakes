@@ -29,6 +29,9 @@ jobs:
         id: wine_install
         run: |
           sudo apt install wine64
+          sudo dpkg --add-architecture i386
+          sudo apt-get update
+          sudo apt-get install wine32
           echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
       - name: Check release name
         run: |
@@ -72,6 +75,17 @@ jobs:
           export_debug: ${{steps.get_release.outputs.prerelease}}
           wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
           cache: true
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '/home/runner/.local/share/godot/builds/Web'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
       - name: Upload Artifact For Linux x64 To Release
         uses: actions/upload-release-asset@main
         env:

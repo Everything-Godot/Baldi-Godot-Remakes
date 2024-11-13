@@ -5,7 +5,7 @@ extends Control
 @onready var unlockedlook = $"Panel/3DLook"
 
 func _ready() -> void:
-	if Global.os_name == "Android":
+	if Global.is_on_android:
 		pass
 	else:
 		pass
