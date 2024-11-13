@@ -4,6 +4,15 @@ on:
   push: {}
   pull_request: {}
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   Godot:
     env:
@@ -63,6 +72,17 @@ jobs:
           export_debug: true
           wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
           cache: true
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '/home/runner/.local/share/godot/builds/Web'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
       - name: Upload Artifact For Linux x64
         uses: actions/upload-artifact@v4.4.3
         with:
