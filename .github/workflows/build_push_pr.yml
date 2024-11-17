@@ -81,7 +81,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
           path: '/home/runner/.local/share/godot/builds/Web'
       - name: Deploy to GitHub Pages
         id: deployment
@@ -148,6 +147,7 @@ jobs:
           path: /home/runner/.local/share/godot/builds/Android/android.apk
       - name: Pack Web Artifacts
         run: |
+          cp ./start.exe /home/runner/.local/share/godot/builds/Web
           7z a /home/runner/.local/share/godot/builds/Web/web.zip /home/runner/.local/share/godot/builds/Web/*
       - name: Upload Artifact For Web
         uses: actions/upload-artifact@v4.4.3
