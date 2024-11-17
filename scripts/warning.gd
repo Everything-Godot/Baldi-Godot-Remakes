@@ -5,4 +5,5 @@ var title_screen = preload("res://scenes/title_screen.tscn")
 
 func _process(_delta: float) -> void:
 	if Input.is_anything_pressed():
-		get_tree().change_scene_to_packed(title_screen)
+		get_tree().change_scene_to_packed(load("res://scenes/yctp.tscn"))
+		#get_tree().change_scene_to_packed(title_screen)
