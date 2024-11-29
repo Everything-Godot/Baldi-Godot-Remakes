@@ -1,11 +1,12 @@
-[gd_scene load_steps=27 format=3 uid="uid://b7c7h5jre8ymm"]
+[gd_scene load_steps=29 format=3 uid="uid://b7c7h5jre8ymm"]
 
 [ext_resource type="Texture2D" uid="uid://ktm8828qwxa6" path="res://sprites/TileFloor.png" id="1_busip"]
-[ext_resource type="Script" path="res://scripts/school_house.gd" id="1_gmpo5"]
+[ext_resource type="Script" uid="uid://boi7dfwrvfcgh" path="res://scripts/school_house.gd" id="1_gmpo5"]
 [ext_resource type="Texture2D" uid="uid://bsebinvdhf1s2" path="res://sprites/WhiteBrickWall.png" id="2_4a7o4"]
 [ext_resource type="Texture2D" uid="uid://nx14s8yheh1k" path="res://sprites/Ceiling.png" id="3_m354t"]
 [ext_resource type="PackedScene" uid="uid://o02jx6ilewsn" path="res://scenes/player.tscn" id="4_hxetr"]
 [ext_resource type="PackedScene" uid="uid://81yq86o5yy0p" path="res://scenes/baldi_tour.tscn" id="6_a35ho"]
+[ext_resource type="PackedScene" uid="uid://bib6qt8nyie1b" path="res://scenes/notebook.tscn" id="8_f5r6v"]
 [ext_resource type="PackedScene" uid="uid://dt8wwdp0sum8c" path="res://scenes/door.tscn" id="8_loba3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hgs37"]
@@ -67,6 +68,8 @@ sky_material = SubResource("ProceduralSkyMaterial_4d4ve")
 [sub_resource type="Environment" id="Environment_318it"]
 background_mode = 2
 sky = SubResource("Sky_ul25v")
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f5r6v"]
 
 [node name="SchoolHouse" type="Node3D"]
 script = ExtResource("1_gmpo5")
@@ -568,3 +571,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0399485, 1.99808, 4.43024)
 
 [node name="Baldi_Tour" parent="." instance=ExtResource("6_a35ho")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28732, -1.97252)
+
+[node name="Notebook" parent="." instance=ExtResource("8_f5r6v")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.20373, 2.04101, 1.84659)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_f5r6v")
+}

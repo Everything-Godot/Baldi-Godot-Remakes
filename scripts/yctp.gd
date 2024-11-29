@@ -69,6 +69,7 @@ func _ready() -> void:
 		baldi_talks.play("empty")
 	else:
 		baldi_talks.play("default")
+	problem += 1
 	generate_questions()
 	play_intro()
 	if Global.yctp_refreshed:
@@ -77,8 +78,7 @@ func _ready() -> void:
 
 func generate_questions() -> void:
 	print("Generating question.")
-	if not problem >= 2:
-		problem += 1
+	if problem < 3:
 		nums[0] = randi_range(0, 9)
 		nums[1] = randi_range(1, 2)
 		if nums[1] == 0:
@@ -102,7 +102,6 @@ func generate_questions() -> void:
 		question.text = str(nums[0]) + space + caculate_string[nums[1]] + space + str(nums[2]) + space + text
 		question.visible = true
 	else:
-		problem += 1
 		print("Skip because last question")
 		question.position = question_num.get_child(0).position
 		if not Global.is_on_android:
@@ -284,7 +283,7 @@ func handel_answer() -> void:
 				if child.name == "X3":
 					child.visible = true
 					break
-	generate_questions()
+	problem += 1
 	if not problem >= 4:
 		if not correct and not Global.already_wrong:
 			Global.already_wrong = true
@@ -296,6 +295,7 @@ func handel_answer() -> void:
 			baldi_talks.play("angry")
 		else:
 			read_praise()
+	generate_questions()
 	await get_tree().create_timer(1).timeout
 	number_sounds = temp1
 	question_sounds = temp2
