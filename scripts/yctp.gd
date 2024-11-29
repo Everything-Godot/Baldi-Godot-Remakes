@@ -71,8 +71,11 @@ func _ready() -> void:
 		baldi_talks.play("default")
 	generate_questions()
 	play_intro()
+	if Global.yctp_refreshed:
+		print("detect refreshed, grabing focus.")
+		input_box.grab_focus()
 
-func generate_questions():
+func generate_questions() -> void:
 	print("Generating question.")
 	if not problem >= 2:
 		problem += 1
@@ -115,14 +118,14 @@ func generate_questions():
 			refresh_button.visible = true
 	print("Generated question!")
 
-func play_intro():
+func play_intro() -> void:
 	for sound in intro_sounds:
 		baldi_audio.stream = sound
 		baldi_audio.play()
 		await baldi_audio.finished
 	read_question()
 
-func read_question():
+func read_question() -> void:
 	if not problem >= 3:
 		baldi_audio.stream = question_sounds[problem]
 		baldi_audio.play()
@@ -218,10 +221,11 @@ func _process(_delta: float) -> void:
 		placeholder.text = ""
 		if Input.is_action_just_pressed("refresh_yctp"):
 			Global.already_wrong = false
+			Global.yctp_refreshed = true
 			print("refreshed!")
 			get_tree().reload_current_scene()
 
-func read_praise():
+func read_praise() -> void:
 	if not Global.already_wrong and correct:
 		var ran = randi_range(0, 4)
 		baldi_audio.stream = praise_sounds[ran]
@@ -233,7 +237,7 @@ func read_praise():
 	elif not Global.already_wrong and not correct:
 		Global.already_wrong = true
 
-func handel_answer():
+func handel_answer() -> void:
 	baldi_audio.stop()
 	var temp1 = number_sounds
 	var temp2 = question_sounds
@@ -248,14 +252,11 @@ func handel_answer():
 	else:
 		correct = false
 	input_box.text = ""
-	if not correct and not Global.already_wrong:
-		Global.already_wrong = true
 	if correct:
 		if problem == 0:
 			for child in question_marks.get_children():
 				if child.name == "Check1":
 					child.visible = true
-					push_error("test")
 					break
 		elif problem == 1:
 			for child in question_marks.get_children():
@@ -285,10 +286,12 @@ func handel_answer():
 					break
 	generate_questions()
 	if not problem >= 4:
-		if not correct:
+		if not correct and not Global.already_wrong:
+			Global.already_wrong = true
 			music.stop()
 			music.stream = load("res://sounds/mus_hang.wav")
 			music.play()
+			baldi_audio.stop()
 			baldi_talks.speed_scale = 0.3
 			baldi_talks.play("angry")
 		else:

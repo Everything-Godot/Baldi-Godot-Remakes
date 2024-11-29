@@ -13,6 +13,7 @@ var is_on_android : bool
 var already_wrong : bool = false
 var notebooks : int
 var total_notebooks : int = 1
+var yctp_refreshed : bool = false
 
 func _ready() -> void:
 	print("Running on: "+os_name)
