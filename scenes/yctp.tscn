@@ -586,7 +586,16 @@ offset_bottom = 504.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_13vnq")
 theme_override_font_sizes/font_size = 64
-text = "1 X 1 = ?"
+text = "1 X 1 = ?
+Press here to refresh."
+
+[node name="refresh" type="Button" parent="."]
+layout_mode = 0
+offset_left = 753.0
+offset_top = 518.0
+offset_right = 1431.0
+offset_bottom = 588.0
+flat = true
 
 [node name="Baldi" type="AnimatedSprite2D" parent="."]
 position = Vector2(646, 841)
@@ -607,7 +616,8 @@ layout_mode = 0
 offset_right = 393.0
 offset_bottom = 1080.0
 theme_override_font_sizes/font_size = 32
-text = "YCTP Ver 0.0.2 (Dev Build)"
+text = "YCTP Ver 0.0.3 (Dev Build)"
 vertical_alignment = 2
 
+[connection signal="pressed" from="refresh" to="." method="_refresh"]
 [connection signal="finished" from="music" to="." method="_on_music_finished"]

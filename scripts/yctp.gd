@@ -8,6 +8,7 @@ extends Control
 @onready var music : AudioStreamPlayer2D = $music
 @onready var baldi_audio : AudioStreamPlayer2D = $baldi_audio
 @onready var baldi_talks : AnimatedSprite2D = $Baldi
+@onready var refresh_button : Button = $refresh
 var empty_sound = load("res://sounds/delay.wav")
 var intro_sounds : Array[Resource] = [
 	load("res://sounds/BAL_Math_Intro.wav"),
@@ -54,6 +55,7 @@ var answer : int
 var correct : bool = false
 
 func _ready() -> void:
+	refresh_button.visible = false
 	baldi_talks.speed_scale = 1
 	input_box.autowrap_mode = TextServer.AUTOWRAP_OFF
 	for child in question_marks.get_children():
@@ -99,10 +101,17 @@ func generate_questions():
 	else:
 		problem += 1
 		print("Skip because last question")
-		if Global.already_wrong:
-			question.text = "You failed math?! Why?\nPress F5 to refresh."
+		if not Global.is_on_android:
+			if Global.already_wrong:
+				question.text = "You failed math?! Why?\nPress F5 to refresh."
+			else:
+				question.text = "Wow, you exit!\nPress F5 to refresh."
 		else:
-			question.text = "Wow, you exit!\nPress F5 to refresh."
+			if Global.already_wrong:
+				question.text = "You failed math?! Why?\nPress here to refresh."
+			else:
+				question.text = "Wow, you exit!\nPress here to refresh."
+			refresh_button.visible = true
 	print("Generated question!")
 
 func play_intro():
@@ -199,8 +208,8 @@ func _process(_delta: float) -> void:
 		input_box.text = input_box.text.substr(0, find_letter) + input_box.text.substr(find_letter+1, text_length)
 		input_box.set_caret_column(last_position - 1)
 	if is_enter:
-		print("old input box text: "+old_input_box_text)
-		print("substr result: "+old_input_box_text.substr(find_letter, find_letter+1))
+		print("old input box text: "+old_input_box_text.replace("\n", "\\n"))
+		print("substr result: "+old_input_box_text.substr(find_letter, find_letter+1).replace("\n", "\\n"))
 	if Input.is_action_just_pressed("confim_answer") or old_input_box_text.substr(find_letter, find_letter+1) == "\n":
 		handel_answer()
 	if problem >= 3:
@@ -287,3 +296,7 @@ func handel_answer():
 func _on_music_finished() -> void:
 	if not Global.already_wrong:
 		music.play()
+
+func _refresh() -> void:
+	Input.action_press("refresh_yctp")
+	Input.action_release("refresh_yctp")
