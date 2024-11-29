@@ -1,6 +1,6 @@
 [gd_scene load_steps=106 format=3 uid="uid://cwoigd60dgnxa"]
 
-[ext_resource type="Script" path="res://scripts/yctp.gd" id="1_fnwfi"]
+[ext_resource type="Script" uid="uid://bwxxjxtxkno0f" path="res://scripts/yctp.gd" id="1_fnwfi"]
 [ext_resource type="Texture2D" uid="uid://dt0nn5v325rlc" path="res://sprites/YCTP.png" id="1_gk1ku"]
 [ext_resource type="FontFile" uid="uid://0i8uc3fd1bpt" path="res://fonts/COMIC.ttf" id="2_13vnq"]
 [ext_resource type="Texture2D" uid="uid://cfsu1tajtsj0r" path="res://sprites/X.png" id="4_0d3uq"]
@@ -501,7 +501,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Problem 1" type="Label" parent="Question_num"]
-visible = false
 layout_mode = 0
 offset_left = 753.0
 offset_top = 299.0
@@ -616,7 +615,7 @@ layout_mode = 0
 offset_right = 393.0
 offset_bottom = 1080.0
 theme_override_font_sizes/font_size = 32
-text = "YCTP Ver 0.0.3 (Dev Build)"
+text = "YCTP Ver 0.0.4 (Dev Build)"
 vertical_alignment = 2
 
 [connection signal="pressed" from="refresh" to="." method="_refresh"]

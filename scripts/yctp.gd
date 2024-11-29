@@ -101,6 +101,7 @@ func generate_questions():
 	else:
 		problem += 1
 		print("Skip because last question")
+		question.position = question_num.get_child(0).position
 		if not Global.is_on_android:
 			if Global.already_wrong:
 				question.text = "You failed math?! Why?\nPress F5 to refresh."
@@ -181,7 +182,7 @@ func _process(_delta: float) -> void:
 		else:
 			await baldi_audio.finished
 			baldi_audio.stream = empty_sound
-	if Global.already_wrong and problem >= 3:
+	if Global.already_wrong:
 		number_sounds = [empty_sound, empty_sound, empty_sound, empty_sound, empty_sound, empty_sound, empty_sound, empty_sound, empty_sound, empty_sound]
 		question_sounds = [empty_sound, empty_sound, empty_sound]
 		caculate_sounds = [empty_sound, empty_sound, empty_sound, empty_sound, empty_sound]
@@ -217,6 +218,7 @@ func _process(_delta: float) -> void:
 		placeholder.text = ""
 		if Input.is_action_just_pressed("refresh_yctp"):
 			Global.already_wrong = false
+			print("refreshed!")
 			get_tree().reload_current_scene()
 
 func read_praise():
@@ -246,6 +248,8 @@ func handel_answer():
 	else:
 		correct = false
 	input_box.text = ""
+	if not correct and not Global.already_wrong:
+		Global.already_wrong = true
 	if correct:
 		if problem == 0:
 			for child in question_marks.get_children():
@@ -280,15 +284,15 @@ func handel_answer():
 					child.visible = true
 					break
 	generate_questions()
-	if not problem >= 3:
+	if not problem >= 4:
 		if not correct:
 			music.stop()
 			music.stream = load("res://sounds/mus_hang.wav")
 			music.play()
 			baldi_talks.speed_scale = 0.3
 			baldi_talks.play("angry")
-	if not problem >= 4:
-		read_praise()
+		else:
+			read_praise()
 	await get_tree().create_timer(1).timeout
 	number_sounds = temp1
 	question_sounds = temp2

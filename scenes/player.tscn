@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://o02jx6ilewsn"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_nvkyj"]
-[ext_resource type="Script" path="res://scripts/player_camera.gd" id="2_qjj63"]
+[ext_resource type="Script" uid="uid://bdwqvs032yrxw" path="res://scripts/player.gd" id="1_nvkyj"]
+[ext_resource type="Script" uid="uid://b8bvmty5dffov" path="res://scripts/player_camera.gd" id="2_qjj63"]
 [ext_resource type="PackedScene" uid="uid://drnhh1dim6m3r" path="res://scenes/debug_menu.tscn" id="3_m8wfe"]
 [ext_resource type="PackedScene" uid="uid://dfkqhfrueuc6b" path="res://scenes/android_control_ui.tscn" id="4_dgcri"]
 [ext_resource type="AudioStream" uid="uid://dxkvfp5p4oouj" path="res://sounds/mus_School.wav" id="4_fniop"]
