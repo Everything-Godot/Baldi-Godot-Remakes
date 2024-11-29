@@ -183,24 +183,25 @@ func _process(_delta: float) -> void:
 	var letters : PackedStringArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "[",
 		"]", "{", "}", ";", ":", "'", '"', "\\", "|", ",", "<", ".", ">", "/", "?", "_", "=", "+", "*", "/", "\n", " "]
 	var find_letter : int
+	var is_enter : bool = false
 	for i in letters:
-		if i != "\n":
-			find_letter = input_box.text.to_lower().find(i)
-			if find_letter != -1:
-				break
-		else:
-			find_letter = input_box.text.to_lower().find(i)
-			if find_letter != -1:
-				if Global.is_on_android:
-					Input.action_press("confirm_answer")
-					Input.action_release("confirm_answer")
-					break
-	if find_letter != -1 and not Global.is_on_android:
+		find_letter = input_box.text.to_lower().find(i)
+		if find_letter != -1:
+			if i == "\n":
+				is_enter = true
+			break
+	var old_input_box_text : String = ""
+	if find_letter != -1:
 		var text_length : int = len(input_box.text)
 		var last_position : int = input_box.get_caret_column()
+		if is_enter:
+			old_input_box_text = input_box.text
 		input_box.text = input_box.text.substr(0, find_letter) + input_box.text.substr(find_letter+1, text_length)
 		input_box.set_caret_column(last_position - 1)
-	if Input.is_action_just_pressed("confim_answer"):
+	if is_enter:
+		print("old input box text: "+old_input_box_text)
+		print("substr result: "+old_input_box_text.substr(find_letter, find_letter+1))
+	if Input.is_action_just_pressed("confim_answer") or old_input_box_text.substr(find_letter, find_letter+1) == "\n":
 		handel_answer()
 	if problem >= 3:
 		input_box.visible = false
