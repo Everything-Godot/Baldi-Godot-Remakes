@@ -11,13 +11,15 @@ func _ready() -> void:
 	print("generating animation")
 	anim.length = 1.2
 	var anim_track = anim.add_track(Animation.TYPE_VALUE)
-	anim.track_set_path(anim_track, "..:position:y")
+	var notebook_path : NodePath = get_path()
+	anim.track_set_path(anim_track, "%s:position:y" % notebook_path)
 	var default_y_position = position.y
 	anim.track_insert_key(anim_track, 0.0, default_y_position)
 	anim.track_insert_key(anim_track, 0.3, default_y_position+0.3)
 	anim.track_insert_key(anim_track, 0.6, default_y_position)
 	anim.track_insert_key(anim_track, 0.9, default_y_position-0.3)
 	anim.track_insert_key(anim_track, 1.2, default_y_position)
+	anim.resource_name = "Animation"
 	print("animation generated! result: "+str(anim))
 	print("generating animation library")
 	anim_library.add_animation("Animation", anim)
@@ -33,13 +35,19 @@ func _ready() -> void:
 	add_child(anim_player)
 	print("added animation player to notebook scene")
 	if anim_player.has_animation_library("library"):
-		if anim_player.has_animation("Animation"):
+		if anim_player.has_animation("library/Animation"):
 			print("try to play animation")
-			anim_player.play("Animation")
+			anim_player.play("library/Animation")
 		else:
 			push_error("failed to load animation into animation player, please contact the developer if you believe this is a bug.")
 	else:
 		push_error("failed to load animation library into animation player, please contact the developer if you believe this is a bug.")
 
-func _on_finish() -> void:
-	anim_player.play("Animation")
+func _process(_delta: float) -> void:
+	var camera_global_transform = get_viewport().get_camera_3d().global_transform
+	var camera_rotation = camera_global_transform.basis.get_euler()
+	rotation = camera_rotation
+
+func _on_finish(anim_name: StringName) -> void:
+	if anim_name == "library/Animation":
+		anim_player.play("library/Animation")

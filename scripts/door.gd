@@ -8,8 +8,8 @@ var close_snd = load("res://sounds/door_close.wav")
 @onready var close_collision = $StaticBody3D/CollisionShape3DClosed
 @onready var open1_collision = $StaticBody3D/CollisionShape3DOpened1
 @onready var open2_collision = $StaticBody3D/CollisionShape3DOpened2
-@onready var timer = $Timer2
-@onready var sound = $AudioStreamPlayer3D2
+@onready var timer = $Timer
+@onready var sound = $AudioStreamPlayer3D
 var changed = false
 var opening = false
 

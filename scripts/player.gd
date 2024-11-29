@@ -2,15 +2,17 @@ extends CharacterBody3D
 
 @onready var camera = $"Camera3D"
 @onready var collision = $CollisionShape3D
+@onready var area3d = $Camera3D/Area3D
 @export_category("player")
 @export var speed : float = 5.0
 @export var gravity : float = 20.0
 @export var jump_speed : float = 5.0
+var yctp : PackedScene = load("res://scenes/yctp.tscn")
+var yctp_node : Node
 var jumping := false
 var movement_vector := Vector2.ZERO
 var last_floor := false
 var parent : Node
-var start_check := false
 var temp_bool
 var temp_bool2
 var last_camera_position
@@ -18,6 +20,7 @@ var last_camera_rotation
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	area3d.monitoring = false
 
 func _process(_delta: float) -> void:
 	if Global.debug:
@@ -27,10 +30,11 @@ func _process(_delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if not Global.paused:
+		if Input.is_action_pressed("interact"):
+			area3d.monitoring = true
+			await get_tree().create_timer(0.5).timeout
+			area3d.monitoring = false
 		if not Global.freelook:
-			if start_check:
-				if Input.is_action_pressed("interact"):
-					parent.set_meta("opened", true)
 			velocity.y += -gravity * delta
 			var vy = velocity.y
 			velocity.y = 0
@@ -50,7 +54,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity = Vector3(0, 0, 0)
 		move_and_slide()
-	if not Global.paused:
 		if Global.debug:
 			if Input.is_action_just_pressed("noclip"):
 				if Global.noclip:
@@ -71,6 +74,16 @@ func _physics_process(delta: float) -> void:
 					position.y += 0.1
 				if Input.is_action_pressed("down"):
 					position.y -= 0.1
+	else:
+		area3d.monitoring = false
+	if Global.paused and Global.in_yctp:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		if yctp_node != null:
+			if camera.has_node(yctp_node.get_path()):
+				camera.remove_child(yctp_node)
+				yctp_node.free()
 
 func _on_area_3d_area_entered(area:Area3D) -> void:
 	print(area)
@@ -80,8 +93,12 @@ func _on_area_3d_area_entered(area:Area3D) -> void:
 		if not Global.freelook:
 			if parent.has_meta("opened"):
 				if not parent.get_meta("opened"):
-					start_check = true
+					parent.set_meta("opened", true)
+			elif parent.name == "Notebook":
+				yctp_node = yctp.instantiate()
+				camera.add_child(yctp_node)
+				Global.in_yctp = true
+				Global.paused = true
 
 func _on_area_3d_area_exited(area: Area3D) -> void:
 	parent = area.get_parent()
-	start_check = false

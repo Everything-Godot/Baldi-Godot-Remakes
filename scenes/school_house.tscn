@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b7c7h5jre8ymm"]
+[gd_scene load_steps=28 format=3 uid="uid://b7c7h5jre8ymm"]
 
 [ext_resource type="Texture2D" uid="uid://ktm8828qwxa6" path="res://sprites/TileFloor.png" id="1_busip"]
 [ext_resource type="Script" uid="uid://boi7dfwrvfcgh" path="res://scripts/school_house.gd" id="1_gmpo5"]
@@ -68,8 +68,6 @@ sky_material = SubResource("ProceduralSkyMaterial_4d4ve")
 [sub_resource type="Environment" id="Environment_318it"]
 background_mode = 2
 sky = SubResource("Sky_ul25v")
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_f5r6v"]
 
 [node name="SchoolHouse" type="Node3D"]
 script = ExtResource("1_gmpo5")
@@ -573,9 +571,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0399485, 1.99808, 4.43024)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28732, -1.97252)
 
 [node name="Notebook" parent="." instance=ExtResource("8_f5r6v")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.20373, 2.04101, 1.84659)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_f5r6v")
-}
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.20373, 1.7256, 1.84659)

@@ -10,8 +10,9 @@ var noclip : bool = false
 var os_name : String = OS.get_name()
 var args : PackedStringArray = OS.get_cmdline_args()
 var is_on_android : bool
+var in_yctp : bool = false
 var already_wrong : bool = false
-var notebooks : int
+var notebooks : int = 0
 var total_notebooks : int = 1
 var yctp_refreshed : bool = false
 

@@ -1,5 +1,6 @@
 extends Control
 
+@onready var this : Control = $"."
 @onready var input_box : TextEdit = $EmptyBox
 @onready var placeholder : Label = $Placeholder
 @onready var question : Label = $question
@@ -8,7 +9,6 @@ extends Control
 @onready var music : AudioStreamPlayer2D = $music
 @onready var baldi_audio : AudioStreamPlayer2D = $baldi_audio
 @onready var baldi_talks : AnimatedSprite2D = $Baldi
-@onready var refresh_button : Button = $refresh
 var empty_sound = load("res://sounds/delay.wav")
 var intro_sounds : Array[Resource] = [
 	load("res://sounds/BAL_Math_Intro.wav"),
@@ -55,7 +55,6 @@ var answer : int
 var correct : bool = false
 
 func _ready() -> void:
-	refresh_button.visible = false
 	baldi_talks.speed_scale = 1
 	input_box.autowrap_mode = TextServer.AUTOWRAP_OFF
 	for child in question_marks.get_children():
@@ -72,9 +71,6 @@ func _ready() -> void:
 	problem += 1
 	generate_questions()
 	play_intro()
-	if Global.yctp_refreshed:
-		print("detect refreshed, grabing focus.")
-		input_box.grab_focus()
 
 func generate_questions() -> void:
 	print("Generating question.")
@@ -104,17 +100,10 @@ func generate_questions() -> void:
 	else:
 		print("Skip because last question")
 		question.position = question_num.get_child(0).position
-		if not Global.is_on_android:
-			if Global.already_wrong:
-				question.text = "You failed math?! Why?\nPress F5 to refresh."
-			else:
-				question.text = "Wow, you exit!\nPress F5 to refresh."
+		if Global.already_wrong:
+			question.text = "You failed math?! Why?"
 		else:
-			if Global.already_wrong:
-				question.text = "You failed math?! Why?\nPress here to refresh."
-			else:
-				question.text = "Wow, you exit!\nPress here to refresh."
-			refresh_button.visible = true
+			question.text = "Wow, you exit!"
 	print("Generated question!")
 
 func play_intro() -> void:
@@ -218,11 +207,12 @@ func _process(_delta: float) -> void:
 	if problem >= 3:
 		input_box.visible = false
 		placeholder.text = ""
-		if Input.is_action_just_pressed("refresh_yctp"):
-			Global.already_wrong = false
-			Global.yctp_refreshed = true
-			print("refreshed!")
-			get_tree().reload_current_scene()
+		if baldi_audio.stream != empty_sound and baldi_audio.playing:
+			await baldi_audio.finished
+		await get_tree().create_timer(2).timeout
+		Global.notebooks += 1
+		Global.in_yctp = false
+		Global.paused = false
 
 func read_praise() -> void:
 	if not Global.already_wrong and correct:
@@ -304,7 +294,3 @@ func handel_answer() -> void:
 func _on_music_finished() -> void:
 	if not Global.already_wrong:
 		music.play()
-
-func _refresh() -> void:
-	Input.action_press("refresh_yctp")
-	Input.action_release("refresh_yctp")

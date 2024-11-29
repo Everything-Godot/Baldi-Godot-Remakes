@@ -15,9 +15,10 @@ func _ready() -> void:
 		other.visible = true
 
 func _process(_delta: float) -> void:
-	if not Global.paused:
-		Global.paused = true
-	if Input.is_key_pressed(KEY_Q) or exit_button.button_pressed:
-		Global.paused = false
-		Global.freelook = false
-		get_tree().change_scene_to_file("res://scenes/title_screen.tscn")
+	if not Global.in_yctp:
+		if not Global.paused:
+			Global.paused = true
+		if Input.is_key_pressed(KEY_Q) or exit_button.button_pressed:
+			Global.paused = false
+			Global.freelook = false
+			get_tree().change_scene_to_file("res://scenes/title_screen.tscn")

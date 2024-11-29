@@ -17,7 +17,7 @@ func _input(event):
 				rotate_y(deg_to_rad(-event.relative.x*Global.mouse_sensitivity))
 				if Global.unlockedlook:
 					var changev=-event.relative.y*Global.mouse_sensitivity
-					if camera_anglev+changev>-50 and camera_anglev+changev<50:
+					if camera_anglev+changev>-90 and camera_anglev+changev<90:
 						camera_anglev+=changev
 						rotate_object_local(Vector3(1,0,0),deg_to_rad(changev))
 		else:
@@ -25,13 +25,13 @@ func _input(event):
 				rotate_y(deg_to_rad(-event.relative.x*Global.mouse_sensitivity))
 				if Global.unlockedlook:
 					var changev=-event.relative.y*Global.mouse_sensitivity
-					if camera_anglev+changev>-50 and camera_anglev+changev<50:
+					if camera_anglev+changev>-90 and camera_anglev+changev<90:
 						camera_anglev+=changev
 						rotate_object_local(Vector3(1,0,0),deg_to_rad(changev))
 
 func _process(delta: float) -> void:
 	music.volume_db = -15
-	if Global.paused:
+	if Global.paused and not Global.in_yctp:
 		var pause_menu : Control
 		for child in get_children():
 			if child.name == "PM":

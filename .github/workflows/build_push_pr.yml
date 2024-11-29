@@ -15,6 +15,7 @@ concurrency:
 
 jobs:
   Godot:
+    name: "构建游戏"
     env:
       dev_ver:
         "1.0.0"
@@ -23,14 +24,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.1
+        name: "运行 actions/checkout@v4.2.1"
         with:
           lfs: true
-      - name: Get tag or commit id
+      - name: 获取标签或commit id
         id: get-version-id
         uses: iawia002/get-tag-or-commit-id@v1.0.1
         with:
           length: 7
-      - name: install wine
+      - name: 安装 wine
         id: wine_install
         run: |
           sudo apt install wine64
@@ -38,13 +40,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install wine32
           echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
-      - name: Get test name
+      - name: 获取测试名
         id: test_name
         run: |
           export name=$(cat test_name.txt)
           echo $name
           echo "name=$(cat test_name.txt)" >> "$GITHUB_OUTPUT"
-      - name: Check commit ids and set android export settings
+      - name: 检测 commit id 是否正常并设置安卓导出相关设置
         run: |
           echo "COMMIT ID:" ${{steps.get-version-id.outputs.id}}
           export GODOT_ANDROID_KEYSTORE_DEBUG_PATH=.\debug.keystore
@@ -53,19 +55,19 @@ jobs:
           export GODOT_ANDROID_KEYSTORE_RELEASE_PATH=.\release.keystore
           export GODOT_ANDROID_KEYSTORE_RELEASE_USER=root
           export GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD=123456
-      - name: Set up JDK 17
+      - name: 设置 JDK 17
         uses: actions/setup-java@v4.4.0
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Setup Android SDK
+      - name: 设置 Android SDK
         uses: android-actions/setup-android@v3.2.1
-      - name: Set Project Name
+      - name: 设置项目名称
         run: |
           sed -i "s/Baldi godot remake/Baldi's Basics In Education And Learning - ${{env.dev_text}}/g" project.godot
           sed -i "s/0.0.0.0/${{env.dev_ver}}/g" project.godot
           sed -i "s/Dev Build/commit id: ${{steps.get-version-id.outputs.id}} - ${{steps.test_name.outputs.name}}/g" scenes/player.tscn
-      - name: export game
+      - name: 导出游戏
         id: export
         uses: firebelley/godot-export@v6.0.0
         with:
@@ -75,82 +77,82 @@ jobs:
           export_debug: true
           wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
           cache: true
-      - name: Setup Pages
+      - name: 设置 Github Pages
         id: pages
         uses: actions/configure-pages@v5
-      - name: Upload artifact
+      - name: 上传 Github Pages 构建
         uses: actions/upload-pages-artifact@v3
         with:
           path: '/home/runner/.local/share/godot/builds/Web'
-      - name: Deploy to GitHub Pages
+      - name: 部署 GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-      - name: Upload Artifact For Linux x64
+      - name: 为 Linux x64 上传构建
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: Linux x64 - build ${{steps.get-version-id.outputs.id}}
+          name: Linux x64 - 构建 ${{steps.get-version-id.outputs.id}}
           path: /home/runner/.local/share/godot/builds/Linux x64/linux.x86_64
-      - name: Upload Artifact For Linux x86
+      - name: 为 Linux x86 上传构建
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: Linux x86 - build ${{steps.get-version-id.outputs.id}}
+          name: Linux x86 - 构建 ${{steps.get-version-id.outputs.id}}
           path: /home/runner/.local/share/godot/builds/Linux x86/linux.x86_32
-      - name: Upload Artifact For Linux arm64
+      - name: 为 Linux arm64 上传构建
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: Linux arm64 - build ${{steps.get-version-id.outputs.id}}
+          name: Linux arm64 - 构建 ${{steps.get-version-id.outputs.id}}
           path: /home/runner/.local/share/godot/builds/Linux arm64/linux.arm64
-      - name: Upload Artifact For Linux arm32
+      - name: 为 Linux arm32 上传构建
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: Linux arm32 - build ${{steps.get-version-id.outputs.id}}
+          name: Linux arm32 - 构建 ${{steps.get-version-id.outputs.id}}
           path: /home/runner/.local/share/godot/builds/Linux arm32/linux.arm32
-      #- name: Upload Artifact For Linux rv64
+      #- name: 为 Linux rv64 上传构建
       #  uses: actions/upload-artifact@v4.4.3
       #  with:
-      #    name: Linux rv64 - build ${{steps.get-version-id.outputs.id}}
+      #    name: Linux rv64 - 构建 ${{steps.get-version-id.outputs.id}}
       #    path: /home/runner/.local/share/godot/builds/Linux rv64/linux.rv64
-      #- name: Upload Artifact For Linux rppc64
+      #- name: 为 Linux rppc64 上传构建
       #  uses: actions/upload-artifact@v4.4.3
       #  with:
-      #    name: Linux ppc64 - build ${{steps.get-version-id.outputs.id}}
+      #    name: Linux ppc64 - 构建 ${{steps.get-version-id.outputs.id}}
       #    path: /home/runner/.local/share/godot/builds/Linux ppc64/linux.ppc64
-      #- name: Upload Artifact For Linux ppc32
+      #- name: 为 Linux ppc32 上传构建
       #  uses: actions/upload-artifact@v4.4.3
       #  with:
-      #    name: Linux ppc32 - build ${{steps.get-version-id.outputs.id}}
+      #    name: Linux ppc32 - 构建 ${{steps.get-version-id.outputs.id}}
       #    path: /home/runner/.local/share/godot/builds/Linux ppc32/linux.ppc32
-      #- name: Upload Artifact For MacOS
+      #- name: 为 MacOS 上传构建
       #  uses: actions/upload-artifact@v4.4.3
       #  with:
-      #    name: MacOS - build ${{steps.get-version-id.outputs.id}}
+      #    name: MacOS - 构建 ${{steps.get-version-id.outputs.id}}
       #    path: /home/runner/.local/share/godot/builds/macOS/mac.zip
-      - name: Upload Artifact For Windows x64
+      - name: 为 Windows x64 上传构建
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: Windows x64 - build ${{steps.get-version-id.outputs.id}}
+          name: Windows x64 - 构建 ${{steps.get-version-id.outputs.id}}
           path: /home/runner/.local/share/godot/builds/Windows Desktop x64/win64.exe
-      - name: Upload Artifact For Windows x86
+      - name: 为 Windows x86 上传构建
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: Windows x86 - build ${{steps.get-version-id.outputs.id}}
+          name: Windows x86 - 构建 ${{steps.get-version-id.outputs.id}}
           path: /home/runner/.local/share/godot/builds/Windows Desktop x86/win86.exe
-      - name: Upload Artifact For Windows arm64
+      - name: 为 Windows arm64 上传构建
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: Windows arm64 - build ${{steps.get-version-id.outputs.id}}
+          name: Windows arm64 - 构建 ${{steps.get-version-id.outputs.id}}
           path: /home/runner/.local/share/godot/builds/Windows Desktop arm64/winarm64.exe
-      - name: Upload Artifact For Android
+      - name: 为 Android 上传构建
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: Android - build ${{steps.get-version-id.outputs.id}}
+          name: Android - 构建 ${{steps.get-version-id.outputs.id}}
           path: /home/runner/.local/share/godot/builds/Android/android.apk
-      - name: Pack Web Artifacts
+      - name: 打包 Web 构建
         run: |
           cp ./start.exe /home/runner/.local/share/godot/builds/Web
           7z a /home/runner/.local/share/godot/builds/Web/web.zip /home/runner/.local/share/godot/builds/Web/*
-      - name: Upload Artifact For Web
+      - name: 为 Web 上传构建
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: Web - build ${{steps.get-version-id.outputs.id}}
+          name: Web - 构建 ${{steps.get-version-id.outputs.id}}
           path: /home/runner/.local/share/godot/builds/Web/web.zip
