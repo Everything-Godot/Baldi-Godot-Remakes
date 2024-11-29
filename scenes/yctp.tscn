@@ -450,12 +450,14 @@ offset_bottom = 1185.0
 color = Color(0, 0, 0, 1)
 
 [node name="YCTPBackground" type="ColorRect" parent="."]
+layout_mode = 0
 offset_left = 481.0
 offset_top = 239.0
 offset_right = 1513.0
 offset_bottom = 975.0
 
 [node name="BaldiBackground" type="ColorRect" parent="."]
+layout_mode = 0
 offset_left = 481.0
 offset_top = 698.0
 offset_right = 833.0
@@ -512,6 +514,7 @@ text = "Problem 1:"
 
 [node name="Problem 2" type="Label" parent="Question_num"]
 visible = false
+layout_mode = 0
 offset_left = 753.0
 offset_top = 299.0
 offset_right = 1041.0
@@ -523,6 +526,7 @@ text = "Problem 2:"
 
 [node name="Problem 3" type="Label" parent="Question_num"]
 visible = false
+layout_mode = 0
 offset_left = 753.0
 offset_top = 299.0
 offset_right = 1041.0
@@ -603,7 +607,7 @@ layout_mode = 0
 offset_right = 393.0
 offset_bottom = 1080.0
 theme_override_font_sizes/font_size = 32
-text = "YCTP Ver 0.0.1 (Dev Build)"
+text = "YCTP Ver 0.0.2 (Dev Build)"
 vertical_alignment = 2
 
 [connection signal="finished" from="music" to="." method="_on_music_finished"]

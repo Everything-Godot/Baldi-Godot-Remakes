@@ -184,10 +184,18 @@ func _process(_delta: float) -> void:
 		"]", "{", "}", ";", ":", "'", '"', "\\", "|", ",", "<", ".", ">", "/", "?", "_", "=", "+", "*", "/", "\n", " "]
 	var find_letter : int
 	for i in letters:
-		find_letter = input_box.text.to_lower().find(i)
-		if find_letter != -1:
-			break
-	if find_letter != -1:
+		if i != "\n":
+			find_letter = input_box.text.to_lower().find(i)
+			if find_letter != -1:
+				break
+		else:
+			find_letter = input_box.text.to_lower().find(i)
+			if find_letter != -1:
+				if Global.is_on_android:
+					Input.action_press("confirm_answer")
+					Input.action_release("confirm_answer")
+					break
+	if find_letter != -1 and not Global.is_on_android:
 		var text_length : int = len(input_box.text)
 		var last_position : int = input_box.get_caret_column()
 		input_box.text = input_box.text.substr(0, find_letter) + input_box.text.substr(find_letter+1, text_length)
