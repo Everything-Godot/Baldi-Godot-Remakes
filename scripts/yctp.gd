@@ -216,6 +216,7 @@ func _process(_delta: float) -> void:
 		input_box.visible = false
 		placeholder.text = ""
 		if Input.is_action_just_pressed("refresh_yctp"):
+			Global.already_wrong = false
 			get_tree().reload_current_scene()
 
 func read_praise():
