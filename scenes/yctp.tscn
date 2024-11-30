@@ -495,6 +495,54 @@ theme_override_fonts/font = ExtResource("2_13vnq")
 theme_override_font_sizes/font_size = 72
 text = "ENTER ANSWER"
 
+[node name="nonquestion" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 753.0
+offset_top = 414.0
+offset_right = 793.0
+offset_bottom = 454.0
+
+[node name="questions" type="Label" parent="nonquestion"]
+layout_mode = 0
+offset_right = 677.0
+offset_bottom = 183.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_13vnq")
+theme_override_font_sizes/font_size = 64
+text = "1+54545+43-21*/2245+354-9-42"
+autowrap_mode = 3
+
+[node name="questions2" type="Label" parent="nonquestion"]
+layout_mode = 0
+offset_right = 677.0
+offset_bottom = 183.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_13vnq")
+theme_override_font_sizes/font_size = 64
+text = "12-54*35-4-+2-549-25"
+autowrap_mode = 3
+
+[node name="questions3" type="Label" parent="nonquestion"]
+layout_mode = 0
+offset_right = 677.0
+offset_bottom = 183.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_13vnq")
+theme_override_font_sizes/font_size = 64
+text = "-9*58-75*-87-+54-96-7*-876-  = ?"
+autowrap_mode = 3
+
+[node name="questions4" type="Label" parent="nonquestion"]
+layout_mode = 0
+offset_top = -106.0
+offset_right = 677.0
+offset_bottom = 170.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_13vnq")
+theme_override_font_sizes/font_size = 64
+text = "-9*58-75*-87-+54-96-7*-876--7+5-7*-5**-4*5-9-7-95-"
+autowrap_mode = 3
+
 [node name="Question_num" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
@@ -585,8 +633,7 @@ offset_bottom = 504.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_13vnq")
 theme_override_font_sizes/font_size = 64
-text = "1 X 1 = ?
-Press here to refresh."
+text = "1 X 1 = ?"
 
 [node name="Baldi" type="AnimatedSprite2D" parent="."]
 position = Vector2(646, 841)
@@ -604,7 +651,7 @@ layout_mode = 0
 offset_right = 393.0
 offset_bottom = 1080.0
 theme_override_font_sizes/font_size = 32
-text = "YCTP Ver 0.0.4 (Dev Build)"
+text = "YCTP Ver 0.0.5 (Dev Build)"
 vertical_alignment = 2
 
 [connection signal="finished" from="music" to="." method="_on_music_finished"]

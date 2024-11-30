@@ -13,7 +13,7 @@ var is_on_android : bool
 var in_yctp : bool = false
 var already_wrong : bool = false
 var notebooks : int = 0
-var total_notebooks : int = 1
+var total_notebooks : int = 2
 var yctp_refreshed : bool = false
 
 func _ready() -> void:

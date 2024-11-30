@@ -4,6 +4,7 @@ extends Control
 @onready var input_box : TextEdit = $EmptyBox
 @onready var placeholder : Label = $Placeholder
 @onready var question : Label = $question
+@onready var unanswerable_question : Control = $nonquestion
 @onready var question_num : Control = $Question_num
 @onready var question_marks : Control = $Question_marks
 @onready var music : AudioStreamPlayer2D = $music
@@ -29,7 +30,8 @@ var number_sounds : Array[Resource] = [
 	load("res://sounds/BAL_Math_6.wav"),
 	load("res://sounds/BAL_Math_7.wav"),
 	load("res://sounds/BAL_Math_8.wav"),
-	load("res://sounds/BAL_Math_9.wav")
+	load("res://sounds/BAL_Math_9.wav"),
+	load("res://sounds/BAL_Screech.wav")
 ]
 var caculate_sounds : Array[Resource] = [
 	load("res://sounds/BAL_Math_Divided.wav"),
@@ -64,77 +66,176 @@ func _ready() -> void:
 	question_marks.visible = true
 	question_num.visible = true
 	question.visible = false
+	unanswerable_question.visible = false
 	if Global.already_wrong:
 		baldi_talks.play("empty")
 	else:
 		baldi_talks.play("default")
 	problem += 1
 	generate_questions()
+	input_box.grab_focus()
 	play_intro()
 
 func generate_questions() -> void:
 	print("Generating question.")
-	if problem < 3:
-		nums[0] = randi_range(0, 9)
-		nums[1] = randi_range(1, 2)
-		if nums[1] == 0:
-			nums[2] = randi_range(1, 9)
+	var space = " "
+	var text = "= ?"
+	if Global.notebooks < 1:
+		if problem < 3:
+			nums[0] = randi_range(0, 9)
+			nums[1] = randi_range(1, 2)
+			if nums[1] == 0:
+				nums[2] = randi_range(1, 9)
+			else:
+				nums[2] = randi_range(0, 9)
+			print("Generated nums: " + str(nums))
+			if nums[1] == 0:
+				answer = nums[0] / nums[2]
+			elif nums[1] == 1:
+				answer = nums[0] + nums[2]
+			elif nums[1] == 2:
+				answer = nums[0] - nums[2]
+			elif nums[1] == 3:
+				answer = nums[0] * nums[2]
+			else:
+				answer = 0
+			print("Question answer: " + str(answer))
+			question.text = str(nums[0]) + space + caculate_string[nums[1]] + space + str(nums[2]) + space + text
+			question.visible = true
 		else:
-			nums[2] = randi_range(0, 9)
-		print("Generated nums: " + str(nums))
-		if nums[1] == 0:
-			answer = nums[0] / nums[2]
-		elif nums[1] == 1:
-			answer = nums[0] + nums[2]
-		elif nums[1] == 2:
-			answer = nums[0] - nums[2]
-		elif nums[1] == 3:
-			answer = nums[0] * nums[2]
-		else:
-			answer = 0
-		print("Question answer: " + str(answer))
-		var space = " "
-		var text = "= ?"
-		question.text = str(nums[0]) + space + caculate_string[nums[1]] + space + str(nums[2]) + space + text
-		question.visible = true
+			print("Skip because last question")
+			question.position = question_num.get_child(0).position
+			if Global.already_wrong:
+				question.text = "You failed math?! Why?"
+			else:
+				question.text = "Wow, you exit!"
 	else:
-		print("Skip because last question")
-		question.position = question_num.get_child(0).position
-		if Global.already_wrong:
-			question.text = "You failed math?! Why?"
+		if problem < 2:
+			nums[0] = randi_range(0, 9)
+			nums[1] = randi_range(1, 2)
+			if nums[1] == 0:
+				nums[2] = randi_range(1, 9)
+			else:
+				nums[2] = randi_range(0, 9)
+			print("Generated nums: " + str(nums))
+			if nums[1] == 0:
+				answer = nums[0] / nums[2]
+			elif nums[1] == 1:
+				answer = nums[0] + nums[2]
+			elif nums[1] == 2:
+				answer = nums[0] - nums[2]
+			elif nums[1] == 3:
+				answer = nums[0] * nums[2]
+			else:
+				answer = 0
+			print("Question answer: " + str(answer))
+			question.text = str(nums[0]) + space + caculate_string[nums[1]] + space + str(nums[2]) + space + text
+			question.visible = true
+		elif problem == 2:
+			nums[0] = 0
+			nums[1] = 0
+			nums[2] = 0
+			print("no answer for this quesition")
+			var node : Node = unanswerable_question.get_child(3)
+			node.visible = false
+			question.text = ""
+			question.visible = false
+			unanswerable_question.visible = true
 		else:
-			question.text = "Wow, you exit!"
+			print("Skip because last question")
+			var node : Node = unanswerable_question.get_child(2)
+			node.visible = false
+			node = unanswerable_question.get_child(3)
+			node.visible = true
+			question.position = question_num.get_child(0).position
+			question.text = "You failed math?! Why?"
+			question.visible = true
 	print("Generated question!")
 
 func play_intro() -> void:
-	for sound in intro_sounds:
-		baldi_audio.stream = sound
-		baldi_audio.play()
-		await baldi_audio.finished
+	if Global.notebooks < 1:
+		for sound in intro_sounds:
+			baldi_audio.stream = sound
+			baldi_audio.play()
+			await baldi_audio.finished
+	if Global.already_wrong:
+		music.stream = empty_sound
 	read_question()
 
 func read_question() -> void:
-	if not problem >= 3:
-		baldi_audio.stream = question_sounds[problem]
-		baldi_audio.play()
-		await baldi_audio.finished
-		await get_tree().create_timer(0.1).timeout
-		baldi_audio.stream = number_sounds[nums[0]]
-		baldi_audio.play()
-		await baldi_audio.finished
-		await get_tree().create_timer(0.1).timeout
-		baldi_audio.stream = caculate_sounds[nums[1]]
-		baldi_audio.play()
-		await baldi_audio.finished
-		await get_tree().create_timer(0.1).timeout
-		baldi_audio.stream = number_sounds[nums[2]]
-		baldi_audio.play()
-		await baldi_audio.finished
-		await get_tree().create_timer(0.1).timeout
-		baldi_audio.stream = caculate_sounds[4]
-		baldi_audio.play()
-		await baldi_audio.finished
-		await get_tree().create_timer(0.1).timeout
+	if not Global.already_wrong:
+		if problem < 2:
+			baldi_audio.stream = question_sounds[problem]
+			baldi_audio.play()
+			await baldi_audio.finished
+			await get_tree().create_timer(0.1).timeout
+			baldi_audio.stream = number_sounds[nums[0]]
+			baldi_audio.play()
+			await baldi_audio.finished
+			await get_tree().create_timer(0.1).timeout
+			baldi_audio.stream = caculate_sounds[nums[1]]
+			baldi_audio.play()
+			await baldi_audio.finished
+			await get_tree().create_timer(0.1).timeout
+			baldi_audio.stream = number_sounds[nums[2]]
+			baldi_audio.play()
+			await baldi_audio.finished
+			await get_tree().create_timer(0.1).timeout
+			baldi_audio.stream = caculate_sounds[4]
+			baldi_audio.play()
+			await baldi_audio.finished
+			await get_tree().create_timer(0.1).timeout
+		elif problem == 2:
+			if Global.notebooks >= 1:
+				baldi_audio.stream = question_sounds[problem]
+				baldi_audio.play()
+				await baldi_audio.finished
+				await get_tree().create_timer(0.1).timeout
+				baldi_audio.stream = number_sounds[10]
+				baldi_audio.play()
+				await baldi_audio.finished
+				await get_tree().create_timer(0.1).timeout
+				baldi_audio.stream = caculate_sounds[randi_range(0, 3)]
+				baldi_audio.play()
+				await baldi_audio.finished
+				await get_tree().create_timer(0.1).timeout
+				baldi_audio.stream = number_sounds[10]
+				baldi_audio.play()
+				await baldi_audio.finished
+				await get_tree().create_timer(0.1).timeout
+				baldi_audio.stream = caculate_sounds[randi_range(0, 3)]
+				baldi_audio.play()
+				await baldi_audio.finished
+				await get_tree().create_timer(0.1).timeout
+				baldi_audio.stream = number_sounds[10]
+				baldi_audio.play()
+				await baldi_audio.finished
+				await get_tree().create_timer(0.1).timeout
+				baldi_audio.stream = caculate_sounds[4]
+				baldi_audio.play()
+				await baldi_audio.finished
+				await get_tree().create_timer(0.1).timeout
+			else:
+				baldi_audio.stream = question_sounds[problem]
+				baldi_audio.play()
+				await baldi_audio.finished
+				await get_tree().create_timer(0.1).timeout
+				baldi_audio.stream = number_sounds[nums[0]]
+				baldi_audio.play()
+				await baldi_audio.finished
+				await get_tree().create_timer(0.1).timeout
+				baldi_audio.stream = caculate_sounds[nums[1]]
+				baldi_audio.play()
+				await baldi_audio.finished
+				await get_tree().create_timer(0.1).timeout
+				baldi_audio.stream = number_sounds[nums[2]]
+				baldi_audio.play()
+				await baldi_audio.finished
+				await get_tree().create_timer(0.1).timeout
+				baldi_audio.stream = caculate_sounds[4]
+				baldi_audio.play()
+				await baldi_audio.finished
+				await get_tree().create_timer(0.1).timeout
 	baldi_audio.stream = empty_sound
 
 func _process(_delta: float) -> void:
@@ -209,8 +310,9 @@ func _process(_delta: float) -> void:
 		placeholder.text = ""
 		if baldi_audio.stream != empty_sound and baldi_audio.playing:
 			await baldi_audio.finished
+		if baldi_talks.is_playing() and baldi_talks.animation != "default" and baldi_talks.animation != "angry default" and baldi_talks.animation != "empty":
+			await baldi_talks.animation_finished
 		await get_tree().create_timer(2).timeout
-		Global.notebooks += 1
 		Global.in_yctp = false
 		Global.paused = false
 
@@ -231,15 +333,18 @@ func handel_answer() -> void:
 	var temp1 = number_sounds
 	var temp2 = question_sounds
 	var temp3 = caculate_sounds
-	number_sounds = [empty_sound, empty_sound, empty_sound, empty_sound, empty_sound, empty_sound, empty_sound, empty_sound, empty_sound, empty_sound]
+	number_sounds = [empty_sound, empty_sound, empty_sound, empty_sound, empty_sound, empty_sound, empty_sound, empty_sound, empty_sound, empty_sound, empty_sound]
 	question_sounds = [empty_sound, empty_sound, empty_sound]
 	caculate_sounds = [empty_sound, empty_sound, empty_sound, empty_sound, empty_sound]
 	baldi_audio.stream = load("res://sounds/delay.wav")
 	read_question()
-	if int(input_box.text) == answer:
-		correct = true
-	else:
+	if Global.notebooks >= 1 and problem == 3:
 		correct = false
+	else:
+		if int(input_box.text) == answer:
+			correct = true
+		else:
+			correct = false
 	input_box.text = ""
 	if correct:
 		if problem == 0:

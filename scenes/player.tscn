@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b8bvmty5dffov" path="res://scripts/player_camera.gd" id="2_qjj63"]
 [ext_resource type="PackedScene" uid="uid://drnhh1dim6m3r" path="res://scenes/debug_menu.tscn" id="3_m8wfe"]
 [ext_resource type="PackedScene" uid="uid://dfkqhfrueuc6b" path="res://scenes/android_control_ui.tscn" id="4_dgcri"]
-[ext_resource type="AudioStream" uid="uid://dxkvfp5p4oouj" path="res://sounds/mus_School.wav" id="4_fniop"]
+[ext_resource type="FontFile" uid="uid://0i8uc3fd1bpt" path="res://fonts/COMIC.ttf" id="5_qlg0r"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bejou"]
 
@@ -48,13 +48,16 @@ shape = SubResource("BoxShape3D_t54tl")
 
 [node name="Android Control UI" parent="Camera3D" instance=ExtResource("4_dgcri")]
 
-[node name="Music" type="AudioStreamPlayer3D" parent="Camera3D"]
-stream = ExtResource("4_fniop")
-autoplay = true
+[node name="Notebook counter" type="Label" parent="Camera3D"]
+offset_right = 1920.0
+offset_bottom = 90.0
+theme_override_fonts/font = ExtResource("5_qlg0r")
+theme_override_font_sizes/font_size = 64
+text = "0/1 Notebooks"
+horizontal_alignment = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_yk1gi")
 
 [connection signal="area_entered" from="Camera3D/Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Camera3D/Area3D" to="." method="_on_area_3d_area_exited"]
-[connection signal="finished" from="Camera3D/Music" to="Camera3D" method="_on_music_finished"]

@@ -1,7 +1,7 @@
 extends Node3D
 
 @onready var sprite = $Sprite3D
-@onready var audio = $AudioStreamPlayer3D
+@onready var audio = $"Baldi Audio"
 @onready var timer = $Timer
 var paused_before = false
 

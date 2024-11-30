@@ -1,6 +1,6 @@
 [gd_scene load_steps=104 format=3 uid="uid://81yq86o5yy0p"]
 
-[ext_resource type="Script" path="res://scripts/baldi_tour.gd" id="1_0vaa0"]
+[ext_resource type="Script" uid="uid://ijw68rb13art" path="res://scripts/baldi_tour.gd" id="1_0vaa0"]
 [ext_resource type="Texture2D" uid="uid://btvv2hi880max" path="res://sprites/Baldi_Wave0000.png" id="1_05ixn"]
 [ext_resource type="AudioStream" uid="uid://sj4xor06naha" path="res://sounds/BAL_Hi.wav" id="3_0hm2x"]
 [ext_resource type="Texture2D" uid="uid://b56etorbssdsq" path="res://sprites/Baldi_Wave0001.png" id="3_ya0uo"]
@@ -426,7 +426,7 @@ script = ExtResource("1_0vaa0")
 sprite_frames = SubResource("SpriteFrames_hvqbb")
 frame_progress = 0.645331
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="Baldi Audio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_0hm2x")
 
 [node name="Timer" type="Timer" parent="."]

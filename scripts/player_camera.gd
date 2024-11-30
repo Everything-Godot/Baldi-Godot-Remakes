@@ -1,7 +1,6 @@
 extends Camera3D
 
 @onready var player = $".."
-@onready var music = $"Music"
 @onready var android_control_ui = $"Android Control UI"
 @export_category("camera")
 @export var free_look_speed := 3.0
@@ -30,7 +29,6 @@ func _input(event):
 						rotate_object_local(Vector3(1,0,0),deg_to_rad(changev))
 
 func _process(delta: float) -> void:
-	music.volume_db = -15
 	if Global.paused and not Global.in_yctp:
 		var pause_menu : Control
 		for child in get_children():
@@ -79,6 +77,3 @@ func free_look(delta: float) -> void:
 		position.y += 0.1
 	if Input.is_action_pressed("down"):
 		position.y -= 0.1
-
-func _on_music_finished() -> void:
-	music.play()

@@ -17,6 +17,7 @@ var temp_bool
 var temp_bool2
 var last_camera_position
 var last_camera_rotation
+var check_yctp : bool = false
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -76,6 +77,10 @@ func _physics_process(delta: float) -> void:
 					position.y -= 0.1
 	else:
 		area3d.monitoring = false
+	if check_yctp:
+		if not Global.in_yctp:
+			check_yctp = false
+			Global.notebooks += 1
 	if Global.paused and Global.in_yctp:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
@@ -99,6 +104,7 @@ func _on_area_3d_area_entered(area:Area3D) -> void:
 				camera.add_child(yctp_node)
 				Global.in_yctp = true
 				Global.paused = true
+				check_yctp = true
 
 func _on_area_3d_area_exited(area: Area3D) -> void:
 	parent = area.get_parent()
