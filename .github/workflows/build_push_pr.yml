@@ -71,8 +71,8 @@ jobs:
         id: export
         uses: firebelley/godot-export@v6.0.0
         with:
-          godot_executable_download_url: https://github.com/godotengine/godot-builds/releases/download/4.4-dev5/Godot_v4.4-dev5_linux.x86_64.zip
-          godot_export_templates_download_url: https://github.com/godotengine/godot-builds/releases/download/4.4-dev5/Godot_v4.4-dev5_export_templates.tpz
+          godot_executable_download_url: https://github.com/godotengine/godot-builds/releases/download/4.4-dev6/Godot_v4.4-dev6_linux.x86_64.zip
+          godot_export_templates_download_url: https://github.com/godotengine/godot-builds/releases/download/4.4-dev6/Godot_v4.4-dev6_export_templates.tpz
           relative_project_path: ./
           export_debug: true
           wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
@@ -90,62 +90,62 @@ jobs:
       - name: 为 Linux x64 上传构建
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: Linux x64 - 构建 ${{steps.get-version-id.outputs.id}}
+          name: Linux x64 - build ${{steps.get-version-id.outputs.id}}
           path: /home/runner/.local/share/godot/builds/Linux x64/linux.x86_64
       - name: 为 Linux x86 上传构建
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: Linux x86 - 构建 ${{steps.get-version-id.outputs.id}}
+          name: Linux x86 - build ${{steps.get-version-id.outputs.id}}
           path: /home/runner/.local/share/godot/builds/Linux x86/linux.x86_32
       - name: 为 Linux arm64 上传构建
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: Linux arm64 - 构建 ${{steps.get-version-id.outputs.id}}
+          name: Linux arm64 - build ${{steps.get-version-id.outputs.id}}
           path: /home/runner/.local/share/godot/builds/Linux arm64/linux.arm64
       - name: 为 Linux arm32 上传构建
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: Linux arm32 - 构建 ${{steps.get-version-id.outputs.id}}
+          name: Linux arm32 - build ${{steps.get-version-id.outputs.id}}
           path: /home/runner/.local/share/godot/builds/Linux arm32/linux.arm32
       #- name: 为 Linux rv64 上传构建
       #  uses: actions/upload-artifact@v4.4.3
       #  with:
-      #    name: Linux rv64 - 构建 ${{steps.get-version-id.outputs.id}}
+      #    name: Linux rv64 - build ${{steps.get-version-id.outputs.id}}
       #    path: /home/runner/.local/share/godot/builds/Linux rv64/linux.rv64
       #- name: 为 Linux rppc64 上传构建
       #  uses: actions/upload-artifact@v4.4.3
       #  with:
-      #    name: Linux ppc64 - 构建 ${{steps.get-version-id.outputs.id}}
+      #    name: Linux ppc64 - build ${{steps.get-version-id.outputs.id}}
       #    path: /home/runner/.local/share/godot/builds/Linux ppc64/linux.ppc64
       #- name: 为 Linux ppc32 上传构建
       #  uses: actions/upload-artifact@v4.4.3
       #  with:
-      #    name: Linux ppc32 - 构建 ${{steps.get-version-id.outputs.id}}
+      #    name: Linux ppc32 - build ${{steps.get-version-id.outputs.id}}
       #    path: /home/runner/.local/share/godot/builds/Linux ppc32/linux.ppc32
       #- name: 为 MacOS 上传构建
       #  uses: actions/upload-artifact@v4.4.3
       #  with:
-      #    name: MacOS - 构建 ${{steps.get-version-id.outputs.id}}
+      #    name: MacOS - build ${{steps.get-version-id.outputs.id}}
       #    path: /home/runner/.local/share/godot/builds/macOS/mac.zip
       - name: 为 Windows x64 上传构建
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: Windows x64 - 构建 ${{steps.get-version-id.outputs.id}}
+          name: Windows x64 - build ${{steps.get-version-id.outputs.id}}
           path: /home/runner/.local/share/godot/builds/Windows Desktop x64/win64.exe
       - name: 为 Windows x86 上传构建
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: Windows x86 - 构建 ${{steps.get-version-id.outputs.id}}
+          name: Windows x86 - build ${{steps.get-version-id.outputs.id}}
           path: /home/runner/.local/share/godot/builds/Windows Desktop x86/win86.exe
       - name: 为 Windows arm64 上传构建
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: Windows arm64 - 构建 ${{steps.get-version-id.outputs.id}}
+          name: Windows arm64 - build ${{steps.get-version-id.outputs.id}}
           path: /home/runner/.local/share/godot/builds/Windows Desktop arm64/winarm64.exe
       - name: 为 Android 上传构建
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: Android - 构建 ${{steps.get-version-id.outputs.id}}
+          name: Android - build ${{steps.get-version-id.outputs.id}}
           path: /home/runner/.local/share/godot/builds/Android/android.apk
       - name: 打包 Web 构建
         run: |
@@ -154,5 +154,5 @@ jobs:
       - name: 为 Web 上传构建
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: Web - 构建 ${{steps.get-version-id.outputs.id}}
+          name: Web - build ${{steps.get-version-id.outputs.id}}
           path: /home/runner/.local/share/godot/builds/Web/web.zip

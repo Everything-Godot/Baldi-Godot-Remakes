@@ -15,6 +15,7 @@ func _ready() -> void:
 	audios.append(music)
 	area3d = notebook.get_child(1)
 	Global.notebooks = 0
+	Global.already_wrong = false
 	area3d.monitorable = true
 	notebook.visible = true
 

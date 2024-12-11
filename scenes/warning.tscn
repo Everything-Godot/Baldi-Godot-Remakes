@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://do58c4xt7v4r6"]
 
-[ext_resource type="Script" path="res://scripts/warning.gd" id="1_5dhaa"]
+[ext_resource type="Script" uid="uid://cksw2y2opgoae" path="res://scripts/warning.gd" id="1_5dhaa"]
 [ext_resource type="FontFile" uid="uid://0i8uc3fd1bpt" path="res://fonts/COMIC.ttf" id="1_sku2d"]
 
 [node name="Warning" type="Node2D"]
