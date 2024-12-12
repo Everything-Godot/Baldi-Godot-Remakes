@@ -60,6 +60,15 @@ offset_bottom = 1035.0
 scale = Vector2(2, 2)
 texture_normal = ExtResource("5_j075n")
 
+[node name="Button" type="Button" parent="Title/Buttons"]
+layout_mode = 0
+offset_left = 1543.0
+offset_top = 632.0
+offset_right = 1837.0
+offset_bottom = 754.0
+theme_override_font_sizes/font_size = 32
+text = "test button 001"
+
 [node name="Mouse" type="Control" parent="Title"]
 anchors_preset = 0
 offset_right = 40.0
@@ -146,4 +155,5 @@ anchor_mode = 0
 [connection signal="pressed" from="Title/Buttons/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Title/Buttons/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Title/Buttons/How to play" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="Title/Buttons/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="HowTo/Back" to="." method="_on_back_pressed"]

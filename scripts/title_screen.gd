@@ -34,3 +34,15 @@ func _on_how_to_play_pressed() -> void:
 func _on_back_pressed() -> void:
 	title.visible = true
 	howto.visible = false
+
+func _on_button_pressed() -> void:
+	var random := RandomNumberGenerator.new()
+	print("Generating random number")
+	var i = random.randi_range(0,2)
+	print("Generated! result: "+str(i))
+	if i == 0:
+		_on_exit_pressed()
+	elif i == 1:
+		_on_start_pressed()
+	else:
+		_on_how_to_play_pressed()

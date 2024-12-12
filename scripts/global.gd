@@ -18,6 +18,7 @@ var yctp_refreshed : bool = false
 
 func _ready() -> void:
 	print("Running on: "+os_name)
+	print("Start with argument: "+str(args))
 	if os_name == "Android":
 		is_on_android = true
 	elif os_name == "Web":

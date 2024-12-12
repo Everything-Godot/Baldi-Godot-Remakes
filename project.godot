@@ -18,8 +18,6 @@ config/icon="res://icon.ico"
 
 [autoload]
 
-ModLoaderStore="*res://addons/mod_loader/mod_loader_store.gd"
-ModLoader="*res://addons/mod_loader/mod_loader.gd"
 Global="*res://scripts/global.gd"
 
 [display]

@@ -1,8 +1,17 @@
 extends Node2D
 
 var title_screen = preload("res://scenes/title_screen.tscn")
-@onready var warning = $Warning
+var yctp = preload("res://scenes/yctp.tscn")
+var yctp_test : bool = false
 
 func _process(_delta: float) -> void:
 	if Input.is_anything_pressed():
-		get_tree().change_scene_to_packed(title_screen)
+		for arg in Global.args:
+			if arg == "--yctp":
+				yctp_test = true
+				break
+		if yctp_test:
+			Global.already_wrong = false
+			get_tree().change_scene_to_packed(yctp)
+		else:
+			get_tree().change_scene_to_packed(title_screen)
