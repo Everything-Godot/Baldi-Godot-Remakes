@@ -30,6 +30,7 @@ jobs:
       - name: 安装 wine
         id: wine_install
         run: |
+          sudo apt-get update
           sudo apt install wine64
           sudo dpkg --add-architecture i386
           sudo apt-get update
