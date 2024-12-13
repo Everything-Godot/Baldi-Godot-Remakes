@@ -7,6 +7,8 @@ var paused : bool = false
 var freelook : bool = false
 var unlockedlook : bool = false
 var noclip : bool = false
+var look_back : bool = false
+var running : bool = false
 var os_name : String = OS.get_name()
 var args : PackedStringArray = OS.get_cmdline_args()
 var is_on_android : bool

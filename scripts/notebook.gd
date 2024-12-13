@@ -28,7 +28,6 @@ func _ready() -> void:
 	else:
 		push_error("failed to add animation into animation library, please contact the developer if you believe this is a bug.")
 	print("animation library generated! result: "+str(anim_library))
-	anim_player.name = "AnimationPlayer"
 	anim_player.connect("animation_finished", _on_finish)
 	anim_player.add_animation_library("library", anim_library)
 	print("animation player generated! result: "+str(anim_player))
@@ -38,6 +37,10 @@ func _ready() -> void:
 		if anim_player.has_animation("library/Animation"):
 			print("try to play animation")
 			anim_player.play("library/Animation")
+			if anim_player.is_playing():
+				print("succeed!")
+			else:
+				push_error("failed to play animation for notebook, please contact the developer if you believe this is a bug.")
 		else:
 			push_error("failed to load animation into animation player, please contact the developer if you believe this is a bug.")
 	else:

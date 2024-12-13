@@ -82,7 +82,6 @@ mesh = SubResource("PlaneMesh_rx2w6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor/StaticBody3D"]
 shape = SubResource("BoxShape3D_kntby")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Floor2" type="MeshInstance3D" parent="Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
@@ -92,7 +91,6 @@ mesh = SubResource("PlaneMesh_rx2w6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor2/StaticBody3D"]
 shape = SubResource("BoxShape3D_kntby")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Floor3" type="MeshInstance3D" parent="Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
@@ -102,7 +100,6 @@ mesh = SubResource("PlaneMesh_rx2w6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor3/StaticBody3D"]
 shape = SubResource("BoxShape3D_kntby")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Floor4" type="MeshInstance3D" parent="Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
@@ -112,7 +109,6 @@ mesh = SubResource("PlaneMesh_rx2w6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor4/StaticBody3D"]
 shape = SubResource("BoxShape3D_kntby")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Floor5" type="MeshInstance3D" parent="Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
@@ -122,7 +118,6 @@ mesh = SubResource("PlaneMesh_rx2w6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor5/StaticBody3D"]
 shape = SubResource("BoxShape3D_kntby")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Floor6" type="MeshInstance3D" parent="Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
@@ -132,7 +127,6 @@ mesh = SubResource("PlaneMesh_rx2w6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor6/StaticBody3D"]
 shape = SubResource("BoxShape3D_kntby")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Floor7" type="MeshInstance3D" parent="Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
@@ -142,7 +136,6 @@ mesh = SubResource("PlaneMesh_rx2w6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor7/StaticBody3D"]
 shape = SubResource("BoxShape3D_kntby")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Floor8" type="MeshInstance3D" parent="Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
@@ -152,7 +145,6 @@ mesh = SubResource("PlaneMesh_rx2w6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor8/StaticBody3D"]
 shape = SubResource("BoxShape3D_kntby")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Floor9" type="MeshInstance3D" parent="Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
@@ -162,7 +154,6 @@ mesh = SubResource("PlaneMesh_rx2w6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor9/StaticBody3D"]
 shape = SubResource("BoxShape3D_kntby")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Floor10" type="MeshInstance3D" parent="Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
@@ -172,7 +163,6 @@ mesh = SubResource("PlaneMesh_rx2w6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor10/StaticBody3D"]
 shape = SubResource("BoxShape3D_kntby")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Walls" type="Node3D" parent="."]
 
@@ -184,7 +174,6 @@ mesh = SubResource("PlaneMesh_jo1or")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall2/StaticBody3D"]
 shape = SubResource("BoxShape3D_kntby")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall3" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -2, 1, 3)
@@ -194,7 +183,6 @@ mesh = SubResource("PlaneMesh_jo1or")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall3/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall5" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2, 3, 3)
@@ -204,7 +192,6 @@ mesh = SubResource("PlaneMesh_jo1or")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall5/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall6" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -2, 3, 3)
@@ -214,7 +201,6 @@ mesh = SubResource("PlaneMesh_jo1or")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall6/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall7" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, -2, 1, -3)
@@ -224,7 +210,6 @@ mesh = SubResource("PlaneMesh_ffm7k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall7/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall8" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 1, -3)
@@ -234,7 +219,6 @@ mesh = SubResource("PlaneMesh_ffm7k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall8/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall9" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 2, 1, -3)
@@ -244,7 +228,6 @@ mesh = SubResource("PlaneMesh_ffm7k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall9/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall10" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, -2, 3, -3)
@@ -254,7 +237,6 @@ mesh = SubResource("PlaneMesh_ffm7k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall10/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall11" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 3, -3)
@@ -264,7 +246,6 @@ mesh = SubResource("PlaneMesh_ffm7k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall11/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall12" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 2, 3, -3)
@@ -274,7 +255,6 @@ mesh = SubResource("PlaneMesh_ffm7k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall12/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall13" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 3, 1, 0)
@@ -284,7 +264,6 @@ mesh = SubResource("PlaneMesh_8gwty")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall13/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall14" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 3, 1, 2)
@@ -294,7 +273,6 @@ mesh = SubResource("PlaneMesh_8gwty")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall14/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall15" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 3, 1, -2)
@@ -304,7 +282,6 @@ mesh = SubResource("PlaneMesh_8gwty")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall15/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall16" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 3, 3, 0)
@@ -314,7 +291,6 @@ mesh = SubResource("PlaneMesh_8gwty")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall16/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall17" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 3, 3, 2)
@@ -324,7 +300,6 @@ mesh = SubResource("PlaneMesh_8gwty")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall17/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall18" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 3, 3, -2)
@@ -334,7 +309,6 @@ mesh = SubResource("PlaneMesh_8gwty")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall18/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall19" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -3, 1, 0)
@@ -344,7 +318,6 @@ mesh = SubResource("PlaneMesh_kg1l0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall19/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall20" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -3, 1, 2)
@@ -354,7 +327,6 @@ mesh = SubResource("PlaneMesh_kg1l0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall20/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall21" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -3, 1, -2)
@@ -364,7 +336,6 @@ mesh = SubResource("PlaneMesh_kg1l0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall21/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall22" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -3, 3, 0)
@@ -374,7 +345,6 @@ mesh = SubResource("PlaneMesh_kg1l0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall22/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall23" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -3, 3, 2)
@@ -384,7 +354,6 @@ mesh = SubResource("PlaneMesh_kg1l0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall23/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall24" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -3, 3, -2)
@@ -394,7 +363,6 @@ mesh = SubResource("PlaneMesh_kg1l0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall24/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall25" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -1, 1, 4)
@@ -404,7 +372,6 @@ mesh = SubResource("PlaneMesh_kg1l0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall25/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall26" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -1, 3, 4)
@@ -414,7 +381,6 @@ mesh = SubResource("PlaneMesh_kg1l0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall26/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall27" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 1, 1, 4)
@@ -424,7 +390,6 @@ mesh = SubResource("PlaneMesh_8gwty")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall27/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall28" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 1, 3, 4)
@@ -434,7 +399,6 @@ mesh = SubResource("PlaneMesh_8gwty")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall28/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall29" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 5)
@@ -444,7 +408,6 @@ mesh = SubResource("PlaneMesh_jo1or")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall29/StaticBody3D"]
 shape = SubResource("BoxShape3D_kntby")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wall30" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 5)
@@ -454,7 +417,6 @@ mesh = SubResource("PlaneMesh_jo1or")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall30/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Ceilings" type="Node3D" parent="."]
 
@@ -466,7 +428,6 @@ mesh = SubResource("PlaneMesh_euodu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ceilings/Ceiling/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Ceiling2" type="MeshInstance3D" parent="Ceilings"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 2, 4, 0)
@@ -476,7 +437,6 @@ mesh = SubResource("PlaneMesh_euodu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ceilings/Ceiling2/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Ceiling3" type="MeshInstance3D" parent="Ceilings"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 4, 2)
@@ -486,7 +446,6 @@ mesh = SubResource("PlaneMesh_euodu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ceilings/Ceiling3/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Ceiling4" type="MeshInstance3D" parent="Ceilings"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -2, 4, 0)
@@ -496,7 +455,6 @@ mesh = SubResource("PlaneMesh_euodu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ceilings/Ceiling4/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Ceiling5" type="MeshInstance3D" parent="Ceilings"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 4, -2)
@@ -506,7 +464,6 @@ mesh = SubResource("PlaneMesh_euodu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ceilings/Ceiling5/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Ceiling6" type="MeshInstance3D" parent="Ceilings"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 2, 4, -2)
@@ -516,7 +473,6 @@ mesh = SubResource("PlaneMesh_euodu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ceilings/Ceiling6/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Ceiling7" type="MeshInstance3D" parent="Ceilings"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -2, 4, -2)
@@ -526,7 +482,6 @@ mesh = SubResource("PlaneMesh_euodu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ceilings/Ceiling7/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Ceiling8" type="MeshInstance3D" parent="Ceilings"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 2, 4, 2)
@@ -536,7 +491,6 @@ mesh = SubResource("PlaneMesh_euodu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ceilings/Ceiling8/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Ceiling9" type="MeshInstance3D" parent="Ceilings"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -2, 4, 2)
@@ -546,7 +500,6 @@ mesh = SubResource("PlaneMesh_euodu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ceilings/Ceiling9/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Ceiling10" type="MeshInstance3D" parent="Ceilings"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 4, 4)
@@ -556,7 +509,6 @@ mesh = SubResource("PlaneMesh_euodu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ceilings/Ceiling10/StaticBody3D"]
 shape = SubResource("BoxShape3D_gsuic")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Wallsthatfitsdoors" type="Node3D" parent="."]
 

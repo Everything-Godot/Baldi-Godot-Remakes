@@ -21,7 +21,6 @@ metadata/opened = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_8c5pm")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -31,14 +30,11 @@ debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="CollisionShape3DClosed" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_8c5pm")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="CollisionShape3DOpened1" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0, 0)
 shape = SubResource("BoxShape3D_7njuj")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="CollisionShape3DOpened2" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.594037, -0.0055052, 0.000585079)
 shape = SubResource("BoxShape3D_seiud")
-debug_color = Color(0, 0.6, 0.7, 0.42)

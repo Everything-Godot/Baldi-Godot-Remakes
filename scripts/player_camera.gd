@@ -7,7 +7,7 @@ extends Camera3D
 var camera_anglev=0
 var last_camera_position := Vector3.ZERO
 var last_camera_rotation := Vector3.ZERO
-var temp_bool = false
+var temp_bool := false
 
 func _input(event):
 	if not Global.paused:
@@ -42,6 +42,10 @@ func _process(delta: float) -> void:
 			Global.paused = false
 	if Global.debug and not Global.paused:
 		rotation.z = 0
+		if Input.is_action_just_pressed("look back"):
+			Global.look_back = !Global.look_back
+		if Input.is_action_just_pressed("run"):
+			Global.running = !Global.running
 		if Input.is_action_just_pressed("3dlook"):
 			if Global.freelook:
 				Global.unlockedlook = true
@@ -57,7 +61,7 @@ func _process(delta: float) -> void:
 				last_camera_rotation = Vector3.ZERO
 				rotation.x = 0
 				Global.unlockedlook = temp_bool
-				temp_bool = null
+				temp_bool = false
 			else:
 				last_camera_position = position
 				last_camera_rotation = rotation

@@ -40,7 +40,11 @@ func _physics_process(delta: float) -> void:
 			var vy = velocity.y
 			velocity.y = 0
 			var inputDir = Input.get_vector("left", "right", "forward", "backward")
-			var relativeDir = Vector3(inputDir.x, 0.0, inputDir.y).rotated(Vector3.UP, camera.rotation.y)
+			var relativeDir : Vector3
+			if Global.look_back:
+				relativeDir = Vector3(inputDir.x, 0.0, inputDir.y).rotated(Vector3.UP, -camera.rotation.y)
+			else:
+				relativeDir = Vector3(inputDir.x, 0.0, inputDir.y).rotated(Vector3.UP, camera.rotation.y)
 			velocity = lerp(velocity, relativeDir * speed, speed * delta)
 			if not Global.noclip:
 				velocity.y = vy
