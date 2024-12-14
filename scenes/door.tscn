@@ -16,6 +16,7 @@ size = Vector3(0.1, 2.55, 0.3)
 texture = ExtResource("1_g202l")
 script = ExtResource("2_3mj38")
 metadata/opened = false
+metadata/is_swing_door = false
 
 [node name="Area3D" type="Area3D" parent="."]
 

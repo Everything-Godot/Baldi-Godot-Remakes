@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://o02jx6ilewsn"]
+[gd_scene load_steps=10 format=3 uid="uid://o02jx6ilewsn"]
 
 [ext_resource type="Script" uid="uid://bdwqvs032yrxw" path="res://scripts/player.gd" id="1_nvkyj"]
 [ext_resource type="Script" uid="uid://b8bvmty5dffov" path="res://scripts/player_camera.gd" id="2_qjj63"]
@@ -12,6 +12,10 @@
 size = Vector3(0.3, 0.3, 1.3)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yk1gi"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qlg0r"]
+radius = 0.6
+height = 2.2
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
@@ -59,5 +63,12 @@ horizontal_alignment = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_yk1gi")
 
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_qlg0r")
+
 [connection signal="area_entered" from="Camera3D/Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Camera3D/Area3D" to="." method="_on_area_3d_area_exited"]
+[connection signal="area_entered" from="Area3D" to="." method="_on_body_entered"]
+[connection signal="area_exited" from="Area3D" to="." method="_on_body_exited"]

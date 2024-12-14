@@ -100,9 +100,11 @@ func _on_area_3d_area_entered(area:Area3D) -> void:
 	print(parent)
 	if not Global.paused:
 		if not Global.freelook:
-			if parent.has_meta("opened"):
-				if not parent.get_meta("opened"):
-					parent.set_meta("opened", true)
+			if parent.has_meta("is_swing_door"):
+				if not parent.get_meta("is_swing_door"):
+					if parent.has_meta("opened"):
+						if not parent.get_meta("opened"):
+							parent.set_meta("opened", true)
 			elif parent.name == "Notebook":
 				yctp_node = yctp.instantiate()
 				camera.add_child(yctp_node)
@@ -111,4 +113,19 @@ func _on_area_3d_area_entered(area:Area3D) -> void:
 				check_yctp = true
 
 func _on_area_3d_area_exited(area: Area3D) -> void:
+	parent = area.get_parent()
+
+func _on_body_entered(area: Area3D) -> void:
+	print(area)
+	parent = area.get_parent()
+	print(parent)
+	if not Global.paused:
+		if not Global.freelook:
+			if parent.has_meta("is_swing_door"):
+				if parent.get_meta("is_swing_door"):
+					if parent.has_meta("opened"):
+						if not parent.get_meta("opened"):
+							parent.set_meta("opened", true)
+
+func _on_body_exited(area: Area3D) -> void:
 	parent = area.get_parent()
