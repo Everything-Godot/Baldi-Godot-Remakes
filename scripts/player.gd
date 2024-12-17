@@ -100,7 +100,11 @@ func _on_area_3d_area_entered(area:Area3D) -> void:
 	print(parent)
 	if not Global.paused:
 		if not Global.freelook:
-			if parent.has_meta("is_swing_door"):
+			if parent.has_meta("pickup"):
+				print("Dected pickup, getting informations.")
+				parent = parent.get_parent()
+				print(parent)
+			elif parent.has_meta("is_swing_door"):
 				if not parent.get_meta("is_swing_door"):
 					if parent.has_meta("opened"):
 						if not parent.get_meta("opened"):

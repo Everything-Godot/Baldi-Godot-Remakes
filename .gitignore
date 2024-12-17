@@ -1,6 +1,7 @@
+.vscode/
+
 # Godot 4+ specific ignores
 .godot/
-.vscode/
 
 # Godot-specific ignores
 .import/
@@ -12,4 +13,3 @@
 .mono/
 data_*/
 mono_crash.*.json
-builds

@@ -1,12 +1,14 @@
-[gd_scene load_steps=30 format=3 uid="uid://b7c7h5jre8ymm"]
+[gd_scene load_steps=32 format=3 uid="uid://b7c7h5jre8ymm"]
 
 [ext_resource type="Texture2D" uid="uid://ktm8828qwxa6" path="res://sprites/TileFloor.png" id="1_busip"]
 [ext_resource type="Script" uid="uid://boi7dfwrvfcgh" path="res://scripts/school_house.gd" id="1_gmpo5"]
 [ext_resource type="Texture2D" uid="uid://bsebinvdhf1s2" path="res://sprites/WhiteBrickWall.png" id="2_4a7o4"]
 [ext_resource type="Texture2D" uid="uid://nx14s8yheh1k" path="res://sprites/Ceiling.png" id="3_m354t"]
 [ext_resource type="PackedScene" uid="uid://o02jx6ilewsn" path="res://scenes/player.tscn" id="4_hxetr"]
-[ext_resource type="PackedScene" uid="uid://bxn1qcd2iryw2" path="res://scenes/swing_door.tscn" id="6_6ytsk"]
+[ext_resource type="PackedScene" uid="uid://baqiltkk8m7b5" path="res://scenes/swing_door.tscn" id="6_6ytsk"]
 [ext_resource type="PackedScene" uid="uid://81yq86o5yy0p" path="res://scenes/baldi_tour.tscn" id="6_a35ho"]
+[ext_resource type="Script" uid="uid://bpyt11nfqumtt" path="res://scripts/pickups.gd" id="7_ugye5"]
+[ext_resource type="PackedScene" uid="uid://cdpm82gwetwae" path="res://scenes/quarter.tscn" id="7_wox3x"]
 [ext_resource type="PackedScene" uid="uid://bib6qt8nyie1b" path="res://scenes/notebook.tscn" id="8_f5r6v"]
 [ext_resource type="PackedScene" uid="uid://dt8wwdp0sum8c" path="res://scenes/door.tscn" id="8_loba3"]
 [ext_resource type="AudioStream" uid="uid://dxkvfp5p4oouj" path="res://sounds/mus_School.wav" id="9_kcvaa"]
@@ -71,8 +73,9 @@ sky_material = SubResource("ProceduralSkyMaterial_4d4ve")
 background_mode = 2
 sky = SubResource("Sky_ul25v")
 
-[node name="SchoolHouse" type="Node3D"]
+[node name="SchoolHouse" type="Node3D" node_paths=PackedStringArray("audios")]
 script = ExtResource("1_gmpo5")
+audios = [NodePath("Music")]
 
 [node name="Floors" type="Node3D" parent="."]
 
@@ -559,6 +562,13 @@ texture = null
 
 [node name="swing door" parent="Doors" instance=ExtResource("6_6ytsk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27721, 0)
+
+[node name="Pickups" type="Node3D" parent="." node_paths=PackedStringArray("pickups")]
+script = ExtResource("7_ugye5")
+pickups = [NodePath("Baldi Tour Quarter")]
+
+[node name="Baldi Tour Quarter" parent="Pickups" instance=ExtResource("7_wox3x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30409, 0.931091, -1.97437)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_318it")
