@@ -18,10 +18,10 @@ var played_prize : bool = false
 func _ready() -> void:
 	pickups = pickups_node.pickups
 	audios.append($Doors/Door/AudioStreamPlayer3D)
-	audios.append($"Doors/swing door/AudioStreamPlayer3D")
+	audios.append($"Doors/Swing Door/AudioStreamPlayer3D")
 	audios.append($"Baldi_Tour/Baldi Audio")
 	timers.append($Doors/Door/Timer)
-	timers.append($"Doors/swing door/Timer")
+	timers.append($"Doors/Swing Door/Timer")
 	area3d = notebook.get_child(1)
 	Global.notebooks = 0
 	Global.already_wrong = false
