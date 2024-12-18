@@ -60,6 +60,10 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector3(0, 0, 0)
 		move_and_slide()
 		if Global.debug:
+			if Input.is_action_just_pressed("Add Notebook"):
+				Global.notebooks += 1
+			if Input.is_action_just_pressed("Remove Notebook"):
+				Global.notebooks -= 1
 			if Input.is_action_just_pressed("noclip"):
 				if Global.noclip:
 					collision.disabled = false

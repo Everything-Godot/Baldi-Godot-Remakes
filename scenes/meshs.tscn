@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://bsebinvdhf1s2" path="res://sprites/WhiteBrickWall.png" id="2_2ep1j"]
 [ext_resource type="Texture2D" uid="uid://nx14s8yheh1k" path="res://sprites/Ceiling.png" id="3_6x1xt"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yq3gw"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_huula"]
 albedo_texture = ExtResource("1_anhe4")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jmm3i"]
-material = SubResource("StandardMaterial3D_yq3gw")
+material = SubResource("StandardMaterial3D_huula")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6nj3c"]
 size = Vector3(2, 0, 2)
@@ -37,11 +37,11 @@ albedo_texture = ExtResource("2_2ep1j")
 [sub_resource type="PlaneMesh" id="PlaneMesh_tr1ag"]
 material = SubResource("StandardMaterial3D_q4vjj")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12uow"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7rgd6"]
 albedo_texture = ExtResource("3_6x1xt")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rxfep"]
-material = SubResource("StandardMaterial3D_12uow")
+material = SubResource("StandardMaterial3D_7rgd6")
 
 [node name="meshs" type="Node3D"]
 

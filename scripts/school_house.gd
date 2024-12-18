@@ -11,9 +11,11 @@ extends Node3D
 @export var timers : Array[Node]
 @export var pickups : Array[Node]
 var prize_sound = load("res://sounds/BAL_GetPrize.wav")
+var prize_sound2 = load("res://sounds/BAL_AllNotebooks.wav")
 var empty_sound = load("res://sounds/delay.wav")
 var area3d : Area3D
 var played_prize : bool = false
+var congrats_notebook : bool = false
 
 func _ready() -> void:
 	pickups = pickups_node.pickups
@@ -35,9 +37,22 @@ func _process(_delta: float) -> void:
 	if Global.already_wrong:
 		music.stop()
 		music.stream = empty_sound
-	if Global.notebooks == Global.total_notebooks:
+	if Global.notebooks == Global.total_notebooks and not congrats_notebook:
+		for audio in audios:
+			if audio.name == "Baldi Audio 2":
+				congrats_notebook = true
+				audio.stream = prize_sound2
+				audio.play()
+				break
+			else:
+				continue
+		baldi_tour.play("default")
+	if Global.notebooks >= Global.total_notebooks:
 		notebook.visible = false
 		area3d.monitorable = false
+	else:
+		notebook.visible = true
+		area3d.monitorable = true
 	if not Global.paused:
 		if Global.notebooks == 1 and not Global.already_wrong and not played_prize:
 			for audio in audios:
