@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3yerbychwmjv"]
+
+[ext_resource type="PackedScene" uid="uid://crjq1ufeuixg5" path="res://scenes/pickups/pickup_base.tscn" id="1_t3vad"]
+[ext_resource type="Texture2D" uid="uid://bflsemmgl36vs" path="res://sprites/EnergyFlavoredZestyBar.png" id="2_xppwi"]
+
+[node name="Zesty Bar" instance=ExtResource("1_t3vad")]
+
+[node name="Sprite3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0621951, 0)
+texture = ExtResource("2_xppwi")

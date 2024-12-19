@@ -74,7 +74,7 @@ func _process(_delta: float) -> void:
 			if timer.paused:
 				timer.paused = false
 		if Input.is_action_just_pressed("Esc") or pause_button.button_pressed:
-			var pm_file = load("res://scenes/pause_menu.tscn")
+			var pm_file = load("res://scenes/UI/pause_menu.tscn")
 			var pm = pm_file.instantiate()
 			pm.name = "PM"
 			player_camera.add_child(pm)

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://gclfgm8ublpr"]
+
+[ext_resource type="PackedScene" uid="uid://crjq1ufeuixg5" path="res://scenes/pickups/pickup_base.tscn" id="1_fttkb"]
+[ext_resource type="Texture2D" uid="uid://c0y17f80ixc1o" path="res://sprites/Key.png" id="2_wy8tx"]
+
+[node name="Key" instance=ExtResource("1_fttkb")]
+
+[node name="Sprite3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0585042, 0)
+texture = ExtResource("2_wy8tx")

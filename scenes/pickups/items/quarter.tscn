@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cdpm82gwetwae"]
 
-[ext_resource type="PackedScene" uid="uid://crjq1ufeuixg5" path="res://scenes/pickup_base.tscn" id="1_8h3qs"]
+[ext_resource type="PackedScene" uid="uid://crjq1ufeuixg5" path="res://scenes/pickups/pickup_base.tscn" id="1_8h3qs"]
 [ext_resource type="Texture2D" uid="uid://scxdonpjpl5" path="res://sprites/Quarter.png" id="2_lfhay"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lfhay"]

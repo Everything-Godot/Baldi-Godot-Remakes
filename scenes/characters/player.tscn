@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bdwqvs032yrxw" path="res://scripts/player.gd" id="1_nvkyj"]
 [ext_resource type="Script" uid="uid://b8bvmty5dffov" path="res://scripts/player_camera.gd" id="2_qjj63"]
-[ext_resource type="PackedScene" uid="uid://drnhh1dim6m3r" path="res://scenes/debug_menu.tscn" id="3_m8wfe"]
-[ext_resource type="PackedScene" uid="uid://dfkqhfrueuc6b" path="res://scenes/android_control_ui.tscn" id="4_dgcri"]
+[ext_resource type="PackedScene" uid="uid://drnhh1dim6m3r" path="res://scenes/UI/debug_menu.tscn" id="3_m8wfe"]
+[ext_resource type="PackedScene" uid="uid://dfkqhfrueuc6b" path="res://scenes/UI/android_control_ui.tscn" id="4_dgcri"]
 [ext_resource type="FontFile" uid="uid://0i8uc3fd1bpt" path="res://fonts/COMIC.ttf" id="5_qlg0r"]
 [ext_resource type="Script" uid="uid://bwmdmxedv1h82" path="res://scripts/item_slot.gd" id="6_fjrip"]
 [ext_resource type="Texture2D" uid="uid://cn0wtpoynavmr" path="res://sprites/ItemSlots.png" id="6_tuyoq"]
@@ -102,6 +102,7 @@ offset_bottom = 90.0
 texture = ExtResource("7_smehm")
 
 [node name="Item Sprite 2" type="TextureRect" parent="Camera3D/ItemSlot Control/Item Sprites"]
+layout_mode = 0
 offset_left = 1725.0
 offset_top = 34.0
 offset_right = 1789.0
@@ -109,6 +110,7 @@ offset_bottom = 98.0
 texture = ExtResource("7_smehm")
 
 [node name="Item Sprite 3" type="TextureRect" parent="Camera3D/ItemSlot Control/Item Sprites"]
+layout_mode = 0
 offset_left = 1837.0
 offset_top = 35.0
 offset_right = 1901.0
@@ -124,16 +126,17 @@ texture = ExtResource("6_tuyoq")
 
 [node name="Item Name" type="Label" parent="Camera3D/ItemSlot Control"]
 layout_mode = 0
-offset_left = 1542.0
+offset_left = 1494.0
 offset_top = 164.0
 offset_right = 1920.0
-offset_bottom = 254.0
+offset_bottom = 347.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_qlg0r")
 theme_override_font_sizes/font_size = 64
-text = "Nothing"
+text = "Baldi's Least Favorite Tape"
 horizontal_alignment = 2
 vertical_alignment = 3
+autowrap_mode = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_yk1gi")

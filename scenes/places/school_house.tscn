@@ -1,20 +1,20 @@
 [gd_scene load_steps=32 format=3 uid="uid://b7c7h5jre8ymm"]
 
-[ext_resource type="Texture2D" uid="uid://ktm8828qwxa6" path="res://sprites/TileFloor.png" id="1_busip"]
-[ext_resource type="Script" uid="uid://boi7dfwrvfcgh" path="res://scripts/school_house.gd" id="1_gmpo5"]
-[ext_resource type="Texture2D" uid="uid://bsebinvdhf1s2" path="res://sprites/WhiteBrickWall.png" id="2_4a7o4"]
-[ext_resource type="Texture2D" uid="uid://nx14s8yheh1k" path="res://sprites/Ceiling.png" id="3_m354t"]
-[ext_resource type="PackedScene" uid="uid://o02jx6ilewsn" path="res://scenes/player.tscn" id="4_hxetr"]
-[ext_resource type="PackedScene" uid="uid://baqiltkk8m7b5" path="res://scenes/swing_door.tscn" id="6_6ytsk"]
-[ext_resource type="PackedScene" uid="uid://81yq86o5yy0p" path="res://scenes/baldi_tour.tscn" id="6_a35ho"]
-[ext_resource type="Script" uid="uid://bpyt11nfqumtt" path="res://scripts/pickups.gd" id="7_ugye5"]
-[ext_resource type="PackedScene" uid="uid://cdpm82gwetwae" path="res://scenes/quarter.tscn" id="7_wox3x"]
-[ext_resource type="PackedScene" uid="uid://bib6qt8nyie1b" path="res://scenes/notebook.tscn" id="8_f5r6v"]
-[ext_resource type="PackedScene" uid="uid://dt8wwdp0sum8c" path="res://scenes/door.tscn" id="8_loba3"]
-[ext_resource type="AudioStream" uid="uid://dxkvfp5p4oouj" path="res://sounds/mus_School.wav" id="9_kcvaa"]
+[ext_resource type="Script" uid="uid://boi7dfwrvfcgh" path="res://scripts/school_house.gd" id="1_2dhqs"]
+[ext_resource type="Texture2D" uid="uid://ktm8828qwxa6" path="res://sprites/TileFloor.png" id="2_yaltj"]
+[ext_resource type="Texture2D" uid="uid://bsebinvdhf1s2" path="res://sprites/WhiteBrickWall.png" id="3_jchii"]
+[ext_resource type="Texture2D" uid="uid://nx14s8yheh1k" path="res://sprites/Ceiling.png" id="4_f0s1d"]
+[ext_resource type="PackedScene" uid="uid://dt8wwdp0sum8c" path="res://scenes/structers/door.tscn" id="5_qvat7"]
+[ext_resource type="PackedScene" uid="uid://baqiltkk8m7b5" path="res://scenes/structers/swing_door.tscn" id="6_mqsgg"]
+[ext_resource type="Script" uid="uid://bpyt11nfqumtt" path="res://scripts/pickups.gd" id="7_sw28j"]
+[ext_resource type="PackedScene" uid="uid://cdpm82gwetwae" path="res://scenes/pickups/items/quarter.tscn" id="8_xd3nk"]
+[ext_resource type="PackedScene" uid="uid://o02jx6ilewsn" path="res://scenes/characters/player.tscn" id="9_wi38d"]
+[ext_resource type="PackedScene" uid="uid://81yq86o5yy0p" path="res://scenes/characters/baldi_tour.tscn" id="10_aexyc"]
+[ext_resource type="PackedScene" uid="uid://bib6qt8nyie1b" path="res://scenes/pickups/notebook.tscn" id="11_hk6kb"]
+[ext_resource type="AudioStream" uid="uid://dxkvfp5p4oouj" path="res://sounds/mus_School.wav" id="12_he5o8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hgs37"]
-albedo_texture = ExtResource("1_busip")
+albedo_texture = ExtResource("2_yaltj")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rx2w6"]
 material = SubResource("StandardMaterial3D_hgs37")
@@ -23,7 +23,7 @@ material = SubResource("StandardMaterial3D_hgs37")
 size = Vector3(2, 0, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wgj1"]
-albedo_texture = ExtResource("2_4a7o4")
+albedo_texture = ExtResource("3_jchii")
 texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jo1or"]
@@ -33,25 +33,25 @@ material = SubResource("StandardMaterial3D_3wgj1")
 size = Vector3(2, 0, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c3aux"]
-albedo_texture = ExtResource("2_4a7o4")
+albedo_texture = ExtResource("3_jchii")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ffm7k"]
 material = SubResource("StandardMaterial3D_c3aux")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t732y"]
-albedo_texture = ExtResource("2_4a7o4")
+albedo_texture = ExtResource("3_jchii")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_8gwty"]
 material = SubResource("StandardMaterial3D_t732y")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6v1dn"]
-albedo_texture = ExtResource("2_4a7o4")
+albedo_texture = ExtResource("3_jchii")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kg1l0"]
 material = SubResource("StandardMaterial3D_6v1dn")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q3fe2"]
-albedo_texture = ExtResource("3_m354t")
+albedo_texture = ExtResource("4_f0s1d")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_euodu"]
 material = SubResource("StandardMaterial3D_q3fe2")
@@ -74,7 +74,7 @@ background_mode = 2
 sky = SubResource("Sky_ul25v")
 
 [node name="SchoolHouse" type="Node3D" node_paths=PackedStringArray("audios")]
-script = ExtResource("1_gmpo5")
+script = ExtResource("1_2dhqs")
 audios = [NodePath("Music"), NodePath("Baldi Audio 2")]
 
 [node name="Floors" type="Node3D" parent="."]
@@ -556,17 +556,17 @@ skeleton = NodePath("../..")
 
 [node name="Doors" type="Node3D" parent="."]
 
-[node name="Door" parent="Doors" instance=ExtResource("8_loba3")]
+[node name="Door" parent="Doors" instance=ExtResource("5_qvat7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.285, 3)
 
-[node name="Swing Door" parent="Doors" instance=ExtResource("6_6ytsk")]
+[node name="Swing Door" parent="Doors" instance=ExtResource("6_mqsgg")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 1.285, 1)
 
 [node name="Pickups" type="Node3D" parent="." node_paths=PackedStringArray("pickups")]
-script = ExtResource("7_ugye5")
+script = ExtResource("7_sw28j")
 pickups = [NodePath("Quarter")]
 
-[node name="Quarter" parent="Pickups" instance=ExtResource("7_wox3x")]
+[node name="Quarter" parent="Pickups" instance=ExtResource("8_xd3nk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30409, 0.931091, -1.97437)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -578,17 +578,17 @@ transform = Transform3D(0.856078, 0.514815, 0.045783, -0.503187, 0.850407, -0.15
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.820653, -0.525948, -0.2234, -0.563515, 0.809712, 0.16376, 0.0947602, 0.260279, -0.960872, 0, 2.22107, -1.25823)
 
-[node name="Player" parent="." instance=ExtResource("4_hxetr")]
+[node name="Player" parent="." instance=ExtResource("9_wi38d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0399485, 1.99808, 4.43024)
 
-[node name="Baldi_Tour" parent="." instance=ExtResource("6_a35ho")]
+[node name="Baldi_Tour" parent="." instance=ExtResource("10_aexyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28732, -1.97252)
 
-[node name="Notebook" parent="." instance=ExtResource("8_f5r6v")]
+[node name="Notebook" parent="." instance=ExtResource("11_hk6kb")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.20373, 1.7256, 1.84659)
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_kcvaa")
+stream = ExtResource("12_he5o8")
 autoplay = true
 
 [node name="Baldi Audio 2" type="AudioStreamPlayer" parent="."]

@@ -1,7 +1,7 @@
 extends Node2D
 
-var title_screen = preload("res://scenes/title_screen.tscn")
-var yctp = preload("res://scenes/yctp.tscn")
+var title_screen = preload("res://scenes/places/title_screen.tscn")
+var yctp = preload("res://scenes/places/yctp.tscn")
 var yctp_test : bool = false
 
 func _process(_delta: float) -> void:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dfkqhfrueuc6b"]
 
 [ext_resource type="Script" uid="uid://8b1u8e28bptj" path="res://scripts/android_control_ui.gd" id="1_vw1vk"]
-[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://scenes/virtual_joystick_scene.tscn" id="2_cvi3d"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://scenes/UI/virtual_joystick_scene.tscn" id="2_cvi3d"]
 
 [node name="Android Control UI" type="Control"]
 layout_mode = 3

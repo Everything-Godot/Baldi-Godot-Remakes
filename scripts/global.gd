@@ -20,10 +20,23 @@ var yctp_refreshed : bool = false
 var selected_item_slot : int = 0
 var slot_items : Array[String]
 var items : Array[String] = [
-	"Quarter"
+	"BSODA", "Key", "Lock", "Quarter", "Tape", "Zesty Bar"
 ]
 var item_sprites = [
-	["Quarter", load("res://sprites/Quarter.png")]
+	["BSODA", load("res://sprites/BSODA.png")],
+	["Key", load("res://sprites/Key.png")],
+	["Lock", load("res://sprites/YellowDoorLock.png")],
+	["Quarter", load("res://sprites/Quarter.png")],
+	["Tape", load("res://sprites/Tape.png")],
+	["Zesty Bar", load("res://sprites/EnergyFlavoredZestyBar.png")]
+]
+var item_names = [
+	["BSODA", "BSODA"],
+	["Key", "Principal's Keys"],
+	["Lock", "Swinging Door Lock"],
+	["Quarter", "Quarter"],
+	["Tape", "Baldi's Least Favorite Tape"],
+	["Zesty Bar", "Energy Flavored Zesty Bar"]
 ]
 
 func _ready() -> void:
@@ -44,8 +57,12 @@ func _ready() -> void:
 				print("Find debug argument: "+str(arg))
 				print("Setting game as android build.")
 				is_on_android = true
-			else:
-				continue
+				ProjectSettings.set_setting("input_devices/pointing/emulate_touch_from_mouse", true)
+				DisplayServer.window_set_title("Android feature test")
+			elif arg == "--yctp":
+				print("Find debug argument: "+str(arg))
+				print("Setting game to yctp.")
+				DisplayServer.window_set_title("YCTP test")
 
 func _process(_delta: float) -> void:
 	if not is_on_android:

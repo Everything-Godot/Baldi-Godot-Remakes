@@ -3,7 +3,7 @@ extends Control
 @onready var selected : ColorRect = $Selected
 @onready var item_name: Label = $"Item Name"
 @onready var item_sprites: Control = $"Item Sprites"
-var blank_texture : ImageTexture = ImageTexture.new()
+var blank_texture = load("res://sprites/Blank.png")
 var selected_positions : Array[Vector2] = [
 	Vector2(1586, 16), Vector2(1703, 19), Vector2(1810, 18)
 ]

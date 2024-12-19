@@ -1,6 +1,6 @@
 extends Node2D
 
-var school_house = preload("res://scenes/school_house.tscn")
+var school_house = preload("res://scenes/places/school_house.tscn")
 @onready var slider = $"Title/Mouse/Slider"
 @onready var title = $"Title"
 @onready var exit_bnt = $Title/Buttons/Exit

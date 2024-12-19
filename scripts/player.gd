@@ -20,7 +20,10 @@ var last_camera_rotation
 var check_yctp : bool = false
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if Global.is_on_android:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	area3d.monitoring = false
 
 func _process(_delta: float) -> void:
@@ -92,7 +95,10 @@ func _physics_process(delta: float) -> void:
 	if Global.paused and Global.in_yctp:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		if Global.is_on_android:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		if yctp_node != null:
 			if camera.has_node(yctp_node.get_path()):
 				camera.remove_child(yctp_node)

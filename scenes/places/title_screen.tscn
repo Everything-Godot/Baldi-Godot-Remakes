@@ -1,16 +1,16 @@
 [gd_scene load_steps=9 format=3 uid="uid://cdjp0wu1flrga"]
 
-[ext_resource type="Texture2D" uid="uid://chj16sm4ydy" path="res://sprites/title_final.png" id="1_4vhds"]
-[ext_resource type="Script" uid="uid://o230ys0crrsu" path="res://scripts/title_screen.gd" id="1_vnmx4"]
-[ext_resource type="Texture2D" uid="uid://ct15vmettdv30" path="res://sprites/exit.png" id="2_gkjui"]
-[ext_resource type="AudioStream" uid="uid://d10kfv43iw0oc" path="res://sounds/BAL_MainMenu.wav" id="4_2tqpf"]
-[ext_resource type="Texture2D" uid="uid://btgpqxm5nrjw7" path="res://sprites/title_start.png" id="4_r7fo5"]
-[ext_resource type="Texture2D" uid="uid://boi33jo6ck6aq" path="res://sprites/title_howto.png" id="5_j075n"]
-[ext_resource type="AudioStream" uid="uid://cyx17rwt1jqaf" path="res://sounds/mus_Intro.wav" id="5_vuisl"]
-[ext_resource type="FontFile" uid="uid://0i8uc3fd1bpt" path="res://fonts/COMIC.ttf" id="6_4ykrc"]
+[ext_resource type="Script" uid="uid://o230ys0crrsu" path="res://scripts/title_screen.gd" id="1_48n3j"]
+[ext_resource type="Texture2D" uid="uid://chj16sm4ydy" path="res://sprites/title_final.png" id="2_uctin"]
+[ext_resource type="Texture2D" uid="uid://ct15vmettdv30" path="res://sprites/exit.png" id="3_r818q"]
+[ext_resource type="Texture2D" uid="uid://btgpqxm5nrjw7" path="res://sprites/title_start.png" id="4_t1qq7"]
+[ext_resource type="Texture2D" uid="uid://boi33jo6ck6aq" path="res://sprites/title_howto.png" id="5_h2u6r"]
+[ext_resource type="FontFile" uid="uid://0i8uc3fd1bpt" path="res://fonts/COMIC.ttf" id="6_axedi"]
+[ext_resource type="AudioStream" uid="uid://d10kfv43iw0oc" path="res://sounds/BAL_MainMenu.wav" id="7_l76kf"]
+[ext_resource type="AudioStream" uid="uid://cyx17rwt1jqaf" path="res://sounds/mus_Intro.wav" id="8_b0nsk"]
 
 [node name="Title Screen" type="Node2D"]
-script = ExtResource("1_vnmx4")
+script = ExtResource("1_48n3j")
 
 [node name="Background" type="ColorRect" parent="."]
 offset_left = -158.0
@@ -27,7 +27,7 @@ offset_bottom = 864.0
 [node name="Background" type="Sprite2D" parent="Title"]
 position = Vector2(240, 0)
 scale = Vector2(2.25, 2.25)
-texture = ExtResource("1_4vhds")
+texture = ExtResource("2_uctin")
 centered = false
 
 [node name="Buttons" type="Control" parent="Title"]
@@ -40,7 +40,7 @@ offset_top = 824.0
 offset_right = 64.0
 offset_bottom = 888.0
 scale = Vector2(4, 4)
-texture_normal = ExtResource("2_gkjui")
+texture_normal = ExtResource("3_r818q")
 
 [node name="Start" type="TextureButton" parent="Title/Buttons"]
 layout_mode = 0
@@ -49,7 +49,7 @@ offset_top = 991.0
 offset_right = 1323.0
 offset_bottom = 1035.0
 scale = Vector2(2, 2)
-texture_normal = ExtResource("4_r7fo5")
+texture_normal = ExtResource("4_t1qq7")
 
 [node name="How to play" type="TextureButton" parent="Title/Buttons"]
 layout_mode = 0
@@ -58,7 +58,7 @@ offset_top = 991.0
 offset_right = 1683.0
 offset_bottom = 1035.0
 scale = Vector2(2, 2)
-texture_normal = ExtResource("5_j075n")
+texture_normal = ExtResource("5_h2u6r")
 
 [node name="Button" type="Button" parent="Title/Buttons"]
 layout_mode = 0
@@ -81,7 +81,7 @@ offset_top = 858.0
 offset_right = 1899.0
 offset_bottom = 925.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_4ykrc")
+theme_override_fonts/font = ExtResource("6_axedi")
 theme_override_font_sizes/font_size = 48
 text = "Mouse Sensitivity: "
 
@@ -109,7 +109,7 @@ offset_left = 156.0
 offset_right = 1812.0
 offset_bottom = 897.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_4ykrc")
+theme_override_fonts/font = ExtResource("6_axedi")
 theme_override_font_sizes/font_size = 33
 text = "Controls:
 WASD - Move
@@ -137,16 +137,16 @@ offset_left = 830.0
 offset_top = 955.0
 offset_right = 1133.0
 offset_bottom = 1073.0
-theme_override_fonts/font = ExtResource("6_4ykrc")
+theme_override_fonts/font = ExtResource("6_axedi")
 theme_override_font_sizes/font_size = 64
 text = "Back"
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_2tqpf")
+stream = ExtResource("7_l76kf")
 autoplay = true
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_vuisl")
+stream = ExtResource("8_b0nsk")
 autoplay = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
