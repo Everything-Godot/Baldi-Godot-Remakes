@@ -11,12 +11,20 @@ var look_back : bool = false
 var running : bool = false
 var os_name : String = OS.get_name()
 var args : PackedStringArray = OS.get_cmdline_args()
-var is_on_android : bool
+var is_on_android : bool = false
 var in_yctp : bool = false
 var already_wrong : bool = false
 var notebooks : int = 0
 var total_notebooks : int = 3
 var yctp_refreshed : bool = false
+var selected_item_slot : int = 0
+var slot_items : Array[String]
+var items : Array[String] = [
+	"Quarter"
+]
+var item_sprites = [
+	["Quarter", load("res://sprites/Quarter.png")]
+]
 
 func _ready() -> void:
 	print("Running on: "+os_name)
@@ -31,7 +39,13 @@ func _ready() -> void:
 		else:
 			is_on_android = false
 	else:
-		is_on_android = false
+		for arg in args:
+			if arg == "--android-debug":
+				print("Find debug argument: "+str(arg))
+				print("Setting game as android build.")
+				is_on_android = true
+			else:
+				continue
 
 func _process(_delta: float) -> void:
 	if not is_on_android:

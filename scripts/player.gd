@@ -108,6 +108,13 @@ func _on_area_3d_area_entered(area:Area3D) -> void:
 				print("Dected pickup, getting informations.")
 				parent = parent.get_parent()
 				print(parent)
+				for i in Global.items:
+					if parent.name == i:
+						var a = parent.get_parent()
+						a.remove_child(parent)
+						parent.queue_free()
+						Global.slot_items[Global.selected_item_slot] = i
+						break
 			elif parent.has_meta("is_swing_door"):
 				if not parent.get_meta("is_swing_door"):
 					if parent.has_meta("opened"):

@@ -560,13 +560,13 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.285, 3)
 
 [node name="Swing Door" parent="Doors" instance=ExtResource("6_6ytsk")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.964532, 1.27721, 1.6923)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 1.285, 1)
 
 [node name="Pickups" type="Node3D" parent="." node_paths=PackedStringArray("pickups")]
 script = ExtResource("7_ugye5")
-pickups = [NodePath("Baldi Tour Quarter")]
+pickups = [NodePath("Quarter")]
 
-[node name="Baldi Tour Quarter" parent="Pickups" instance=ExtResource("7_wox3x")]
+[node name="Quarter" parent="Pickups" instance=ExtResource("7_wox3x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30409, 0.931091, -1.97437)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

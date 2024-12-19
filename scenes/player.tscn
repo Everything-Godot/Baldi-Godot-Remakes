@@ -1,10 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://o02jx6ilewsn"]
+[gd_scene load_steps=14 format=3 uid="uid://o02jx6ilewsn"]
 
 [ext_resource type="Script" uid="uid://bdwqvs032yrxw" path="res://scripts/player.gd" id="1_nvkyj"]
 [ext_resource type="Script" uid="uid://b8bvmty5dffov" path="res://scripts/player_camera.gd" id="2_qjj63"]
 [ext_resource type="PackedScene" uid="uid://drnhh1dim6m3r" path="res://scenes/debug_menu.tscn" id="3_m8wfe"]
 [ext_resource type="PackedScene" uid="uid://dfkqhfrueuc6b" path="res://scenes/android_control_ui.tscn" id="4_dgcri"]
 [ext_resource type="FontFile" uid="uid://0i8uc3fd1bpt" path="res://fonts/COMIC.ttf" id="5_qlg0r"]
+[ext_resource type="Script" uid="uid://bwmdmxedv1h82" path="res://scripts/item_slot.gd" id="6_fjrip"]
+[ext_resource type="Texture2D" uid="uid://cn0wtpoynavmr" path="res://sprites/ItemSlots.png" id="6_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://scxdonpjpl5" path="res://sprites/Quarter.png" id="7_smehm"]
+[ext_resource type="Script" uid="uid://dcisdw36c621n" path="res://scripts/item_sprites.gd" id="7_ur7pv"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bejou"]
 
@@ -30,10 +34,12 @@ current = true
 script = ExtResource("2_qjj63")
 
 [node name="Label" type="Label" parent="Camera3D"]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_right = 1280.0
+offset_bottom = 720.0
 scale = Vector2(1.5, 1.5)
 text = "Dev Build"
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [node name="Mouse" type="ColorRect" parent="Camera3D"]
 offset_left = 952.5
@@ -58,7 +64,76 @@ offset_bottom = 90.0
 theme_override_fonts/font = ExtResource("5_qlg0r")
 theme_override_font_sizes/font_size = 64
 text = "0/1 Notebooks"
+
+[node name="ItemSlot Control" type="Control" parent="Camera3D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_fjrip")
+
+[node name="Background" type="ColorRect" parent="Camera3D/ItemSlot Control"]
+layout_mode = 0
+offset_left = 1594.0
+offset_right = 1920.0
+offset_bottom = 109.0
+
+[node name="Selected" type="ColorRect" parent="Camera3D/ItemSlot Control"]
+layout_mode = 0
+offset_left = 1810.0
+offset_top = 18.0
+offset_right = 1916.0
+offset_bottom = 115.0
+color = Color(1, 0, 0, 1)
+
+[node name="Item Sprites" type="Control" parent="Camera3D/ItemSlot Control" node_paths=PackedStringArray("item_sprites")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_ur7pv")
+item_sprites = [NodePath("Item Sprite 1"), NodePath("Item Sprite 2"), NodePath("Item Sprite 3")]
+
+[node name="Item Sprite 1" type="TextureRect" parent="Camera3D/ItemSlot Control/Item Sprites"]
+layout_mode = 0
+offset_left = 1610.0
+offset_top = 26.0
+offset_right = 1674.0
+offset_bottom = 90.0
+texture = ExtResource("7_smehm")
+
+[node name="Item Sprite 2" type="TextureRect" parent="Camera3D/ItemSlot Control/Item Sprites"]
+offset_left = 1725.0
+offset_top = 34.0
+offset_right = 1789.0
+offset_bottom = 98.0
+texture = ExtResource("7_smehm")
+
+[node name="Item Sprite 3" type="TextureRect" parent="Camera3D/ItemSlot Control/Item Sprites"]
+offset_left = 1837.0
+offset_top = 35.0
+offset_right = 1901.0
+offset_bottom = 99.0
+texture = ExtResource("7_smehm")
+
+[node name="ItemSlot" type="TextureRect" parent="Camera3D/ItemSlot Control"]
+layout_mode = 0
+offset_left = 1536.0
+offset_right = 1536.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_tuyoq")
+
+[node name="Item Name" type="Label" parent="Camera3D/ItemSlot Control"]
+layout_mode = 0
+offset_left = 1542.0
+offset_top = 164.0
+offset_right = 1920.0
+offset_bottom = 254.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_qlg0r")
+theme_override_font_sizes/font_size = 64
+text = "Nothing"
 horizontal_alignment = 2
+vertical_alignment = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_yk1gi")

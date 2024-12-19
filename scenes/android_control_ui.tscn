@@ -27,10 +27,9 @@ action_down = "backward"
 
 [node name="Pause Button" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 1759.0
-offset_top = 100.0
-offset_right = 1871.0
-offset_bottom = 212.0
+offset_left = 1808.0
+offset_right = 1920.0
+offset_bottom = 112.0
 
 [node name="left" type="ColorRect" parent="Pause Button"]
 layout_mode = 0

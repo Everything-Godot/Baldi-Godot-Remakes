@@ -1,1 +1,1 @@
-Pickup test #1
+Item Slot Test
