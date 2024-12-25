@@ -26,10 +26,10 @@ func _process(delta: float) -> void:
 	var currect_item = get_currect_item_info(Global.selected_item_slot)
 	if currect_item == "":
 		item_name.text = "Nothing"
-	elif currect_item == "Quarter":
-		item_name.text = "Quarter"
 	else:
-		item_name.text = ""
+		for names in Global.item_names:
+			if currect_item == names[0]:
+				item_name.text = names[1]
 	var i = 0
 	for item in Global.slot_items:
 		var sprite = get_sprite_for_item(item)

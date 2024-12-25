@@ -38,6 +38,14 @@ var item_names = [
 	["Tape", "Baldi's Least Favorite Tape"],
 	["Zesty Bar", "Energy Flavored Zesty Bar"]
 ]
+var item_codes = [
+	["BSODA", load("res://scripts/bsoda.gd")],
+	["Key", null],
+	["Lock", null],
+	["Quarter", null],
+	["Tape", null],
+	["Zesty Bar", null]
+]
 
 func _ready() -> void:
 	print("Running on: "+os_name)

@@ -126,13 +126,13 @@ texture = ExtResource("6_tuyoq")
 
 [node name="Item Name" type="Label" parent="Camera3D/ItemSlot Control"]
 layout_mode = 0
-offset_left = 1494.0
+offset_left = 1651.0
 offset_top = 164.0
 offset_right = 1920.0
-offset_bottom = 347.0
+offset_bottom = 259.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_qlg0r")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 32
 text = "Baldi's Least Favorite Tape"
 horizontal_alignment = 2
 vertical_alignment = 3

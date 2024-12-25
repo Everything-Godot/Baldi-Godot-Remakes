@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var sprite3d : Sprite3D = $Sprite3D
+@onready var area_3d: Area3D = $Sprite3D/Area3D
 var anim_player = AnimationPlayer.new()
 var anim = Animation.new()
 var anim_library = AnimationLibrary.new()
@@ -49,6 +50,10 @@ func _process(_delta: float) -> void:
 	var camera_global_transform = get_viewport().get_camera_3d().global_transform
 	var camera_rotation = camera_global_transform.basis.get_euler()
 	sprite3d.rotation = camera_rotation
+	if not visible:
+		area_3d.monitorable = false
+	else:
+		area_3d.monitorable = true
 
 func _on_finish(anim_name: StringName) -> void:
 	if anim_name == "library/Animation":

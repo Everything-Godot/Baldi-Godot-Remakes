@@ -310,9 +310,9 @@ func _process(_delta: float) -> void:
 		placeholder.text = ""
 		if baldi_audio.stream != empty_sound and baldi_audio.playing:
 			await baldi_audio.finished
-		if baldi_talks.is_playing() and baldi_talks.animation != "default" and baldi_talks.animation != "angry default" and baldi_talks.animation != "empty":
-			await baldi_talks.animation_finished
-		await get_tree().create_timer(2).timeout
+		#if baldi_talks.is_playing() and baldi_talks.animation != "default" and baldi_talks.animation != "angry default" and baldi_talks.animation != "empty":
+		#	await baldi_talks.animation_finished
+		#await get_tree().create_timer(2).timeout
 		Global.in_yctp = false
 		Global.paused = false
 

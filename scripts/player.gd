@@ -31,13 +31,55 @@ func _process(_delta: float) -> void:
 		get_tree().debug_collisions_hint = true
 		get_tree().debug_navigation_hint = true
 		get_tree().debug_paths_hint = true
-
-func _physics_process(delta: float) -> void:
+		if not Global.paused:
+			if Input.is_action_just_pressed("Add Notebook"):
+				Global.notebooks += 1
+			if Input.is_action_just_pressed("Remove Notebook"):
+				Global.notebooks -= 1
 	if not Global.paused:
 		if Input.is_action_pressed("interact"):
 			area3d.monitoring = true
 			await get_tree().create_timer(0.5).timeout
 			area3d.monitoring = false
+		if Input.is_action_just_pressed("use"):
+			print("Decteced use command, start checking item slot")
+			if Global.slot_items[Global.selected_item_slot] == "":
+				print("Item slot is empty, aboring")
+			else:
+				print("Calling use function for item")
+				for i in Global.item_codes:
+					if i[0] == Global.slot_items[Global.selected_item_slot]:
+						if i[1] == null:
+							print("No script found for this item, contact developer for help!")
+							Global.slot_items[Global.selected_item_slot] = ""
+							break
+						var node : Node3D = Node3D.new()
+						node.name = "Script Executer"
+						node.set_script(i[1])
+						var global_node = get_node("/root/Global")
+						global_node.add_child(node)
+						node.use()
+						Global.slot_items[Global.selected_item_slot] = ""
+						global_node.remove_child(node)
+						node.queue_free()
+	if check_yctp:
+		if not Global.in_yctp:
+			check_yctp = false
+			Global.notebooks += 1
+	if Global.paused and Global.in_yctp:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		if Global.is_on_android:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		if yctp_node != null:
+			if camera.has_node(yctp_node.get_path()):
+				camera.remove_child(yctp_node)
+				yctp_node.free()
+
+func _physics_process(delta: float) -> void:
+	if not Global.paused:
 		if not Global.freelook:
 			velocity.y += -gravity * delta
 			var vy = velocity.y
@@ -63,10 +105,6 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector3(0, 0, 0)
 		move_and_slide()
 		if Global.debug:
-			if Input.is_action_just_pressed("Add Notebook"):
-				Global.notebooks += 1
-			if Input.is_action_just_pressed("Remove Notebook"):
-				Global.notebooks -= 1
 			if Input.is_action_just_pressed("noclip"):
 				if Global.noclip:
 					collision.disabled = false
@@ -88,21 +126,6 @@ func _physics_process(delta: float) -> void:
 					position.y -= 0.1
 	else:
 		area3d.monitoring = false
-	if check_yctp:
-		if not Global.in_yctp:
-			check_yctp = false
-			Global.notebooks += 1
-	if Global.paused and Global.in_yctp:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	else:
-		if Global.is_on_android:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		if yctp_node != null:
-			if camera.has_node(yctp_node.get_path()):
-				camera.remove_child(yctp_node)
-				yctp_node.free()
 
 func _on_area_3d_area_entered(area:Area3D) -> void:
 	print(area)
@@ -116,10 +139,35 @@ func _on_area_3d_area_entered(area:Area3D) -> void:
 				print(parent)
 				for i in Global.items:
 					if parent.name == i:
-						var a = parent.get_parent()
-						a.remove_child(parent)
-						parent.queue_free()
-						Global.slot_items[Global.selected_item_slot] = i
+						parent.visible = false
+						print("Checking currect slot")
+						if Global.slot_items[Global.selected_item_slot] == "":
+							print("currect slot is empty, setting item")
+							Global.slot_items[Global.selected_item_slot] = i
+							print("succed to place item "+str(i)+" into slot "+str(Global.selected_item_slot))
+						else:
+							print("currect slot is not empty, checking other slots")
+							var all_filled : bool = true
+							for item in Global.slot_items:
+								if item == "":
+									print("find other empty slot")
+									all_filled = false
+									print_rich("[color:red]all_filled = " + str(all_filled) + "[/color]")
+									break
+							if all_filled:
+								print("none one of slot is empty, replacing currect slot")
+								Global.slot_items[Global.selected_item_slot] = i
+								print("succed to place item "+str(i)+" into slot "+str(Global.selected_item_slot))
+							else:
+								if Global.slot_items[0] == "":
+									Global.slot_items[0] = i
+									print("succed to place item "+str(i)+" into slot 0")
+								elif Global.slot_items[1] == "":
+									Global.slot_items[1] = i
+									print("succed to place item "+str(i)+" into slot 1")
+								elif Global.slot_items[2] == "":
+									Global.slot_items[2] = i
+									print("succed to place item "+str(i)+" into slot 2")
 						break
 			elif parent.has_meta("is_swing_door"):
 				if not parent.get_meta("is_swing_door"):

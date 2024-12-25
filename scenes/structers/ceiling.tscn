@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dj4o3db83s6wj"]
+
+[ext_resource type="Texture2D" uid="uid://nx14s8yheh1k" path="res://sprites/Ceiling.png" id="1_p26pj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y70uv"]
+albedo_texture = ExtResource("1_p26pj")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kemyf"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_y70uv")
+add_uv2 = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2lhqa"]
+size = Vector3(2, 0, 2)
+
+[node name="Ceiling" type="MeshInstance3D"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("PlaneMesh_kemyf")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_2lhqa")

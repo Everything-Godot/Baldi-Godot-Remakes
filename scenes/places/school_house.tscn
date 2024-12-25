@@ -1,17 +1,23 @@
-[gd_scene load_steps=32 format=3 uid="uid://b7c7h5jre8ymm"]
+[gd_scene load_steps=38 format=3 uid="uid://b7c7h5jre8ymm"]
 
 [ext_resource type="Script" uid="uid://boi7dfwrvfcgh" path="res://scripts/school_house.gd" id="1_2dhqs"]
 [ext_resource type="Texture2D" uid="uid://ktm8828qwxa6" path="res://sprites/TileFloor.png" id="2_yaltj"]
 [ext_resource type="Texture2D" uid="uid://bsebinvdhf1s2" path="res://sprites/WhiteBrickWall.png" id="3_jchii"]
 [ext_resource type="Texture2D" uid="uid://nx14s8yheh1k" path="res://sprites/Ceiling.png" id="4_f0s1d"]
+[ext_resource type="PackedScene" uid="uid://dj4o3db83s6wj" path="res://scenes/structers/ceiling.tscn" id="4_yaltj"]
 [ext_resource type="PackedScene" uid="uid://dt8wwdp0sum8c" path="res://scenes/structers/door.tscn" id="5_qvat7"]
 [ext_resource type="PackedScene" uid="uid://baqiltkk8m7b5" path="res://scenes/structers/swing_door.tscn" id="6_mqsgg"]
 [ext_resource type="Script" uid="uid://bpyt11nfqumtt" path="res://scripts/pickups.gd" id="7_sw28j"]
 [ext_resource type="PackedScene" uid="uid://cdpm82gwetwae" path="res://scenes/pickups/items/quarter.tscn" id="8_xd3nk"]
+[ext_resource type="PackedScene" uid="uid://f0b0bnhkqm6j" path="res://scenes/pickups/items/bsoda.tscn" id="9_sw28j"]
 [ext_resource type="PackedScene" uid="uid://o02jx6ilewsn" path="res://scenes/characters/player.tscn" id="9_wi38d"]
 [ext_resource type="PackedScene" uid="uid://81yq86o5yy0p" path="res://scenes/characters/baldi_tour.tscn" id="10_aexyc"]
+[ext_resource type="PackedScene" uid="uid://gclfgm8ublpr" path="res://scenes/pickups/items/key.tscn" id="10_xd3nk"]
 [ext_resource type="PackedScene" uid="uid://bib6qt8nyie1b" path="res://scenes/pickups/notebook.tscn" id="11_hk6kb"]
+[ext_resource type="PackedScene" uid="uid://g6svum5fijwi" path="res://scenes/pickups/items/lock.tscn" id="11_wi38d"]
 [ext_resource type="AudioStream" uid="uid://dxkvfp5p4oouj" path="res://sounds/mus_School.wav" id="12_he5o8"]
+[ext_resource type="PackedScene" uid="uid://ort223t4poro" path="res://scenes/pickups/items/tape.tscn" id="13_aexyc"]
+[ext_resource type="PackedScene" uid="uid://c3yerbychwmjv" path="res://scenes/pickups/items/zesty_bar.tscn" id="14_hk6kb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hgs37"]
 albedo_texture = ExtResource("2_yaltj")
@@ -68,10 +74,12 @@ size = Vector2(2, 1.45)
 
 [sub_resource type="Sky" id="Sky_ul25v"]
 sky_material = SubResource("ProceduralSkyMaterial_4d4ve")
+radiance_size = 6
 
 [sub_resource type="Environment" id="Environment_318it"]
 background_mode = 2
 sky = SubResource("Sky_ul25v")
+adjustment_brightness = 2.0
 
 [node name="SchoolHouse" type="Node3D" node_paths=PackedStringArray("audios")]
 script = ExtResource("1_2dhqs")
@@ -424,32 +432,15 @@ shape = SubResource("BoxShape3D_gsuic")
 
 [node name="Ceilings" type="Node3D" parent="."]
 
-[node name="Ceiling" type="MeshInstance3D" parent="Ceilings"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 4, 0)
-mesh = SubResource("PlaneMesh_euodu")
+[node name="Ceiling" parent="Ceilings" instance=ExtResource("4_yaltj")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 4, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Ceilings/Ceiling"]
+[node name="Ceiling2" parent="Ceilings" instance=ExtResource("4_yaltj")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 2, 4, 0)
+skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ceilings/Ceiling/StaticBody3D"]
-shape = SubResource("BoxShape3D_gsuic")
-
-[node name="Ceiling2" type="MeshInstance3D" parent="Ceilings"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 2, 4, 0)
-mesh = SubResource("PlaneMesh_euodu")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Ceilings/Ceiling2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ceilings/Ceiling2/StaticBody3D"]
-shape = SubResource("BoxShape3D_gsuic")
-
-[node name="Ceiling3" type="MeshInstance3D" parent="Ceilings"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 4, 2)
-mesh = SubResource("PlaneMesh_euodu")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Ceilings/Ceiling3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ceilings/Ceiling3/StaticBody3D"]
-shape = SubResource("BoxShape3D_gsuic")
+[node name="Ceiling3" parent="Ceilings" instance=ExtResource("4_yaltj")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 4, 2)
 
 [node name="Ceiling4" type="MeshInstance3D" parent="Ceilings"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -2, 4, 0)
@@ -566,17 +557,45 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 1.
 script = ExtResource("7_sw28j")
 pickups = [NodePath("Quarter")]
 
+[node name="BSODA" parent="Pickups" instance=ExtResource("9_sw28j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.14377, 0.876069, -2.08293)
+
+[node name="Key" parent="Pickups" instance=ExtResource("10_xd3nk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36617, 1.10906, -2.08006)
+
+[node name="Lock" parent="Pickups" instance=ExtResource("11_wi38d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2059, 0.967383, -2.41184)
+
 [node name="Quarter" parent="Pickups" instance=ExtResource("8_xd3nk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30409, 0.931091, -1.97437)
 
+[node name="Tape" parent="Pickups" instance=ExtResource("13_aexyc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47039, 0.962497, 0.0123703)
+
+[node name="Zesty Bar" parent="Pickups" instance=ExtResource("14_hk6kb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.18587, 1.03366, -1.27543)
+
+[node name="Brightness" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Brightness"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.56291, 1.0458)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Brightness"]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="Brightness"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+
+[node name="DirectionalLight3D4" type="DirectionalLight3D" parent="Brightness"]
+
+[node name="DirectionalLight3D5" type="DirectionalLight3D" parent="Brightness"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="DirectionalLight3D6" type="DirectionalLight3D" parent="Brightness"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_318it")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.856078, 0.514815, 0.045783, -0.503187, 0.850407, -0.153659, -0.11804, 0.108506, 0.987063, 0, 2.22107, 1.33411)
-
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.820653, -0.525948, -0.2234, -0.563515, 0.809712, 0.16376, 0.0947602, 0.260279, -0.960872, 0, 2.22107, -1.25823)
 
 [node name="Player" parent="." instance=ExtResource("9_wi38d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0399485, 1.99808, 4.43024)

@@ -37,11 +37,11 @@ albedo_texture = ExtResource("2_2ep1j")
 [sub_resource type="PlaneMesh" id="PlaneMesh_tr1ag"]
 material = SubResource("StandardMaterial3D_q4vjj")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7rgd6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1o77t"]
 albedo_texture = ExtResource("3_6x1xt")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rxfep"]
-material = SubResource("StandardMaterial3D_7rgd6")
+material = SubResource("StandardMaterial3D_1o77t")
 
 [node name="meshs" type="Node3D"]
 
