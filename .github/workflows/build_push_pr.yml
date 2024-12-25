@@ -67,7 +67,7 @@ jobs:
         run: |
           sed -i "s/Baldi godot remake/Baldi's Basics In Education And Learning - ${{env.dev_text}}/g" project.godot
           sed -i "s/0.0.0.0/${{env.dev_ver}}/g" project.godot
-          sed -i "s/Dev Build/commit id: ${{steps.get-version-id.outputs.id}} - ${{steps.test_name.outputs.name}}/g" scenes/player.tscn
+          sed -i "s/Dev Build/commit id: ${{steps.get-version-id.outputs.id}} - ${{steps.test_name.outputs.name}}/g" scenes/characters/player.tscn
       - name: 导出游戏
         id: export
         uses: firebelley/godot-export@v6.0.0
