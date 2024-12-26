@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b0jq3lkvi8056"]
 
-[ext_resource type="Script" path="res://scripts/debug_menu_android.gd" id="1_5oyc3"]
+[ext_resource type="Script" uid="uid://hnp3qjgfb6rs" path="res://scripts/debug_menu_android.gd" id="1_5oyc3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vv2k"]
 bg_color = Color(0, 0, 0, 0.254902)
@@ -71,6 +71,7 @@ scale = Vector2(0.8, 0.8)
 text = "Toggle"
 
 [node name="NoclipBTN" type="Button" parent="Panel"]
+layout_mode = 0
 offset_left = 156.0
 offset_top = 56.0
 offset_right = 215.0
@@ -79,6 +80,7 @@ scale = Vector2(0.8, 0.8)
 text = "Toggle"
 
 [node name="3DLookBTN" type="Button" parent="Panel"]
+layout_mode = 0
 offset_left = 156.0
 offset_top = 80.6667
 offset_right = 215.0
@@ -86,6 +88,31 @@ offset_bottom = 111.667
 scale = Vector2(0.8, 0.8)
 text = "Toggle"
 
+[node name="AddNotebookBTN" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Notebook +1"
+
+[node name="RemoveNotebookBTN" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -67.3333
+offset_bottom = -36.3333
+grow_horizontal = 2
+grow_vertical = 0
+text = "Notebook -1"
+
 [connection signal="pressed" from="Panel/FreelookBTN" to="." method="_on_freelook_btn_pressed"]
 [connection signal="pressed" from="Panel/NoclipBTN" to="." method="_on_noclip_btn_pressed"]
 [connection signal="pressed" from="Panel/3DLookBTN" to="." method="_on_d_look_btn_pressed"]
+[connection signal="pressed" from="Panel/AddNotebookBTN" to="." method="_on_add_notebook_btn_pressed"]
+[connection signal="pressed" from="Panel/RemoveNotebookBTN" to="." method="_on_remove_notebook_btn_pressed"]

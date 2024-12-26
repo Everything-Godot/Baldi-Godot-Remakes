@@ -39,3 +39,11 @@ func _on_noclip_btn_pressed() -> void:
 func _on_freelook_btn_pressed() -> void:
 	Input.action_press("freelook")
 	Input.action_release("freelook")
+
+func _on_add_notebook_btn_pressed() -> void:
+	Input.action_press("Add Notebook")
+	Input.action_release("Add Notebook")
+
+func _on_remove_notebook_btn_pressed() -> void:
+	Input.action_press("Remove Notebook")
+	Input.action_release("Remove Notebook")

@@ -7,7 +7,7 @@ extends CharacterBody3D
 @export var speed : float = 5.0
 @export var gravity : float = 20.0
 @export var jump_speed : float = 5.0
-var yctp : PackedScene = load("res://scenes/yctp.tscn")
+var yctp : PackedScene = load("res://scenes/places/yctp.tscn")
 var yctp_node : Node
 var jumping := false
 var movement_vector := Vector2.ZERO
@@ -44,24 +44,40 @@ func _process(_delta: float) -> void:
 		if Input.is_action_just_pressed("use"):
 			print("Decteced use command, start checking item slot")
 			if Global.slot_items[Global.selected_item_slot] == "":
-				print("Item slot is empty, aboring")
+				push_warning("Item slot is empty, aboring")
 			else:
 				print("Calling use function for item")
 				for i in Global.item_codes:
 					if i[0] == Global.slot_items[Global.selected_item_slot]:
 						if i[1] == null:
-							print("No script found for this item, contact developer for help!")
+							push_error("No script found for this item, please contact developer for help!")
 							Global.slot_items[Global.selected_item_slot] = ""
 							break
-						var node : Node3D = Node3D.new()
-						node.name = "Script Executer"
-						node.set_script(i[1])
+						var executor_id : int = 0
+						var has_all_id : bool = false
 						var global_node = get_node("/root/Global")
+						if not global_node.get_children().is_empty():
+							while not has_all_id:
+								var iab : int = 0
+								for child in global_node.get_children():
+									if child.get_meta("item_id") == i[0]:
+										if child.get_meta("executor_id") == executor_id:
+											if not executor_id == 9:
+												executor_id += 1
+											else:
+												has_all_id = true
+											iab += 1
+								if iab == global_node.get_children().size():
+									break
+						var node : Node3D = Node3D.new()
+						node.name = str(i[0]) + " Item Script Executer #"+str(executor_id)
+						node.set_meta("item_id", i[0])
+						node.set_meta("executor_id", executor_id)
+						node.set_script(i[1])
 						global_node.add_child(node)
-						node.use()
+						node.use(executor_id)
 						Global.slot_items[Global.selected_item_slot] = ""
-						global_node.remove_child(node)
-						node.queue_free()
+						Global.item_use_finished.connect(_on_item_use_finishes)
 	if check_yctp:
 		if not Global.in_yctp:
 			check_yctp = false
@@ -128,15 +144,12 @@ func _physics_process(delta: float) -> void:
 		area3d.monitoring = false
 
 func _on_area_3d_area_entered(area:Area3D) -> void:
-	print(area)
 	parent = area.get_parent()
-	print(parent)
 	if not Global.paused:
 		if not Global.freelook:
 			if parent.has_meta("pickup"):
 				print("Dected pickup, getting informations.")
 				parent = parent.get_parent()
-				print(parent)
 				for i in Global.items:
 					if parent.name == i:
 						parent.visible = false
@@ -152,9 +165,10 @@ func _on_area_3d_area_entered(area:Area3D) -> void:
 								if item == "":
 									print("find other empty slot")
 									all_filled = false
-									print_rich("[color:red]all_filled = " + str(all_filled) + "[/color]")
+									print_rich("[color=green]all_filled = " + str(all_filled) + "[/color]")
 									break
 							if all_filled:
+								print_rich("[color=red]all_filled = " + str(all_filled) + "[/color]")
 								print("none one of slot is empty, replacing currect slot")
 								Global.slot_items[Global.selected_item_slot] = i
 								print("succed to place item "+str(i)+" into slot "+str(Global.selected_item_slot))
@@ -185,9 +199,7 @@ func _on_area_3d_area_exited(area: Area3D) -> void:
 	parent = area.get_parent()
 
 func _on_body_entered(area: Area3D) -> void:
-	print(area)
 	parent = area.get_parent()
-	print(parent)
 	if not Global.paused:
 		if not Global.freelook:
 			if parent.has_meta("is_swing_door"):
@@ -198,3 +210,10 @@ func _on_body_entered(area: Area3D) -> void:
 
 func _on_body_exited(area: Area3D) -> void:
 	parent = area.get_parent()
+
+func _on_item_use_finishes(item_id : String, executor_node : Node) -> void:
+	if executor_node.get_meta("item_id") == item_id:
+		executor_node.get_parent().remove_child(executor_node)
+		executor_node.queue_free()
+	else:
+		push_error("ERROR Code 01")

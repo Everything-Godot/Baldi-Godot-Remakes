@@ -30,7 +30,9 @@ func _ready() -> void:
 	area3d.monitorable = true
 	notebook.visible = true
 	for pickup in pickups:
-		pickup.visible = false
+		if pickup.name == "Quarter":
+			pickup.visible = false
+			break
 
 func _process(_delta: float) -> void:
 	notebook_counter.text = str(Global.notebooks) + "/" + str(Global.total_notebooks) + " Notebooks"

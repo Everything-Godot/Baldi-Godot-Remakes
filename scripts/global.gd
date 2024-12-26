@@ -1,5 +1,6 @@
 extends Node
 
+signal item_use_finished(item_id : String, executor_node : Node)
 var first_time : bool = true
 var mouse_sensitivity : float
 var debug : bool = OS.is_debug_build()

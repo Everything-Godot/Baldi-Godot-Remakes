@@ -555,7 +555,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 1.
 
 [node name="Pickups" type="Node3D" parent="." node_paths=PackedStringArray("pickups")]
 script = ExtResource("7_sw28j")
-pickups = [NodePath("Quarter")]
+pickups = [NodePath("Quarter"), NodePath("BSODA"), NodePath("Key"), NodePath("Lock"), NodePath("Tape"), NodePath("Zesty Bar")]
 
 [node name="BSODA" parent="Pickups" instance=ExtResource("9_sw28j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.14377, 0.876069, -2.08293)
