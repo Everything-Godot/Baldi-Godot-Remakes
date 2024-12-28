@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://baqiltkk8m7b5"]
 
 [ext_resource type="Texture2D" uid="uid://dd2uwehj6lwog" path="res://sprites/SwingDoor0.png" id="1_wcpcm"]
-[ext_resource type="Script" path="res://scripts/swing_door.gd" id="2_wcpcm"]
+[ext_resource type="Script" uid="uid://dyiiiy0p6osey" path="res://scripts/swing_door.gd" id="2_wcpcm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8c5pm"]
 size = Vector3(2, 2.1, 0.3)

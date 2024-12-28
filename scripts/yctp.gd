@@ -313,6 +313,7 @@ func _process(_delta: float) -> void:
 		#if baldi_talks.is_playing() and baldi_talks.animation != "default" and baldi_talks.animation != "angry default" and baldi_talks.animation != "empty":
 		#	await baldi_talks.animation_finished
 		#await get_tree().create_timer(2).timeout
+		await get_tree().create_timer(0.5).timeout
 		Global.in_yctp = false
 		Global.paused = false
 

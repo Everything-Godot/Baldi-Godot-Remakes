@@ -7,10 +7,10 @@
 script = ExtResource("1_5dhaa")
 
 [node name="Background" type="ColorRect" parent="."]
-offset_left = -774.0
-offset_top = -635.0
-offset_right = 2091.0
-offset_bottom = 1514.0
+offset_left = -501.0
+offset_top = -579.0
+offset_right = 2364.0
+offset_bottom = 1570.0
 color = Color(0, 0, 0, 1)
 
 [node name="Warning" type="Control" parent="."]
