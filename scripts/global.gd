@@ -42,7 +42,7 @@ var item_names = [
 var item_codes = [
 	["BSODA", load("res://scripts/bsoda.gd")],
 	["Key", null],
-	["Lock", null],
+	["Lock", load("res://scripts/lock.gd")],
 	["Quarter", null],
 	["Tape", null],
 	["Zesty Bar", null]

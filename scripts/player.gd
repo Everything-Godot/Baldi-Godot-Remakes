@@ -75,7 +75,10 @@ func _process(_delta: float) -> void:
 						node.set_meta("executor_id", executor_id)
 						node.set_script(i[1])
 						global_node.add_child(node)
-						node.use(executor_id)
+						if i[0] == "Lock":
+							node.use(executor_id)
+						else:
+							node.use(executor_id)
 						Global.slot_items[Global.selected_item_slot] = ""
 						Global.item_use_finished.connect(_on_item_use_finishes)
 	if check_yctp:
@@ -185,9 +188,8 @@ func _on_area_3d_area_entered(area:Area3D) -> void:
 						break
 			elif parent.has_meta("is_swing_door"):
 				if not parent.get_meta("is_swing_door"):
-					if parent.has_meta("opened"):
-						if not parent.get_meta("opened"):
-							parent.set_meta("opened", true)
+					if not parent.get_meta("opened"):
+						parent.set_meta("opened", true)
 			elif parent.name == "Notebook":
 				yctp_node = yctp.instantiate()
 				camera.add_child(yctp_node)
@@ -205,8 +207,9 @@ func _on_body_entered(area: Area3D) -> void:
 			if parent.has_meta("is_swing_door"):
 				if parent.get_meta("is_swing_door"):
 					if parent.has_meta("opened"):
-						if not parent.get_meta("opened"):
-							parent.set_meta("opened", true)
+						if not parent.get_meta("Locked"):
+							if not parent.get_meta("opened"):
+								parent.set_meta("opened", true)
 
 func _on_body_exited(area: Area3D) -> void:
 	parent = area.get_parent()

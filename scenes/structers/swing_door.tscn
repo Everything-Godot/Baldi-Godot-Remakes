@@ -20,6 +20,7 @@ texture = ExtResource("1_wcpcm")
 script = ExtResource("2_wcpcm")
 metadata/opened = false
 metadata/is_swing_door = true
+metadata/Locked = false
 
 [node name="Area3D" type="Area3D" parent="."]
 
