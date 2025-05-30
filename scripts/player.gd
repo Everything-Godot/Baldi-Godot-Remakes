@@ -25,6 +25,7 @@ func _ready() -> void:
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	area3d.monitoring = false
+	Global.item_use_finished.connect(_on_item_use_finishes)
 
 func _process(_delta: float) -> void:
 	if Global.debug:
@@ -51,6 +52,7 @@ func _process(_delta: float) -> void:
 					if i[0] == Global.slot_items[Global.selected_item_slot]:
 						if i[1] == null:
 							push_error("No script found for this item, please contact developer for help!")
+							print("Removing used item.")
 							Global.slot_items[Global.selected_item_slot] = ""
 							break
 						var executor_id : int = 0
@@ -73,14 +75,17 @@ func _process(_delta: float) -> void:
 						node.name = str(i[0]) + " Item Script Executer #"+str(executor_id)
 						node.set_meta("item_id", i[0])
 						node.set_meta("executor_id", executor_id)
+						node.set_meta("should_remove_item", true)
 						node.set_script(i[1])
 						global_node.add_child(node)
 						if i[0] == "Lock":
 							node.use(executor_id)
 						else:
 							node.use(executor_id)
-						Global.slot_items[Global.selected_item_slot] = ""
-						Global.item_use_finished.connect(_on_item_use_finishes)
+						await Global.item_use_finished
+						if node.get_meta("should_remove_item"):
+							Global.slot_items[Global.selected_item_slot] = ""
+						break
 	if check_yctp:
 		if not Global.in_yctp:
 			check_yctp = false
