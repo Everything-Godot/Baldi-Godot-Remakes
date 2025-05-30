@@ -127,7 +127,7 @@ jobs:
         uses: actions/upload-artifact@v4.4.3
         with:
           name: MacOS - build ${{steps.get-version-id.outputs.id}}
-          path: /home/runner/.local/share/godot/builds/macOS/mac.zip
+          path: /home/runner/.local/share/godot/builds/macOS/macos.zip
       - name: 为 Windows x64 上传构建
         uses: actions/upload-artifact@v4.4.3
         with:

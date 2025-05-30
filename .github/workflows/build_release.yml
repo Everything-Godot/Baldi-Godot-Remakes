@@ -157,7 +157,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
           upload_url: ${{steps.get_release.outputs.upload_url}}
-          asset_path: /home/runner/.local/share/godot/builds/macOS/mac.zip
+          asset_path: /home/runner/.local/share/godot/builds/macOS/macos.zip
           asset_name: MacOS - v${{github.event.release.name}}.zip
           asset_content_type: application/zip
       - name: 为 Windows x64 上传构建到发行版
