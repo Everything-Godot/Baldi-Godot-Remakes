@@ -77,7 +77,7 @@ jobs:
           relative_project_path: ./
           export_debug: ${{steps.get_release.outputs.prerelease}}
           wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
-          cache: true
+          cache: false
       - name: 设置 Github Pages
         id: pages
         uses: actions/configure-pages@v5
