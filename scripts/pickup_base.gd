@@ -7,7 +7,7 @@ var anim = Animation.new()
 var anim_library = AnimationLibrary.new()
 
 func _ready() -> void:
-	print("start generating animation for pickup base")
+	print("start generating animation for "+name)
 	print("generating animation")
 	anim.length = 1.2
 	var anim_track = anim.add_track(Animation.TYPE_VALUE)

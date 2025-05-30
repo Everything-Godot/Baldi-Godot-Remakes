@@ -23,6 +23,7 @@ var slot_items : Array[String]
 var items : Array[String] = [
 	"BSODA", "Key", "Lock", "Quarter", "Tape", "Zesty Bar"
 ]
+#Need to match on all three stuff because hard coded :)
 var item_sprites = [
 	["BSODA", load("res://sprites/BSODA.png")],
 	["Key", load("res://sprites/Key.png")],
