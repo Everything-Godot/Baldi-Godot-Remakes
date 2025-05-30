@@ -123,11 +123,11 @@ jobs:
       #  with:
       #    name: Linux ppc32 - build ${{steps.get-version-id.outputs.id}}
       #    path: /home/runner/.local/share/godot/builds/Linux ppc32/linux.ppc32
-      #- name: 为 MacOS 上传构建
-      #  uses: actions/upload-artifact@v4.4.3
-      #  with:
-      #    name: MacOS - build ${{steps.get-version-id.outputs.id}}
-      #    path: /home/runner/.local/share/godot/builds/macOS/mac.zip
+      - name: 为 MacOS 上传构建
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: MacOS - build ${{steps.get-version-id.outputs.id}}
+          path: /home/runner/.local/share/godot/builds/macOS/mac.zip
       - name: 为 Windows x64 上传构建
         uses: actions/upload-artifact@v4.4.3
         with:
