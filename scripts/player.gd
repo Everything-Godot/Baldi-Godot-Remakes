@@ -5,8 +5,12 @@ extends CharacterBody3D
 @onready var area3d = $Camera3D/Area3D
 @export_category("player")
 @export var speed : float = 5.0
+@export var running_speed : float = 7.5
+@export var max_stamina : float = 20.0
 @export var gravity : float = 20.0
 @export var jump_speed : float = 5.0
+@export var stamina_bar : ProgressBar
+var stamina : float
 var yctp : PackedScene = load("res://scenes/places/yctp.tscn")
 var yctp_node : Node
 var jumping := false
@@ -18,8 +22,12 @@ var temp_bool2
 var last_camera_position
 var last_camera_rotation
 var check_yctp : bool = false
+var running : bool = false
 
 func _ready() -> void:
+	stamina = max_stamina
+	stamina_bar.max_value = max_stamina
+	stamina_bar.value = stamina
 	if Global.is_on_android:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
@@ -28,6 +36,7 @@ func _ready() -> void:
 	Global.item_use_finished.connect(_on_item_use_finishes)
 
 func _process(_delta: float) -> void:
+	stamina_bar.value = stamina
 	if Global.debug:
 		get_tree().debug_collisions_hint = true
 		get_tree().debug_navigation_hint = true
@@ -114,7 +123,10 @@ func _physics_process(delta: float) -> void:
 				relativeDir = Vector3(inputDir.x, 0.0, inputDir.y).rotated(Vector3.UP, -camera.rotation.y)
 			else:
 				relativeDir = Vector3(inputDir.x, 0.0, inputDir.y).rotated(Vector3.UP, camera.rotation.y)
-			velocity = lerp(velocity, relativeDir * speed, speed * delta)
+			if running:
+				velocity = lerp(velocity, relativeDir * running_speed, running_speed * delta)
+			else:
+				velocity = lerp(velocity, relativeDir * speed, speed * delta)
 			if not Global.noclip:
 				velocity.y = vy
 				if is_on_floor() and not last_floor:
@@ -128,6 +140,19 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity = Vector3(0, 0, 0)
 		move_and_slide()
+		if Input.is_action_pressed("run"):
+			if stamina > 0:
+				running = true
+				if velocity.x > 0 or velocity.y > 0 or velocity.z > 0:
+					stamina -= 10 * delta
+			else:
+				running = false
+		else:
+			running = false
+			if velocity.x <= 0 and velocity.y <= 0 and velocity.z <= 0 and stamina < max_stamina:
+				stamina += 0.5 * delta
+			if stamina > max_stamina:
+				stamina = max_stamina
 		if Global.debug:
 			if Input.is_action_just_pressed("noclip"):
 				if Global.noclip:
