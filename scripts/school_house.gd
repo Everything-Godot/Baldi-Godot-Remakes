@@ -1,21 +1,21 @@
 extends Node3D
 
-@onready var music : AudioStreamPlayer = $Music
-@onready var notebook : Node3D = $Notebook
+@onready var music: AudioStreamPlayer = $Music
+@onready var notebook: Node3D = $Notebook
 @onready var player_camera = $"Player/Camera3D"
-@onready var pause_button : Button = $"Player/Camera3D/Android Control UI/Pause Button/Button"
-@onready var notebook_counter : Label = $"Player/Camera3D/Notebook counter"
-@onready var baldi_tour : AnimatedSprite3D = $Baldi_Tour/Sprite3D
-@onready var pickups_node : Node3D = $Pickups
-@export var audios : Array[Node]
-@export var timers : Array[Node]
-@export var pickups : Array[Node]
-var prize_sound = load("res://sounds/BAL_GetPrize.wav")
-var prize_sound2 = load("res://sounds/BAL_AllNotebooks.wav")
-var empty_sound = load("res://sounds/delay.wav")
-var area3d : Area3D
-var played_prize : bool = false
-var congrats_notebook : bool = false
+@onready var pause_button: Button = $"Player/Camera3D/Android Control UI/Pause Button/Button"
+@onready var notebook_counter: Label = $"Player/Camera3D/Notebook counter"
+@onready var baldi_tour: AnimatedSprite3D = $Baldi_Tour/Sprite3D
+@onready var pickups_node: Node3D = $Pickups
+@export var audios: Array[Node]
+@export var timers: Array[Node]
+@export var pickups: Array[Node]
+var prize_sound := load("res://sounds/BAL_GetPrize.wav")
+var prize_sound2 := load("res://sounds/BAL_AllNotebooks.wav")
+var empty_sound := load("res://sounds/delay.wav")
+var area3d: Area3D
+var played_prize := false
+var congrats_notebook := false
 
 func _ready() -> void:
 	pickups = pickups_node.pickups

@@ -1,19 +1,17 @@
 extends Node3D
 
-const ITEM_ID = "BSODA"
-const RAY_LENGTH = 1000
-const SPEED = 5.0
-#const SPEED = 20.0
-var sprite_script = load("res://scripts/sprite_rotation.gd")
-var spray_texture = load("res://sprites/BSODA_Spray.png")
-#var spray_sound = load("res://sounds/")
-var exec_id : int = 0
+const ITEM_ID := "BSODA"
+const RAY_LENGTH := 1000
+const SPEED := 5.0
+var sprite_script := load("res://scripts/sprite_rotation.gd")
+var spray_texture := load("res://sprites/BSODA_Spray.png")
+var exec_id := 0
 var school_house
-var spray_sprite : Sprite3D
-var anim : Animation
-var anim_lib : AnimationLibrary
-var anim_player : AnimationPlayer
-var timer : Timer
+var spray_sprite: Sprite3D
+var anim: Animation
+var anim_lib: AnimationLibrary
+var anim_player: AnimationPlayer
+var timer: Timer
 
 func use(executor_id: int):
 	exec_id = executor_id
@@ -27,7 +25,7 @@ func use(executor_id: int):
 	spray_sprite.pixel_size = 0.075
 	spray_sprite.set_script(sprite_script)
 	school_house.add_child(spray_sprite)
-	print("created, result: "+str(spray_sprite))
+	print("created, result: " + str(spray_sprite))
 	var space_state = get_world_3d().direct_space_state
 	var cam = get_viewport().get_camera_3d()
 	var player = cam.get_parent()
@@ -37,18 +35,13 @@ func use(executor_id: int):
 	var query = PhysicsRayQueryParameters3D.create(origin, end)
 	query.collide_with_areas = true
 	var result = space_state.intersect_ray(query)
-	var mv_start : Vector3 = result["normal"]
+	var mv_start: Vector3 = result["normal"]
 	mv_start.y = cam.position.y + player.position.y
-	var mv_end : Vector3 = result["position"]
+	var mv_end: Vector3 = result["position"]
 	mv_end.x *= 10
 	mv_end.z *= 10
-	#mv_end.x *= 50
-	#mv_end.z *= 50
 	print("ray cast finished, result: " + str(mv_start) + " " + str(mv_end))
 	print("Creating audio player")
-	#var audio : AudioStreamPlayer = AudioStreamPlayer.new()
-	#audio.stream = spray_sound
-	#school_house.add_child(audio)
 	print("Creating animation")
 	anim = Animation.new()
 	anim_lib = AnimationLibrary.new()
@@ -70,20 +63,10 @@ func use(executor_id: int):
 	print("Done! starts playing")
 	timer.start()
 	anim_player.play("test/test")
-	#audio.play()
 
-func _on_timer_time_out():
-	print("animation finished! removing animation player and others")
-	spray_sprite.remove_child(anim_player)
-	spray_sprite.remove_child(timer)
-	school_house.remove_child(spray_sprite)
-	#school_house.remove_child(audio)
-	anim_player.queue_free()
-	#audio.queue_free()
-	timer.queue_free()
-	spray_sprite.queue_free()
+func destory():
 	var global_node = get_node("/root/Global")
-	var executor_node : Node
+	var executor_node: Node
 	for executor in global_node.get_children():
 		if executor.get_meta("item_id") == ITEM_ID:
 			if executor.get_meta("executor_id") == exec_id:
@@ -93,3 +76,13 @@ func _on_timer_time_out():
 		push_error("An error occour during process of executor")
 	else:
 		Global.item_use_finished.emit(ITEM_ID, executor_node)
+
+func _on_timer_time_out():
+	print("animation finished! removing animation player and others")
+	spray_sprite.remove_child(anim_player)
+	spray_sprite.remove_child(timer)
+	school_house.remove_child(spray_sprite)
+	anim_player.queue_free()
+	timer.queue_free()
+	spray_sprite.queue_free()
+	destory()

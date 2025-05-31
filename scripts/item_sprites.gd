@@ -1,3 +1,3 @@
 extends Control
 
-@export var item_sprites : Array[TextureRect]
+@export var item_sprites: Array[TextureRect]

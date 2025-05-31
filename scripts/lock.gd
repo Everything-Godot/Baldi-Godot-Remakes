@@ -1,7 +1,7 @@
 extends Node3D
 
-const ITEM_ID = "Lock"
-var exec_id : int = 0
+const ITEM_ID := "Lock"
+var exec_id := 0
 
 func use(executor_id: int):
 	exec_id = executor_id
@@ -9,7 +9,7 @@ func use(executor_id: int):
 
 func destory():
 	var global_node = get_node("/root/Global")
-	var executor_node : Node
+	var executor_node: Node
 	for executor in global_node.get_children():
 		if executor.get_meta("item_id") == ITEM_ID:
 			if executor.get_meta("executor_id") == exec_id:
@@ -22,7 +22,7 @@ func destory():
 
 func _physics_process(_delta: float) -> void:
 	var space_state = get_world_3d().direct_space_state
-	var cam : Camera3D = get_node("/root").get_child(1).find_child("Player").get_child(1)
+	var cam: Camera3D = get_node("/root").get_child(1).find_child("Player").get_child(1)
 	var mousepos = get_viewport().get_mouse_position()
 
 	var origin = cam.project_ray_origin(mousepos)

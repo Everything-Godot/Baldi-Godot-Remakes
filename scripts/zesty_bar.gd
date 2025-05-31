@@ -1,8 +1,8 @@
 extends Node3D
 
-const ITEM_ID = "Zesty Bar"
-var exec_id : int = 0
-var player : Node
+const ITEM_ID := "Zesty Bar"
+var exec_id := 0
+var player: Node
 
 func use(executor_id: int):
 	exec_id = executor_id
@@ -17,7 +17,7 @@ func _process(_delta: float) -> void:
 
 func destory():
 	var global_node = get_node("/root/Global")
-	var executor_node : Node
+	var executor_node: Node
 	for executor in global_node.get_children():
 		if executor.get_meta("item_id") == ITEM_ID:
 			if executor.get_meta("executor_id") == exec_id:

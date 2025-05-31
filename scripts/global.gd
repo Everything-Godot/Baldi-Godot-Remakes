@@ -1,31 +1,31 @@
 extends Node
 
-signal item_use_finished(item_id : String, executor_node : Node)
-var first_time : bool = true
-var mouse_sensitivity : float
-var debug : bool = OS.is_debug_build()
-var paused : bool = false
-var freelook : bool = false
-var unlockedlook : bool = false
-var noclip : bool = false
-var look_back : bool = false
-var running : bool = false
-var limit_stamina : bool = true
-var os_name : String = OS.get_name()
-var args : PackedStringArray = OS.get_cmdline_args()
-var is_on_android : bool = false
-var in_yctp : bool = false
-var already_wrong : bool = false
-var notebooks : int = 0
-var total_notebooks : int = 3
-var yctp_refreshed : bool = false
-var selected_item_slot : int = 0
-var slot_items : Array[String]
-var items : Array[String] = [
+signal item_use_finished(item_id: String, executor_node: Node)
+var first_time := true
+var mouse_sensitivity: float
+var debug := OS.is_debug_build()
+var paused := false
+var freelook := false
+var unlockedlook := false
+var noclip := false
+var look_back := false
+var running := false
+var limit_stamina := true
+var os_name := OS.get_name()
+var args := OS.get_cmdline_args()
+var is_on_android := false
+var in_yctp := false
+var already_wrong := false
+var notebooks := 0
+var total_notebooks := 3
+var yctp_refreshed := false
+var selected_item_slot := 0
+var slot_items: Array[String]
+var items := [
 	"BSODA", "Key", "Lock", "Quarter", "Tape", "Zesty Bar"
 ]
 #Need to match on all three stuff because hard coded :)
-var item_sprites = [
+var item_sprites := [
 	["BSODA", load("res://sprites/BSODA.png")],
 	["Key", load("res://sprites/Key.png")],
 	["Lock", load("res://sprites/YellowDoorLock.png")],
@@ -33,7 +33,7 @@ var item_sprites = [
 	["Tape", load("res://sprites/Tape.png")],
 	["Zesty Bar", load("res://sprites/EnergyFlavoredZestyBar.png")]
 ]
-var item_names = [
+var item_names := [
 	["BSODA", "BSODA"],
 	["Key", "Principal's Keys"],
 	["Lock", "Swinging Door Lock"],
@@ -41,7 +41,7 @@ var item_names = [
 	["Tape", "Baldi's Least Favorite Tape"],
 	["Zesty Bar", "Energy Flavored Zesty Bar"]
 ]
-var item_codes = [
+var item_codes := [
 	["BSODA", load("res://scripts/bsoda.gd")],
 	["Key", null],
 	["Lock", load("res://scripts/lock.gd")],
@@ -51,13 +51,13 @@ var item_codes = [
 ]
 
 func _ready() -> void:
-	print("Running on: "+os_name)
-	print("Start with argument: "+str(args))
+	print("Running on: " + os_name)
+	print("Start with argument: " + str(args))
 	if os_name == "Android":
 		is_on_android = true
 	elif os_name == "Web":
-		var ua : String = str(JavaScriptBridge.get_interface("navigator").userAgent)
-		print("Get User Agent: "+ua)
+		var ua: String = str(JavaScriptBridge.get_interface("navigator").userAgent)
+		print("Get User Agent: " + ua)
 		if ua.find("Android") != -1:
 			is_on_android = true
 		else:
@@ -65,13 +65,13 @@ func _ready() -> void:
 	else:
 		for arg in args:
 			if arg == "--android-debug":
-				print("Find debug argument: "+str(arg))
+				print("Find debug argument: " + str(arg))
 				print("Setting game as android build.")
 				is_on_android = true
 				ProjectSettings.set_setting("input_devices/pointing/emulate_touch_from_mouse", true)
 				DisplayServer.window_set_title("Android feature test")
 			elif arg == "--yctp":
-				print("Find debug argument: "+str(arg))
+				print("Find debug argument: " + str(arg))
 				print("Setting game to yctp.")
 				DisplayServer.window_set_title("YCTP test")
 

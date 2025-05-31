@@ -1,3 +1,3 @@
 extends Node3D
 
-@export var pickups : Array[Node]
+@export var pickups: Array[Node]

@@ -1,6 +1,6 @@
 extends Control
 
-var title_screen = preload("res://scenes/places/title_screen.tscn")
+var title_screen := preload("res://scenes/places/title_screen.tscn")
 @onready var camera = $".."
 @onready var android = $Android
 @onready var other = $Other

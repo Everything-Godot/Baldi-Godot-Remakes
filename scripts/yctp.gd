@@ -1,26 +1,26 @@
 extends Control
 
-@onready var this : Control = $"."
-@onready var input_box : TextEdit = $EmptyBox
-@onready var placeholder : Label = $Placeholder
-@onready var question : Label = $question
-@onready var unanswerable_question : Control = $nonquestion
-@onready var question_num : Control = $Question_num
-@onready var question_marks : Control = $Question_marks
-@onready var music : AudioStreamPlayer2D = $music
-@onready var baldi_audio : AudioStreamPlayer2D = $baldi_audio
-@onready var baldi_talks : AnimatedSprite2D = $Baldi
-var empty_sound = load("res://sounds/delay.wav")
-var intro_sounds : Array[Resource] = [
+@onready var this: Control = $"."
+@onready var input_box: TextEdit = $EmptyBox
+@onready var placeholder: Label = $Placeholder
+@onready var question: Label = $question
+@onready var unanswerable_question: Control = $nonquestion
+@onready var question_num: Control = $Question_num
+@onready var question_marks: Control = $Question_marks
+@onready var music: AudioStreamPlayer2D = $music
+@onready var baldi_audio: AudioStreamPlayer2D = $baldi_audio
+@onready var baldi_talks: AnimatedSprite2D = $Baldi
+var empty_sound := load("res://sounds/delay.wav")
+var intro_sounds := [
 	load("res://sounds/BAL_Math_Intro.wav"),
 	load("res://sounds/BAL_General_HowTo.wav")
 ]
-var question_sounds : Array[Resource] = [
+var question_sounds := [
 	load("res://sounds/BAL_General_Problem1.wav"),
 	load("res://sounds/BAL_General_Problem2.wav"),
 	load("res://sounds/BAL_General_Problem3.wav")
 ]
-var number_sounds : Array[Resource] = [
+var number_sounds := [
 	load("res://sounds/BAL_Math_0.wav"),
 	load("res://sounds/BAL_Math_1.wav"),
 	load("res://sounds/BAL_Math_2.wav"),
@@ -33,28 +33,28 @@ var number_sounds : Array[Resource] = [
 	load("res://sounds/BAL_Math_9.wav"),
 	load("res://sounds/BAL_Screech.wav")
 ]
-var caculate_sounds : Array[Resource] = [
+var caculate_sounds := [
 	load("res://sounds/BAL_Math_Divided.wav"),
 	load("res://sounds/BAL_Math_Plus.wav"),
 	load("res://sounds/BAL_Math_Minus.wav"),
 	load("res://sounds/BAL_Math_Times.wav"),
 	load("res://sounds/BAL_Math_Equals.wav")
 ]
-var caculate_string : Array[String] = [
+var caculate_string := [
 	"/", "+", "-", "*"
 ]
-var praise_sounds : Array[Resource] = [
+var praise_sounds := [
 	load("res://sounds/BAL_Praise1.wav"),
 	load("res://sounds/BAL_Praise2.wav"),
 	load("res://sounds/BAL_Praise3.wav"),
 	load("res://sounds/BAL_Praise4.wav"),
 	load("res://sounds/BAL_Praise5.wav")
 ]
-var equals : int = 4
-var problem : int = -1
-var nums : Array[int] = [0, 0, 0]
-var answer : int
-var correct : bool = false
+var equals := 4
+var problem := -1
+var nums := [0, 0, 0]
+var answer: int
+var correct := false
 
 func _ready() -> void:
 	baldi_talks.speed_scale = 1
@@ -136,14 +136,14 @@ func generate_questions() -> void:
 			nums[1] = 0
 			nums[2] = 0
 			print("no answer for this quesition")
-			var node : Node = unanswerable_question.get_child(3)
+			var node: Node = unanswerable_question.get_child(3)
 			node.visible = false
 			question.text = ""
 			question.visible = false
 			unanswerable_question.visible = true
 		else:
 			print("Skip because last question")
-			var node : Node = unanswerable_question.get_child(2)
+			var node: Node = unanswerable_question.get_child(2)
 			node.visible = false
 			node = unanswerable_question.get_child(3)
 			node.visible = true
@@ -282,28 +282,28 @@ func _process(_delta: float) -> void:
 		placeholder.visible = true
 	else:
 		placeholder.visible = false
-	var letters : PackedStringArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "[",
+	var letters: PackedStringArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "[",
 		"]", "{", "}", ";", ":", "'", '"', "\\", "|", ",", "<", ".", ">", "/", "?", "_", "=", "+", "*", "/", "\n", " "]
-	var find_letter : int
-	var is_enter : bool = false
+	var find_letter: int
+	var is_enter: bool = false
 	for i in letters:
 		find_letter = input_box.text.to_lower().find(i)
 		if find_letter != -1:
 			if i == "\n":
 				is_enter = true
 			break
-	var old_input_box_text : String = ""
+	var old_input_box_text: String = ""
 	if find_letter != -1:
-		var text_length : int = len(input_box.text)
-		var last_position : int = input_box.get_caret_column()
+		var text_length: int = len(input_box.text)
+		var last_position: int = input_box.get_caret_column()
 		if is_enter:
 			old_input_box_text = input_box.text
-		input_box.text = input_box.text.substr(0, find_letter) + input_box.text.substr(find_letter+1, text_length)
+		input_box.text = input_box.text.substr(0, find_letter) + input_box.text.substr(find_letter + 1, text_length)
 		input_box.set_caret_column(last_position - 1)
 	if is_enter:
-		print("old input box text: "+old_input_box_text.replace("\n", "\\n"))
-		print("substr result: "+old_input_box_text.substr(find_letter, find_letter+1).replace("\n", "\\n"))
-	if Input.is_action_just_pressed("confim_answer") or old_input_box_text.substr(find_letter, find_letter+1) == "\n":
+		print("old input box text: " + old_input_box_text.replace("\n", "\\n"))
+		print("substr result: " + old_input_box_text.substr(find_letter, find_letter + 1).replace("\n", "\\n"))
+	if Input.is_action_just_pressed("confim_answer") or old_input_box_text.substr(find_letter, find_letter + 1) == "\n":
 		handel_answer()
 	if problem >= 3:
 		input_box.visible = false

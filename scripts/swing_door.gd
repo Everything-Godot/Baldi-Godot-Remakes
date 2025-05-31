@@ -1,20 +1,20 @@
 extends Sprite3D
 
-var opened : bool
-var locked : bool
-var open_texture = load("res://sprites/SwingDoor60.png")
-var close_texture = load("res://sprites/SwingDoor0.png")
-var locked_texture = load("res://sprites/SwingDoor0_Locked.png")
-var open_snd = load("res://sounds/swingdoor_open.wav")
-var close_snd = load("res://sounds/door_close.wav")
-var need_notebooks_snd = load("res://sounds/BAL_Door.wav")
+var opened: bool
+var locked: bool
+var open_texture := load("res://sprites/SwingDoor60.png")
+var close_texture := load("res://sprites/SwingDoor0.png")
+var locked_texture := load("res://sprites/SwingDoor0_Locked.png")
+var open_snd := load("res://sounds/swingdoor_open.wav")
+var close_snd := load("res://sounds/door_close.wav")
+var need_notebooks_snd := load("res://sounds/BAL_Door.wav")
 @onready var close_collision = $StaticBody3D/CollisionShape3DClosed
 @onready var open1_collision = $StaticBody3D/CollisionShape3DOpened1
 @onready var open2_collision = $StaticBody3D/CollisionShape3DOpened2
 @onready var timer = $Timer
 @onready var sound = $AudioStreamPlayer3D
-var changed = false
-var opening = false
+var changed := false
+var opening := false
 
 func _ready() -> void:
 	texture = close_texture

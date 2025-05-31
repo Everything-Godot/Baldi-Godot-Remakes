@@ -1,10 +1,10 @@
 extends Control
 
-@onready var selected : ColorRect = $Selected
+@onready var selected: ColorRect = $Selected
 @onready var item_name: Label = $"Item Name"
 @onready var item_sprites: Control = $"Item Sprites"
-var blank_texture = load("res://sprites/Blank.png")
-var selected_positions : Array[Vector2] = [
+var blank_texture := load("res://sprites/Blank.png")
+var selected_positions := [
 	Vector2(1586, 16), Vector2(1703, 19), Vector2(1810, 18)
 ]
 
@@ -39,10 +39,10 @@ func _process(delta: float) -> void:
 			item_sprites.item_sprites[i].texture = sprite
 		i += 1
 
-func get_currect_item_info(currect_item_slot : int) -> String:
+func get_currect_item_info(currect_item_slot: int) -> String:
 	return Global.slot_items[currect_item_slot]
 
-func get_sprite_for_item(item : String) -> Resource:
+func get_sprite_for_item(item: String) -> Resource:
 	for sprite_info in Global.item_sprites:
 		if sprite_info[0] == item:
 			return sprite_info[1]
@@ -54,7 +54,7 @@ func _input(event: InputEvent) -> void:
 			if event.is_pressed():
 				if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 					Global.selected_item_slot -= 1
-					print("Selected item slot "+str(Global.selected_item_slot))
+					print("Selected item slot " + str(Global.selected_item_slot))
 				if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 					Global.selected_item_slot += 1
-					print("Selected item slot "+str(Global.selected_item_slot))
+					print("Selected item slot " + str(Global.selected_item_slot))

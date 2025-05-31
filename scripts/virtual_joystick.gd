@@ -2,8 +2,8 @@ class_name VirtualJoystick
 extends Control
 
 @export var pressed_color := Color.GRAY
-@export_range(0, 200, 1) var deadzone_size : float = 10
-@export_range(0, 500, 1) var clampzone_size : float = 75
+@export_range(0, 200, 1) var deadzone_size: float = 10
+@export_range(0, 500, 1) var clampzone_size: float = 75
 enum Joystick_mode {
 	FIXED,
 	DYNAMIC,
@@ -23,15 +23,15 @@ enum Visibility_mode {
 @export var action_down := "ui_down"
 var is_pressed := false
 var output := Vector2.ZERO
-var _touch_index : int = -1
+var _touch_index: int = -1
 @onready var _base := $Base
 @onready var _tip := $Base/Tip
-@onready var _base_default_position : Vector2 = _base.position
-@onready var _tip_default_position : Vector2 = _tip.position
-@onready var _default_color : Color = _tip.modulate
+@onready var _base_default_position: Vector2 = _base.position
+@onready var _tip_default_position: Vector2 = _tip.position
+@onready var _default_color: Color = _tip.modulate
 
 func _ready() -> void:
-	if not DisplayServer.is_touchscreen_available() and visibility_mode == Visibility_mode.TOUCHSCREEN_ONLY :
+	if not DisplayServer.is_touchscreen_available() and visibility_mode == Visibility_mode.TOUCHSCREEN_ONLY:
 		hide()
 	if visibility_mode == Visibility_mode.WHEN_TOUCHED:
 		hide()
@@ -75,8 +75,8 @@ func _get_base_radius() -> Vector2:
 
 func _is_point_inside_base(point: Vector2) -> bool:
 	var _base_radius = _get_base_radius()
-	var center : Vector2 = _base.global_position + _base_radius
-	var vector : Vector2 = point - center
+	var center: Vector2 = _base.global_position + _base_radius
+	var vector: Vector2 = point - center
 	if vector.length_squared() <= _base_radius.x * _base_radius.x:
 		return true
 	else:
@@ -84,8 +84,8 @@ func _is_point_inside_base(point: Vector2) -> bool:
 
 func _update_joystick(touch_position: Vector2) -> void:
 	var _base_radius = _get_base_radius()
-	var center : Vector2 = _base.global_position + _base_radius
-	var vector : Vector2 = touch_position - center
+	var center: Vector2 = _base.global_position + _base_radius
+	var vector: Vector2 = touch_position - center
 	vector = vector.limit_length(clampzone_size)
 	if joystick_mode == Joystick_mode.FOLLOWING and touch_position.distance_to(center) > clampzone_size:
 		_move_base(touch_position - vector)

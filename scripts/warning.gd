@@ -2,7 +2,7 @@ extends Node2D
 
 var title_screen = preload("res://scenes/places/title_screen.tscn")
 var yctp = preload("res://scenes/places/yctp.tscn")
-var yctp_test : bool = false
+var yctp_test := false
 
 func _process(_delta: float) -> void:
 	if Input.is_anything_pressed():
