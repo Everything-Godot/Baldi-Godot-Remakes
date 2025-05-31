@@ -10,6 +10,7 @@ var unlockedlook : bool = false
 var noclip : bool = false
 var look_back : bool = false
 var running : bool = false
+var limit_stamina : bool = true
 var os_name : String = OS.get_name()
 var args : PackedStringArray = OS.get_cmdline_args()
 var is_on_android : bool = false
@@ -46,7 +47,7 @@ var item_codes = [
 	["Lock", load("res://scripts/lock.gd")],
 	["Quarter", null],
 	["Tape", null],
-	["Zesty Bar", null]
+	["Zesty Bar", load("res://scripts/zesty_bar.gd")]
 ]
 
 func _ready() -> void:

@@ -1,6 +1,6 @@
 extends Node2D
 
-var school_house = preload("res://scenes/places/school_house.tscn")
+const SCHOOLHOUSE_SCENE_PATH : String = "res://scenes/places/school_house.tscn"
 @onready var slider = $"Title/Mouse/Slider"
 @onready var title = $"Title"
 @onready var exit_bnt = $Title/Buttons/Exit
@@ -9,6 +9,7 @@ var school_house = preload("res://scenes/places/school_house.tscn")
 @onready var howto = $"HowTo"
 
 func _ready() -> void:
+	ResourceLoader.load_threaded_request(SCHOOLHOUSE_SCENE_PATH, "", true)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	title.visible = true
 	howto.visible = false
@@ -25,7 +26,9 @@ func _on_exit_pressed() -> void:
 		get_tree().quit()
 
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_packed(school_house)
+	if ResourceLoader.load_threaded_get_status(SCHOOLHOUSE_SCENE_PATH) == 3:
+		var school_house = ResourceLoader.load_threaded_get(SCHOOLHOUSE_SCENE_PATH)
+		get_tree().change_scene_to_packed(school_house)
 
 func _on_how_to_play_pressed() -> void:
 	title.visible = false

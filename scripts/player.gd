@@ -4,12 +4,13 @@ extends CharacterBody3D
 @onready var collision = $CollisionShape3D
 @onready var area3d = $Camera3D/Area3D
 @export_category("player")
-@export var speed : float = 5.0
-@export var running_speed : float = 7.5
-@export var max_stamina : float = 20.0
+@export var speed : float = 2.5
+@export var running_speed : float = 5.0
+@export var max_stamina : float = 50.0
 @export var gravity : float = 20.0
 @export var jump_speed : float = 5.0
 @export var stamina_bar : ProgressBar
+@export var debug_label : Label
 var stamina : float
 var yctp : PackedScene = load("res://scenes/places/yctp.tscn")
 var yctp_node : Node
@@ -37,6 +38,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	stamina_bar.value = stamina
+	debug_label.text = str("%0.2f" % stamina)+"/"+str("%0f" % max_stamina)
 	if Global.debug:
 		get_tree().debug_collisions_hint = true
 		get_tree().debug_navigation_hint = true
@@ -89,9 +91,9 @@ func _process(_delta: float) -> void:
 						global_node.add_child(node)
 						if i[0] == "Lock":
 							node.use(executor_id)
+							await Global.item_use_finished
 						else:
 							node.use(executor_id)
-						await Global.item_use_finished
 						if node.get_meta("should_remove_item"):
 							Global.slot_items[Global.selected_item_slot] = ""
 						break
@@ -144,15 +146,19 @@ func _physics_process(delta: float) -> void:
 			if stamina > 0:
 				running = true
 				if velocity.x > 0 or velocity.y > 0 or velocity.z > 0:
-					stamina -= 10 * delta
+					stamina -= 5 * delta
 			else:
 				running = false
 		else:
 			running = false
-			if velocity.x <= 0 and velocity.y <= 0 and velocity.z <= 0 and stamina < max_stamina:
-				stamina += 0.5 * delta
-			if stamina > max_stamina:
-				stamina = max_stamina
+			if Global.limit_stamina:
+				if velocity.x <= 0 and velocity.y <= 0 and velocity.z <= 0 and stamina < max_stamina:
+					stamina += 2.5 * delta
+				if stamina > max_stamina:
+					stamina = max_stamina
+			else:
+				if velocity.x <= 0 and velocity.y <= 0 and velocity.z <= 0 and stamina < max_stamina:
+					stamina += 2.5 * delta
 		if Global.debug:
 			if Input.is_action_just_pressed("noclip"):
 				if Global.noclip:

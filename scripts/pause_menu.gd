@@ -21,4 +21,6 @@ func _process(_delta: float) -> void:
 		if Input.is_key_pressed(KEY_Q) or exit_button.button_pressed:
 			Global.paused = false
 			Global.freelook = false
+			for child in Global.get_children():
+				child.destory()
 			get_tree().change_scene_to_file("res://scenes/places/title_screen.tscn")
